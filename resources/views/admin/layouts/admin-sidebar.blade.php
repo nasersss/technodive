@@ -1,7 +1,7 @@
 <div class="dlabnav">
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu" style="direction: rtl;">
-            {{-- @include('layouts.header-profile') --}}
+            {{-- @include('admin.layouts.header-profile') --}}
             <li class=""><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="uil uil-clipboard-alt"></i>
                     <span class="nav-text">الخدمات </span>

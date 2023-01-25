@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
-        return view('welcome');
+        return view('admin.welcome');
     })->name('home');
 
     Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->name('change.language');

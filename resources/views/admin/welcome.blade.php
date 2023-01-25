@@ -15,7 +15,7 @@
     <!--**********************************
                 Content body start
             ***********************************-->
-            @include('massages')
+            @include('admin.massages')
 
     <!-- row -->
     <div class="container-fluid">

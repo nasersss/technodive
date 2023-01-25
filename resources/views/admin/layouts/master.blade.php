@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    @include('layouts.head')
+    @include('admin.layouts.head')
 
 </head>
 <body onload="getMassage()" >
@@ -36,7 +36,7 @@
     <!--**********************************
         Nav header start
     ***********************************-->
-    @include('layouts.logo-header')
+    @include('admin.layouts.logo-header')
     <!--**********************************
         Nav header end
     ***********************************-->
@@ -44,7 +44,7 @@
     <!--**********************************
         Header start
     ***********************************-->
-    @include('layouts.headerbar')
+    @include('admin.layouts.headerbar')
     <!--**********************************
         Header end ti-comment-alt
     ***********************************-->
@@ -52,7 +52,7 @@
     <!--**********************************
         Sidebar start
     ***********************************-->
-    @include('layouts.admin-sidebar')
+    @include('admin.layouts.admin-sidebar')
     <!--**********************************
         Sidebar end
     ***********************************-->
@@ -60,7 +60,7 @@
     <!--**********************************
         Content body start
     ***********************************-->
-    @include('layouts.content-body')
+    @include('admin.layouts.content-body')
     <!--**********************************
         Content body end
     ***********************************-->
@@ -68,7 +68,7 @@
     <!--**********************************
         Footer start
     ***********************************-->
-    @include('layouts.footer')
+    @include('admin.layouts.footer')
     <!--**********************************
         Footer end
     ***********************************-->
@@ -83,7 +83,7 @@
 ***********************************-->
 
 
-@include('layouts.script')
+@include('admin.layouts.script')
 
 </body>
 </html>

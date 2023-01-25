@@ -1,7 +1,7 @@
 <div class="dlabnav">
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu" style="direction: rtl;">
-            {{-- @include('layouts.header-profile') --}}
+            {{-- @include('admin.layouts.header-profile') --}}
 
             <li><a href="#" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-013-checkmark"></i>
