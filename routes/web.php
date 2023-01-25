@@ -16,7 +16,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('index');
+Route::get('/about', function () {
+    return view('about_page');
+})->name('about');
+Route::get('/services', function () {
+    return view('services_page');
+})->name('services');
+Route::get('/projects', function () {
+    return view('projects_page');
+})->name('projects');
+Route::get('/testimonial', function () {
+    return view('testimonial_page');
+})->name('testimonial');
+Route::get('/team', function () {
+    return view('team_page');
+})->name('team');
+Route::get('/contact', function () {
+    return view('contact_page');
+})->name('contact');
 
 Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->name('change.language');
