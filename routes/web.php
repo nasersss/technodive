@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index1');
 })->name('index');
 
 Route::middleware('auth')->group(function () {
@@ -43,9 +42,26 @@ Route::middleware('auth')->group(function () {
 
 
 });
+Route::get('/about', function () {
+    return view('about_page');
+})->name('about');
+Route::get('/services', function () {
+    return view('services_page');
+})->name('services');
+Route::get('/projects', function () {
+    return view('projects_page');
+})->name('projects');
+Route::get('/testimonial', function () {
+    return view('testimonial_page');
+})->name('testimonial');
+Route::get('/team', function () {
+    return view('team_page');
+})->name('team');
+Route::get('/contact', function () {
+    return view('contact_page');
+})->name('contact');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
-
 Route::get('/login', function () {
     return view('auth.login');
 })->middleware('guest');
