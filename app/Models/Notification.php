@@ -18,4 +18,8 @@ class Notification extends Model
     {
         return $this->belongsTo(User::class,'to_user_id');
     }
+    public function ScopeIsNotSeen($query)
+    {
+        return $query->where('is_seen',-1)->get();
+    }
 }

@@ -53,13 +53,13 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class, 'to_user_id');
     }
 
-    public function ScopeCountNotIsSeen($query)
-    {
-        // return $query->get();
-        $query->whereHas('notificationTo',function ($query)
-        {
-            return $query->where('is_seen',-1)->get();
-        });
-    }
+    // public function ScopeCountNotIsSeen($query)
+    // {
+    //     // return $query->get();
+    //     $query->whereHas('notificationTo',function ($query)
+    //     {
+    //         return $query->where('is_seen',-1)->get();
+    //     });
+    // }
 }
 
