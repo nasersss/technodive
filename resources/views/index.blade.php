@@ -9,6 +9,7 @@
 @include('services')
 @include('projects')
 @include('team')
+@include('our-expertise')
 @include('testimonial')
 @include('contact')
 @endsection

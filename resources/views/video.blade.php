@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <h1 class="text-white mb-4">فيديو اخراج السفينة مبارك</h1>
+        {{-- <h1 class="text-white mb-4">فيديو اخراج السفينة مبارك</h1> --}}
         {{-- <h3 class="text-white mb-0">24 Hours 7 Days a Week</h3> --}}
     </div>
 
