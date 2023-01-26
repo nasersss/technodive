@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CodingController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('index');
 })->name('index');
 
 Route::middleware('auth')->group(function () {
@@ -65,3 +67,4 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', function () {
     return view('auth.login');
 })->middleware('guest');
+Route::get('test',[TestController::class,'test']);
