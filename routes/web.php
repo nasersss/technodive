@@ -29,7 +29,6 @@ Route::middleware('auth')->group(function () {
         return view('admin.welcome');
     })->name('home');
 
-    Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->name('change.language');
 
     Route::get('reset/password', function () {
         return view('auth.reset-password');
@@ -44,6 +43,8 @@ Route::middleware('auth')->group(function () {
 
 
 });
+Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->name('change.language');
+
 Route::get('/about', function () {
     return view('about_page');
 })->name('about');

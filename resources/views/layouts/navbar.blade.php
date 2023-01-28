@@ -19,12 +19,17 @@
             <a href="{{ route('contact') }}" class="nav-item nav-link">اتصل بنا</a>
         </div>
         <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">اللغة</a>
-            <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                <a href="feature.html" class="dropdown-item">عربي</a>
-                <a href="team.html" class="dropdown-item">انجليزي</a>
-            </div>
+           
+            @foreach (config('locales.languages') as $key => $val)
+            @if ($key != app()->getLocale())
+                <a href="{{ route('change.language', $key) }}"  class="nav-link dropdown-toggle">
+                    {{ $val['name'] }}
+                    {{-- <i class="fa-solid fa-language"></i> --}}
+                </a>
+            @endif
+           @endforeach
         </div>
+
         <img class="img-fluid" src="{{asset('/assets/img/logo.jpg')}}" alt="Image" style="width: 66px;">
     </div>
 </nav>

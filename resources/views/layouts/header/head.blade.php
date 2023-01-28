@@ -28,6 +28,7 @@ content=""/>
 
 <!-- Template Stylesheet -->
 <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}"/>
+<link rel="stylesheet" href="{{asset('/assets/css/styleEnglishLanguage.css')}}"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
