@@ -776,3 +776,27 @@ body
     justify-content: center;
 
 }
+
+.form-floating>label {
+    right: 0;
+}
+.form-floating>.form-control:focus ~ label, .form-floating>.form-control:not(:placeholder-shown) ~ label, .form-floating>.form-select ~ label {
+    opacity: .65;
+    transform: translateY(0) translateX(0);
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.dropdown-menu {
+    text-align: right;
+}
+.nav-link
+{
+    color:#ffffff;
+}

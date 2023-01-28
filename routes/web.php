@@ -53,6 +53,10 @@ Route::get('/services', function () {
 Route::get('/projects', function () {
     return view('projects_page');
 })->name('projects');
+Route::get('/our-expertise', function () {
+    return view('our-expertise_page');
+})->name('ourExpertise');
+
 Route::get('/testimonial', function () {
     return view('testimonial_page');
 })->name('testimonial');

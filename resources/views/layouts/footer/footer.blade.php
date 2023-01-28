@@ -49,7 +49,7 @@
                 <h5 class="text-light mb-4">الاخبار</h5>
                 <p>سجل في النشرة البريدية</p>
                 <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input class="form-control bg-transparent border-secondary w-100 py-3 ps-4 pe-5" type="text" placeholder="البريد الالكتروني">
+                    <input class="form-control bg-transparent border-secondary w-100 py-3  " type="text" placeholder="البريد الالكتروني">
                     <button type="button" class="btn btn-primary py-2 position-absolute top-0 start-0 mt-2 ms-2">تسجيل</button>
                 </div>
             </div>
