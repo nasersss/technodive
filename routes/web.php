@@ -6,6 +6,7 @@ use App\Http\Controllers\CodingController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/clear', [NotificationController::class, 'clear'])->name('clear_notification');
 
     Route::get('/makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
-
+    
+    ######## works ######################33
+    Route::get('/works/store',[WorkController::class,'store'])->name('work_store');
 
 });
 Route::get('/about', function () {

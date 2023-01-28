@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('item_brand');
-            $table->string('description');
-            $table->smallInteger('data_flow')->nullable()->default(0);
-            $table->smallInteger('is_active')->nullable()->default(-1);
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
