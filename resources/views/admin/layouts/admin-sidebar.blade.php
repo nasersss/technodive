@@ -7,7 +7,7 @@
                     <span class="nav-text">الخدمات </span>
                 </a>
                 <ul aria-expanded="false" class="mm-collapse" style="height: 16px;">
-                    <li><a href="#"> عرض الخدمات</a></li>
+                    <li><a href="{{route('service_list')}}"> عرض الخدمات</a></li>
                 </ul>
             </li>
             <li class=""><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

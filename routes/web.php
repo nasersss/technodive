@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CodingController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Auth;
@@ -74,3 +75,5 @@ Route::get('/login', function () {
 })->middleware('guest');
 
 Route::get('test',[TestController::class,'test']);
+Route::get('/services/list',[ServiceController::class,'index'])->name('service_list');
+Route::post('/services/store',[ServiceController::class,'store'])->name('service_store');

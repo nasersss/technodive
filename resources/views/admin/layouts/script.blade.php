@@ -4,21 +4,22 @@
 <script src="{{asset('/js/toggle/toggle.js')}}"></script>
 <script src="{{asset('/js/concel/concel.js')}}"></script>
 <script src="{{asset('/js/confirm/confirm.js')}}"></script>
-<script src="{{asset('js/print_confirmation/print_confirmation.js')}}"></script>
+{{-- <script src="{{asset('js/print_confirmation/print_confirmation.js')}}"></script> --}}
 <script src="{{asset('/js/selected/selected.js')}}"></script>
-<script src="{{asset('/js/update/update-transfer.js')}}"></script>
+{{-- <script src="{{asset('/js/update/update-transfer.js')}}"></script> --}}
+<script src="{{asset('/js/modal-add/add.js')}}"></script>
 
 <!-- Required vendors -->
 <script src="{{asset('/vendor/chart.js/Chart.bundle.min.js')}}"></script>
 {{-- <script src="{{asset('/js/toggle.js')}}"></script> --}}
 
 <!-- Apex Chart -->
-<script src="{{asset('/vendor/apexchart/apexchart.js')}}"></script>
+{{-- <script src="{{asset('/vendor/apexchart/apexchart.js')}}"></script> --}}
 <script src="{{asset('/vendor/nouislider/nouislider.min.js')}}"></script>
 <script src="{{asset('/vendor/wnumb/wNumb.js')}}"></script>
 
 <!-- Dashboard 1 -->
-<script src="{{asset('/js/dashboard/dashboard-1.js')}}"></script>
+{{-- <script src="{{asset('/js/dashboard/dashboard-1.js')}}"></script> --}}
 
 
 @yield('script')

@@ -11,10 +11,10 @@
             @csrf
             <div class="row">
             <div class="col-md-12">
-                <label class="form-label" for="title">العنوان </label>
-                <input type="text" id="title" required="" value="{{ old("title") }}" name="title" class="form-control" placeholder="الرجاء ادخال العنوان ">
+                <label class="form-label" for="title">العنوان بالعربي </label>
+                <input type="text" id="titleAr" required="" value="{{ old("titleAr") }}" name="titleAr" class="form-control" placeholder="الرجاء ادخال العنوان ">
                         <div class="fv-plugins-message-container invalid-feedback ">
-                           الرجاء إدخال  العنوان
+                           الرجاء إدخال  العنوان بالعربي
                         </div>
                         @error('title')
                             <div class="text-danger px-2 showModalAdd ">

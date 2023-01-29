@@ -15,7 +15,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.service.list');
     }
 
     /**
@@ -36,7 +36,7 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        //
+        return $request;
     }
 
     /**
