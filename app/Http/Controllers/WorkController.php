@@ -15,7 +15,8 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
+        $works = Work::get();
+        return view('admin.works.list')->with('works',$works);
     }
 
     /**
@@ -36,21 +37,30 @@ class WorkController extends Controller
      */
     public function store(StoreWorkRequest $request)
     {
-       
-        //$newWork = new Work();
+        $newItem = new Work();
+        $translations = ['en' => 'hello', 'ar' => 'hola'];
+        $newItem->setTranslations('title', $translations);
+
+        $translations = ['en' => 'hello hello hello', 'ar' => 'hola hola hola'];
+
+        $newItem->setTranslations('description', $translations);
+
+        $newItem->save();
+
+        $newWork = new Work();
         Work::create([
             'title' => [
-               'en' => 'title in English',
-               'ar' => 'العنوان عربي'
+                'en' => 'title in English',
+                'ar' => 'العنوان عربي'
             ],
             'description' => [
                 'en' => 'description,description description description in English',
                 'ar' => 'الوصف عربي الوصف عرب لوصف عربي الوصف عربي'
-             ],
-             'image'=>'image.png'
-         ]);
-         
-         return Work::get();
+            ],
+            'image' => 'image.png'
+        ]);
+
+        return Work::get();
     }
 
     /**
