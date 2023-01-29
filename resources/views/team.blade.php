@@ -2,7 +2,7 @@
  <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <h1 class="section-title bg-white text-center text-primary px-3">فريقنا</h1>
+            <h1 class="section-title bg-white text-center text-primary px-3">{{__('navbar.team')}}</h1>
             <!-- <h1 class="display-6 mb-4">We Are A Creative Team For Your Dream Project</h1> -->
         </div>
         <div class="row g-4">

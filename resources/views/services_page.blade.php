@@ -2,7 +2,7 @@
 @extends('master')
 
 @section('title')
-خدماتنا
+{{__('navbar.services')}}
 @endsection
 
 {{-- page css files or code  --}}
@@ -17,12 +17,12 @@
 background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("{{asset('/assets/img/paner2.png')}}") center center no-repeat;background-size: cover;
 '>
     <div class="container text-center py-5">
-        <h1 class="display-4 text-white  slideInDown mb-3">خدماتنا</h1>
+        <h1 class="display-4 text-white  slideInDown mb-3">{{__('navbar.services')}}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a class="text-white" href="#">الصفحة الرائيسية</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ route('index') }}"> {{__('navbar.home')}}</a></li>
                 {{-- <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li> --}}
-                <li class="breadcrumb-item text-primary active" aria-current="page">خدماتنا</li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">{{__('navbar.services')}}</li>
             </ol>
         </nav>
     </div>

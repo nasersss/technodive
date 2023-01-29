@@ -17,8 +17,8 @@
                 <img class="w-100" src="{{asset('/assets/img/ta11.jpg')}}" alt="Image">
                 <div class="carousel-caption">
                     <div class="p-3" style="max-width: 900px;">
-                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">تكنو دايف لخدمات  الغوص</h4>
-                        <h1 class="display-1 text-white mb-0 animated zoomIn">فريق متخصص في الغوص</h1>
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">{{__('sectionslider.nameCompany')}}</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">{{__('sectionslider.setenceOne')}}</h1>
                     </div>
                 </div>
             </div>
@@ -26,8 +26,8 @@
                 <img class="w-100" src="{{asset('/assets/img/ta10.jpg')}}" alt="Image">
                 <div class="carousel-caption">
                     <div class="p-3" style="max-width: 900px;">
-                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">تكنو دايف لخدمات  الغوص</h4>
-                        <h1 class="display-1 text-white mb-0 animated zoomIn">معالجة مشاكل السفن</h1>
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">{{__('sectionslider.nameCompany')}}</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">{{__('sectionslider.setenceTow')}}</h1>
                     </div>
                 </div>
             </div>
@@ -35,8 +35,8 @@
                 <img class="w-100" src="{{asset('/assets/img/ta12.jpg')}}" alt="Image">
                 <div class="carousel-caption">
                     <div class="p-3" style="max-width: 900px;">
-                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">تكنو دايف لخدمات  الغوص</h4>
-                        <h1 class="display-1 text-white mb-0 animated zoomIn">استخراج بقايا السفن</h1>
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">{{__('sectionslider.nameCompany')}}</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">{{__('sectionslider.setenceThree')}}</h1>
                     </div>
                 </div>
             </div>

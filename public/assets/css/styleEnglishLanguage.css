@@ -1,0 +1,74 @@
+body
+{
+    direction: ltr;
+}
+.navbar-expand-lg .navbar-collapse {
+    direction: rtl;
+}
+.section-title-about {
+    padding-left: 0rem !important;
+    padding-right: 1rem !important;
+}
+.section-title.text-start::before {
+     left: 0;
+}
+.section-title.text-start::after {
+     left: 6px;
+}
+.img-border::before {
+
+    right: 3rem;
+    left: 0;
+
+}
+.img-border img {
+    left: 3rem;
+}
+.me-english-1
+{
+    margin-right: 1rem !important;
+    margin-left: 0rem !important;
+}
+.direction-rtl {
+    direction: ltr;
+}
+.footer .btn.btn-link {
+    text-align: left;
+}
+.footer .btn.btn-link::before {
+     content: "\f105";
+     margin-right: 10px;
+}
+.end-english
+{
+    margin-right: 0.5rem !important;
+    margin-left: 0rem !important;
+    right: 0 !important;
+    left: inherit !important;
+}
+.text-md-end-english
+{
+    text-align: left !important;
+}
+.text-md-start-english
+{
+    text-align: right !important;
+}
+.ms-1-english
+{
+    margin-left: 0rem !important;
+}
+.ms-0-english
+{
+    margin-left:  0.25rem !important;
+}
+.breadcrumb-item+.breadcrumb-item::before {
+    float: left;
+    padding-right: 0.5rem;
+}
+.navbar-nav-english
+{
+    direction: ltr;
+    display: flex;
+    justify-content: flex-end;
+}

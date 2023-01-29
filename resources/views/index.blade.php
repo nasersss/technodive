@@ -8,6 +8,7 @@
 @include('video')
 @include('services')
 @include('projects')
+@include('hardware')
 @include('team')
 @include('our-expertise')
 @include('testimonial')
