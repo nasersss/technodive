@@ -42,9 +42,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/clear', [NotificationController::class, 'clear'])->name('clear_notification');
 
     Route::get('/makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
-    
+
     ######## works ######################33
     Route::get('/works/store',[WorkController::class,'store'])->name('work_store');
+    Route::get('/works/list',[WorkController::class,'index'])->name('work_list');
+
 
 });
 Route::get('/about', function () {
@@ -70,4 +72,5 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', function () {
     return view('auth.login');
 })->middleware('guest');
+
 Route::get('test',[TestController::class,'test']);
