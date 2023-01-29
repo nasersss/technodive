@@ -7,19 +7,19 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav me-auto p-3 p-lg-0 w-100">
-            <a href="{{ route('index') }}" class="nav-item nav-link active">الرائيسية</a>
-            <a href="{{ route('about') }}" class="nav-item nav-link">من نحن</a>
-            <a href="{{ route('services') }}" class="nav-item nav-link">الخدمات</a>
-            <a href="{{ route('projects') }}" class="nav-item nav-link">الاعمال</a>
-            <a href="#" class="nav-item nav-link">المعدات</a>
-            <a href="{{ route('team') }}" class="nav-item nav-link">فريقنا</a>
-            <a href="{{ route('ourExpertise') }}" class="nav-item nav-link">الشهادات</a>
-            <a href="{{ route('testimonial') }}" class="nav-item nav-link">اراء العملاء</a>
-            <a href="{{ route('contact') }}" class="nav-item nav-link">اتصل بنا</a>
+        <div class="navbar-nav me-auto p-3 p-lg-0 w-100 navbar-nav-english">
+            <a href="{{ route('index') }}" class="nav-item nav-link active"> {{__('navbar.home')}}</a>
+            <a href="{{ route('about') }}" class="nav-item nav-link">{{__('navbar.about')}}</a>
+            <a href="{{ route('services') }}" class="nav-item nav-link">{{__('navbar.services')}}</a>
+            <a href="{{ route('projects') }}" class="nav-item nav-link">{{__('navbar.works')}}</a>
+            <a href="{{ route('hardware') }}" class="nav-item nav-link">{{__('navbar.hardware')}}</a>
+            <a href="{{ route('team') }}" class="nav-item nav-link">{{__('navbar.team')}}</a>
+            <a href="{{ route('ourExpertise') }}" class="nav-item nav-link">{{__('navbar.certificates')}}</a>
+            <a href="{{ route('testimonial') }}" class="nav-item nav-link">{{__('navbar.testimonials')}}</a>
+            <a href="{{ route('contact') }}" class="nav-item nav-link">{{__('navbar.contact')}}</a>
         </div>
         <div class="nav-item dropdown">
-           
+
             @foreach (config('locales.languages') as $key => $val)
             @if ($key != app()->getLocale())
                 <a href="{{ route('change.language', $key) }}"  class="nav-link dropdown-toggle">

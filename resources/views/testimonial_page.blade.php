@@ -2,7 +2,7 @@
 @extends('master')
 
 @section('title')
-اراء العملاء
+{{__('navbar.testimonials')}}
 @endsection
 
 {{-- page css files or code  --}}
@@ -21,12 +21,12 @@ background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("{{asset(
 background-size: cover;
 '>
     <div class="container text-center py-5">
-        <h1 class="display-4 text-white  slideInDown mb-3">اراء العملاء</h1>
+        <h1 class="display-4 text-white  slideInDown mb-3">{{__('navbar.testimonials')}}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a class="text-white" href="#">الصفحة الرائيسية</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ route('index') }}">{{__('navbar.home')}}</a></li>
                 {{-- <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li> --}}
-                <li class="breadcrumb-item text-primary active" aria-current="page">اراء العملاء</li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">{{__('navbar.testimonials')}}</li>
             </ol>
         </nav>
     </div>

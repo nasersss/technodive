@@ -54,6 +54,11 @@ Route::get('/services', function () {
 Route::get('/projects', function () {
     return view('projects_page');
 })->name('projects');
+Route::get('/hardware', function () {
+    return view('hardware_page');
+})->name('hardware');
+
+
 Route::get('/our-expertise', function () {
     return view('our-expertise_page');
 })->name('ourExpertise');

@@ -3,8 +3,8 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
-                <h5 class="text-light mb-4">اتصل بنا</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt ms-3 me-english-1"></i>اليمن -حضرموت - المكلا</p>
+                <h5 class="text-light mb-4">{{__('navbar.contact')}}</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt ms-3 me-english-1"></i>{{__('footer.addrass')}}</p>
                 <p class="mb-2"><i class="fa fa-phone-alt ms-3 me-english-1"></i>+967 733899087 |  +967 777375652</p>
                 <p class="mb-2"><i class="fa fa-envelope ms-3 me-english-1"></i>saeed78ba@yahoo.com</p>
                 <div class="d-flex pt-2">
@@ -15,15 +15,18 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 direction-rtl">
-                <h5 class="text-light mb-4">روابط سريعة</h5>
-                <a class="btn btn-link" href="">من نحن</a>
-                <a class="btn btn-link" href="">اتصل بنا</a>
-                <a class="btn btn-link" href="">الخدمات</a>
-                <a class="btn btn-link" href="">الفريق</a>
-                <a class="btn btn-link" href="">الدعم</a>
+                <h5 class="text-light mb-4">{{__('footer.title_links')}}</h5>
+                <a href="{{ route('about') }}" class="btn btn-link">{{__('navbar.about')}}</a>
+                <a href="{{ route('services') }}" class="btn btn-link">{{__('navbar.services')}}</a>
+                <a href="{{ route('projects') }}" class="btn btn-link">{{__('navbar.works')}}</a>
+                <a href="{{ route('hardware') }}" class="btn btn-link">{{__('navbar.hardware')}}</a>
+                <a href="{{ route('team') }}" class="btn btn-link">{{__('navbar.team')}}</a>
+                <a href="{{ route('ourExpertise') }}" class="btn btn-link">{{__('navbar.certificates')}}</a>
+                <a href="{{ route('testimonial') }}" class="btn btn-link">{{__('navbar.testimonials')}}</a>
+
             </div>
             <div class="col-lg-3 col-md-6">
-                <h5 class="text-light mb-4">الشهادات</h5>
+                <h5 class="text-light mb-4">{{__('navbar.certificates')}}</h5>
                 <div class="row g-2">
                     <div class="col-4">
                         <img class="img-fluid rounded" src="{{asset('/assets/img/wo1.jpg')}}" alt="Image">
@@ -46,11 +49,11 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <h5 class="text-light mb-4">الاخبار</h5>
-                <p>سجل في النشرة البريدية</p>
+                <h5 class="text-light mb-4">{{__('footer.news')}}</h5>
+                <p>{{__('footer.text')}}</p>
                 <div class="position-relative mx-auto" style="max-width: 400px;">
                     <input class="form-control bg-transparent border-secondary w-100 py-3  " type="text" placeholder="البريد الالكتروني">
-                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 start-0 mt-2 ms-2 end-english">تسجيل</button>
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 start-0 mt-2 ms-2 end-english">{{__('footer.Sign_Up')}}</button>
                 </div>
             </div>
         </div>
@@ -59,11 +62,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-end text-md-end-english mb-3 mb-md-0">
-                    &copy; <a href="#">Techno dive</a>, All Right Reserved.
+                    &copy; <a href="#"> {{__('footer.All_Right')}} </a>, {{__('sectionslider.nameCompany')}} .
                 </div>
                 <div class="col-md-6 text-center text-md-start text-md-start-english">
                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                   تصميم<a href="https://goupdev.net" >  فريق قوأب لتطوير البرمجيات </a>
+                    {{__('footer.Designed')}}<a href="https://goupdev.net" > {{__('footer.Designed_by')}}</a>
                 </div>
             </div>
         </div>
