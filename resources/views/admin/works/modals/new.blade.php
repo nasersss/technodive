@@ -3,61 +3,102 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><strong>إضافة طرمبة جديدة</strong></h4>
+                <h4 class="modal-title"><strong>إضافة عمل جديدة</strong></h4>
                 <i type="reset" data-bs-dismiss="modal" aria-label="Close"
                     class="las las la-times text-danger scale5"></i>
             </div>
             <div class="modal-body">
-                <form id="addNewAddressForm" method="POST" action="#"
-                    class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework needs-validation" novalidate>
+                <form id="addNewAddressForm" method="POST" action="{{route('work_store')}}"
+                    class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework needs-validation" novalidate
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="form-label" style="font-weight: bold" for="tankId">حدد رقم الخزان المرتبط
-                                بطرمبة</label>
-                            <select id="tankId" name="tankId" class="form-control" required>
-                                <option selected id="myId" disabled="disabled" value="">اختار الخزان المرتبط
-                                    بطرمبة</option>
-                                @isset($tanks)
-                                    @foreach ($tanks as $tank)
-                                        <option value="{{ $tank->id }}">
-                                            @isset($tank->type)
-                                                @if ($tank->type == 0)
-                                                    الخزان رقم {{ $tank->id }} النوع
-                                                    بترول
-                                                @else
-                                                    الخزان رقم {{ $tank->id }} النوع
-                                                    ديزل
-                                                @endif
-                                            @endisset
-                                        </option>
-                                    @endforeach
-                                @endisset
-                            </select>
+                            <label class="form-label" style="font-weight: bold" for="titleAr">أدخل عنوان العمل
+                                بالعربي</label>
+                            <input type="text" id="titleAr" name="titleAr" class="form-control" required>
                             <div class="fv-plugins-message-container invalid-feedback ">
-                                الرجاء اختيار احدى الخزانات
+                                @error('titleAr')
+                                    <div class="text-danger px-2 showModalAdd ">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                            @error('tankId')
-                                <div class="text-danger px-2 showModalAdd ">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <div class="fv-plugins-message-container invalid-feedback ">
+                                الرجاء أدخال عنوان العمل
+                                بالعربي
+                            </div>
                         </div>
-
-                        <div class="col-md-12 mt-4">
-                            <label class="form-label" style="font-weight: bold" for="tankId">ادخال القراءة المبدائية
-                                لهذه الطرمبة</label>
-                            <input id="petrolQuantity" name="startOfDayRead" type="number"
-                                class="form-control form-control-sm" id="validationCustom06"
-                                placeholder="ادخال القراءة المبدائية لهذه الطرمبة" required="">
+                        <div class="col-md-12  mt-4">
+                            <label class="form-label" style="font-weight: bold" for="titleEn">أدخل عنوان العمل
+                                بالانجليزي</label>
+                            <input type="text" id="titleEn" name="titleEn" class="form-control" required>
                             <div class="fv-plugins-message-container invalid-feedback ">
-                                الرجاء اختيار احدى الخزانات
+                                @error('titleEn')
+                                    <div class="text-danger px-2 showModalAdd ">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                            {{-- @error('tankId')
-                            <div class="text-danger px-2 showModalAdd ">
-                                {{ $message }}
+                            <div class="fv-plugins-message-container invalid-feedback ">
+                                الرجاء أدخال عنوان العمل
+                                بالانجليزي
                             </div>
-                        @enderror --}}
+                        </div>
+                        <div class="col-md-12  mt-4">
+                            <label class="form-label" style="font-weight: bold" for="descriptionAr">أدخل وصف العمل
+                                بالعربي</label>
+                            <textarea name="descriptionAr" id="descriptionAr" cols="30" rows="10" class="form-control" required>
+
+                            </textarea>
+                            <div class="fv-plugins-message-container invalid-feedback ">
+                                @error('descriptionAr')
+                                    <div class="text-danger px-2 showModalAdd ">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="fv-plugins-message-container invalid-feedback ">
+                                الرجاء أدخال الوصف العمل
+                                بالعربي
+                            </div>
+                        </div>
+                        <div class="col-md-12  mt-4">
+                            <label class="form-label" style="font-weight: bold" for="descriptionEn">أدخل وصف العمل
+                                بالانجليزي</label>
+                            <textarea name="descriptionEn" id="descriptionEn" cols="30" rows="10" class="form-control" required>
+
+                            </textarea>
+                            <div class="fv-plugins-message-container invalid-feedback ">
+                                @error('descriptionEn')
+                                    <div class="text-danger px-2 showModalAdd ">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="fv-plugins-message-container invalid-feedback ">
+                                الرجاء أدخال وصف العمل
+                                بالانجليزي
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-4">
+                            <label class="form-label" style="font-weight: bold" for="’mainImage">اختر صورة رئيسية
+                                للعمل</label>
+                            <input class="form-control" required id="’mainImage" name="’mainImage" accept="image/*" type="file"
+                                multiple>
+                            <div class="fv-plugins-message-container invalid-feedback ">
+                                الرجاء اختيار صورة رئيسية للعمل
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-4">
+                            <label class="form-label" style="font-weight: bold" for="images">اختر باقي الصور
+                                للعمل</label>
+                            <input class="form-control" id="images" name="images[]" accept="image/*" type="file"
+                                multiple>
+                            <div class="fv-plugins-message-container invalid-feedback ">
+                                الرجاء اختيار باقي الصور
+                                للعمل
+                            </div>
                         </div>
                     </div>
             </div>

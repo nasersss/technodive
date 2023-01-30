@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('works', function (Blueprint $table) {
+        Schema::create('work_images', function (Blueprint $table) {
             $table->id();
-            $table->json('title')->nullable();
-            $table->json('description')->nullable();
-            $table->smallInteger('is_active')->default(1);
+            $table->unsignedBigInteger('work_id');
+            $table->foreign('work_id')->references('id')->on('works')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('works');
+        Schema::dropIfExists('work_images');
     }
 };

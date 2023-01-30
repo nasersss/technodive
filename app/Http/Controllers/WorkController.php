@@ -37,30 +37,29 @@ class WorkController extends Controller
      */
     public function store(StoreWorkRequest $request)
     {
-        $newItem = new Work();
-        $translations = ['en' => 'hello', 'ar' => 'hola'];
-        $newItem->setTranslations('title', $translations);
+        $work = new Work();
+        $titleTranslations = ['en' => $request->titleEn, 'ar' => $request->titleAr ];
+        $descriptionTranslations = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+        $work->setTranslations('title', $titleTranslations);
+        $work->setTranslations('description', $descriptionTranslations);
 
-        $translations = ['en' => 'hello hello hello', 'ar' => 'hola hola hola'];
+        $work->save();
 
-        $newItem->setTranslations('description', $translations);
+        return back()->with(['success','تمت عملية الاضافة بنجاح']);
+        // $newWork = new Work();
+        // Work::create([
+        //     'title' => [
+        //         'en' => 'title in English',
+        //         'ar' => 'العنوان عربي'
+        //     ],
+        //     'description' => [
+        //         'en' => 'description,description description description in English',
+        //         'ar' => 'الوصف عربي الوصف عرب لوصف عربي الوصف عربي'
+        //     ],
+        //     'image' => 'image.png'
+        // ]);
 
-        $newItem->save();
-
-        $newWork = new Work();
-        Work::create([
-            'title' => [
-                'en' => 'title in English',
-                'ar' => 'العنوان عربي'
-            ],
-            'description' => [
-                'en' => 'description,description description description in English',
-                'ar' => 'الوصف عربي الوصف عرب لوصف عربي الوصف عربي'
-            ],
-            'image' => 'image.png'
-        ]);
-
-        return Work::get();
+        // return Work::get();
     }
 
     /**

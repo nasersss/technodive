@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
 
     ######## works ######################33
-    Route::get('/works/store',[WorkController::class,'store'])->name('work_store');
+    Route::post('/works/store',[WorkController::class,'store'])->name('work_store');
     Route::get('/works/list',[WorkController::class,'index'])->name('work_list');
 
 
