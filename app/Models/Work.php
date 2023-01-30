@@ -16,4 +16,8 @@ class Work extends Model
     ];
     public $translatable = ['title','description'];
 
+    public function workImages()
+    {
+        return $this->hasMany(WorkImage::class, 'work_id');
+    }
 }
