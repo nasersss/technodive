@@ -68,7 +68,9 @@
                             @enderror
                         </div>
                        <button class="btn btn-primary mt-3 show-add-image"> ارفاق الصورة</button>
-                        <input type="hidden" class="form-control" name="imageUrl" id="imageUrlPreview"  placeholder="يرجى رفع ملف الفديو ...">
+                        <input type="hidden" class="form-control" name="imageUrl" id="imageUrlPreview"  >
+                        <input type="hidden" name="typeImage" id="typeImage">
+
                     </div>
 
             </div>
@@ -79,8 +81,8 @@
             </form>
             {{-- Modal upload image --}}
              <!-- Modal -->
-  <div class="modal modal-dialog-scrollable" id="addImageModal">
-    <div class="modal-dialog">
+  <div class="modal " id="addImageModal">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="">إرفاق الصورة </h5>

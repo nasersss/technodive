@@ -24,7 +24,7 @@
              data-route="{{route("service_store")}}" 
              data-method="POST"
              data-modal_title ='إضافة خدمة جديدة'>
-                <i class="mdi mdi-plus-circle ms-2"></i>اضافة عمل جديدة
+                <i class="mdi mdi-plus-circle ms-2"></i>اضافة خدمة جديدة
             </button>
         </div>
         <!--**********************************Tabs End***********************************-->
@@ -39,72 +39,88 @@
                             <thead>
                                 <tr>
                                     <th>رقم</th>
-                                    <th>العنوان</th>
-                                    <th>الوصف</th>
+                                    <th>العنوان بالعربي</th>
+                                    <th>العنوان بالانجليزي</th>
+                                    <th>الوصف بالعربي</th>
+                                    <th>الوصف بالانجليزي</th>
+                                    {{-- <th>الصورة</th> --}}
                                     <th>الحالة</th>
                                     <th>العمليات</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @isset($services)
+                                    @foreach ($services as $service)
+                                        <tr class="odd" role="row">
+                                            <td>
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            <td>
+                                                @isset($service->getTranslations('title')['ar'])
+                                                {{ $service->getTranslations('title')['ar'] }}
+                                                @endisset
+                                            </td>
+                                            <td>
+                                                @isset($service->getTranslations('title')['en'])
+                                                {{ $service->getTranslations('title')['en'] }}
+                                                @endisset
+                                            </td>
+                                            <td>
+                                                @isset($service->getTranslations('description')['ar'])
+                                                {{ $service->getTranslations('description')['ar'] }}
+                                                @endisset
 
-                                <tr class="odd" role="row">
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        5
-                                    </td>
-                                    <td>
-                                        بترول
-                                    </td>
-                                    <td>
-
-
-                                        <span class="badge badge-danger light">غير مطبوعة</span>
-                                    <td>
-                                        <div class="dropdown dropstart">
-                                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                                                        stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                    <path
-                                                        d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                                                        stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                    <path
-                                                        d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                                                        stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu">
-
-                                                <button type="button" value="" data-tank="1" data-id="5"
-                                                    class="edit dropdown-item" href="edit all-details.html"><i
-                                                        class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>
-
-                                                <button type="button" value="" data-id="1" data-is_active="1"
-                                                    data-title="العمل" data-route='#'
-                                                    class="toggle dropdown-item" href="toggle "><i
-                                                        class="fa fa-trash ms-3 text-danger"></i>تعليق</button>
-
-
-                                                <button type="button" value="" data-id="1" data-is_active="-1"
-                                                    data-title="العمل" data-route='#'
-                                                    class="toggle dropdown-item" href="toggle "><i
-                                                        class="fa fa-trash ms-3 text-success"></i>تفعيل</button>
-
-
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-
+                                            </td>
+                                            <td>
+                                                @isset($service->getTranslations('description')['en'])
+                                                {{ $service->getTranslations('description')['en'] }}
+                                                @endisset
+                                            </td>
+                                            {{-- <td>
+                                                <img src="{{asset('storage/images/'.$service->image)}}" width="200px" alt="">
+                                            </td> --}}
+                                            <td>
+                                                @isset($service->is_active)
+                                                <span class="badge badge-danger light">{{$service->is_active}}</span>
+                                                @endisset
+                                            <td>
+                                                <div class="dropdown dropstart">
+                                                    <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                                                                stroke="#575757" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
+                                                                stroke="#575757" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                            <path
+                                                                d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
+                                                                stroke="#575757" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round"></path>
+                                                        </svg>
+                                                    </a>
+                                                    <div class="dropdown-menu">
+                                                        
+                                                        <button type="button" value="" data-tank="8"
+                                                            data-id="8" class="edit dropdown-item"
+                                                            href="edit all-details.html"><i
+                                                                class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>
+                                                      
+                                                            <button type="button" value="" data-id="5"
+                                                                data-is_active="5" data-title="الطرمبة"
+                                                                data-route='' class="toggle dropdown-item"
+                                                                href="toggle "><i class="fa fa-trash ms-3 text-success"></i>تفعيل</button>
+                                                       
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endisset
                             </tbody>
 
                         </table>
@@ -125,10 +141,7 @@
         strat modals
     ***********************************-->
 
-    @include('admin.modals.new')
-
-    @include('admin.works.modals.update')
-    
+    @include('admin.modals.new')    
     @include('admin.toggle.toggle')
 
     <!--**********************************

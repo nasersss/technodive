@@ -15,8 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-       return $service = Service::get();
-        return view('admin.service.list');
+        $services = Service::get();
+        return view('admin.service.list')->with('services', $services);
     }
 
     /**
@@ -37,7 +37,7 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-      
+        try{
        if($request->imageUrl==null)
         return redirect()->route('service_list')->with(['error'=>'يرجى إرفاق الصورة']);
         $newService = new Service();
@@ -48,7 +48,10 @@ class ServiceController extends Controller
         $newService->image=$request->imageUrl;
         $newService->save();
         return redirect()->route('service_list')->with(['success'=>'تمت إضافة البيانات بنجاح']);
+    } catch (\Throwable $th) {
+        return redirect()->route('service_list')->with(['error'=>'لم يتم حفظ البيانات']);
 
+    }
     }
 
     /**

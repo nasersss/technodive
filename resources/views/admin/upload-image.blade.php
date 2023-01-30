@@ -10,8 +10,8 @@
                                             <div class="progress-bar progress-bar-striped " role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; height: 100%">75%</div>
                                         </div>
                                         <div class="card-footer p-2" style="display: none">
-                                            <input type="hidden" id="imageUrlPreview" name="imageUrl">
-                                            <img  id="videoPreview" src="" alt="">
+                                            {{-- <input  type="hidden" id="imageUrlPreview" name="imageUrl[]"> --}}
+                                            <img  id="videoPreview" src="" width="100%" alt="">
                                         </div> 
                                     </div>
                          </div>
@@ -23,7 +23,7 @@
 {{-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
 <script type="text/javascript">
-
+ let imagespath = [];
     let browseFile = $('#browseFile');
     let resumable = new Resumable({
         target: '{{ route('uploadImage') }}',
@@ -51,7 +51,11 @@
     resumable.on('fileSuccess', function (file, response) { // trigger when file upload complete
         response = JSON.parse(response)
         $('#videoPreview').attr('src', response.path);
-        $('#imageUrlPreview').val(response.filename);
+       
+        imagespath.push(response.filename);
+        $('#imageUrlPreview').val(imagespath);
+        if(imagespath.length>1)
+            $('#typeImage').val('array');
         var url = '{{ route("deleted_image", ":id") }}';
         url = url.replace(':id', response.filename);
         $('#canceledUploadVideo').attr('href',url);

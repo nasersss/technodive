@@ -45,9 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
 
     ######## works ######################33
-    Route::post('/works/store',[WorkController::class,'store'])->name('work_store');
-    Route::get('/works/list',[WorkController::class,'index'])->name('work_list');
-
+ 
 
 });
 Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->name('change.language');
@@ -88,6 +86,12 @@ Route::get('/login', function () {
 Route::get('test',[TestController::class,'test']);
 Route::get('/services/list',[ServiceController::class,'index'])->name('service_list');
 Route::post('/services/store',[ServiceController::class,'store'])->name('service_store');
+
+#works
+Route::post('/works/store',[WorkController::class,'store'])->name('work_store');
+Route::get('/works/list',[WorkController::class,'index'])->name('work_list');
+
 #upload image
+
 Route::post('upload/image',[UploadController::class,'uploadImage'])->name('uploadImage');
 Route::get('delete/image/{path}',[UploadController::class,'deleteImage'])->name('deleted_image');

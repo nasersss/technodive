@@ -15,14 +15,20 @@
     <!--**********************************
                         Content body start
                     ***********************************-->
-    @include('admin.massages')
-    <!-- row -->
+                    @include('admin.massages')
+                    <!-- row -->
     <div class="container-fluid">
         <!--**********************************Tabs Start***********************************-->
         <div class="d-flex flex-wrap align-items-center mb-3">
-            <button type="button" class="btn btn-primary  me-1" data-bs-toggle="modal" data-bs-target="#addPump">
+            {{-- <button type="button" class="btn btn-primary  me-1" data-bs-toggle="modal" data-bs-target="#addPump">
                 <i class="mdi mdi-plus-circle ms-2"></i>اضافة طرمبة جديدة
-            </button>
+            </button> --}}
+            <button type="button" class="btn btn-primary  me-1 add-item"
+            data-route="{{route("work_store")}}" 
+            data-method="POST"
+            data-modal_title ='إضافة عمل جديدة'>
+               <i class="mdi mdi-plus-circle ms-2"></i>اضافة عمل جديدة
+           </button>
         </div>
         <!--**********************************Tabs End***********************************-->
         <div class="row">
@@ -140,8 +146,7 @@
                 strat modals
             ***********************************-->
 
-    @include('admin.works.modals.new')
-    @include('admin.works.modals.update')
+     @include('admin.modals.new')
     @include('admin.toggle.toggle')
 
     <!--**********************************

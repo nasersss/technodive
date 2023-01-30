@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Work;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
+use App\Models\Work;
+use App\Models\WorkImage;
 
 class WorkController extends Controller
 {
@@ -16,7 +17,7 @@ class WorkController extends Controller
     public function index()
     {
         $works = Work::get();
-        return view('admin.works.list')->with('works',$works);
+        return view('admin.works.list')->with('works', $works);
     }
 
     /**
@@ -37,29 +38,33 @@ class WorkController extends Controller
      */
     public function store(StoreWorkRequest $request)
     {
-        $work = new Work();
-        $titleTranslations = ['en' => $request->titleEn, 'ar' => $request->titleAr ];
-        $descriptionTranslations = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
-        $work->setTranslations('title', $titleTranslations);
-        $work->setTranslations('description', $descriptionTranslations);
+        try {
 
-        $work->save();
+            if ($request->imageUrl == null) {
+                return redirect()->route('work_list')->with(['error' => 'يرجى إرفاق الصورة']);
+            }
 
-        return back()->with(['success','تمت عملية الاضافة بنجاح']);
-        // $newWork = new Work();
-        // Work::create([
-        //     'title' => [
-        //         'en' => 'title in English',
-        //         'ar' => 'العنوان عربي'
-        //     ],
-        //     'description' => [
-        //         'en' => 'description,description description description in English',
-        //         'ar' => 'الوصف عربي الوصف عرب لوصف عربي الوصف عربي'
-        //     ],
-        //     'image' => 'image.png'
-        // ]);
+            $work = new Work();
+            $titleTranslations = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+            $descriptionTranslations = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+            $work->setTranslations('title', $titleTranslations);
+            $work->setTranslations('description', $descriptionTranslations);
+            $work->save();
+            if ($request->typeImage == 'array') {
+                if ($request->imageUrl != "") {foreach (explode(',', $request->imageUrl) as $image) {
+                    $workImage = new WorkImage();
+                    $workImage->image = $image;
+                    $workImage->work_id = $work->id;
+                    $workImage->save();
+                }
+                }
+            }
+            return redirect()->route('work_list')->with(['success', 'تمت عملية الاضافة بنجاح']);
+        } catch (\Throwable$th) {
+            return redirect()->route('work_list')->with(['error' => 'لم يتم حفظ البيانات']);
 
-        // return Work::get();
+        }
+
     }
 
     /**
