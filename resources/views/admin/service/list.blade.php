@@ -43,7 +43,7 @@
                                     <th>العنوان بالانجليزي</th>
                                     <th>الوصف بالعربي</th>
                                     <th>الوصف بالانجليزي</th>
-                                    {{-- <th>الصورة</th> --}}
+                                    <th>الصورة</th>
                                     <th>الحالة</th>
                                     <th>العمليات</th>
                                 </tr>
@@ -76,9 +76,9 @@
                                                 {{ $service->getTranslations('description')['en'] }}
                                                 @endisset
                                             </td>
-                                            {{-- <td>
+                                            <td>
                                                 <img src="{{asset('storage/images/'.$service->image)}}" width="200px" alt="">
-                                            </td> --}}
+                                            </td>
                                             <td>
                                                 @isset($service->is_active)
                                                 <span class="badge badge-danger light">{{$service->is_active}}</span>
