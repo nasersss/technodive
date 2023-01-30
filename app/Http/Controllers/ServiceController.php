@@ -15,6 +15,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
+       return $service = Service::get();
         return view('admin.service.list');
     }
 
@@ -36,7 +37,18 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        return $request;
+      
+       if($request->imageUrl==null)
+        return redirect()->route('service_list')->with(['error'=>'يرجى إرفاق الصورة']);
+        $newService = new Service();
+        $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+        $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+        $newService->setTranslations('title', $translationTitle);
+        $newService->setTranslations('description', $translationDescription);
+        $newService->image=$request->imageUrl;
+        $newService->save();
+        return redirect()->route('service_list')->with(['success'=>'تمت إضافة البيانات بنجاح']);
+
     }
 
     /**
