@@ -1,7 +1,7 @@
 <div class="container-fluid my-5 px-0">
     <div class="video wow fadeInUp"
     data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-        <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+        <button type="button" class="btn-play" data-bs-toggle="modal" data-bs-target="#videoModal">
             <span></span>
         </button>
 
@@ -9,13 +9,22 @@
             <div class="modal-dialog">
                 <div class="modal-content rounded-0">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">فيديو اخراج السفينة مبارك</h5>
+                        {{-- <h5 class="modal-title" id="exampleModalLabel">فيديو اخراج السفينة مبارك</h5> --}}
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <!-- 16:9 aspect ratio -->
                         <div class="ratio ratio-16x9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DWRcNpR6Kdc" id="video" allowfullscreen="" allowscriptaccess="always" allow="autoplay"></iframe>
+                            {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DWRcNpR6Kdc" id="video" allowfullscreen="" allowscriptaccess="always" allow="autoplay"></iframe> --}}
+                            {{-- <video width="320" height="240" controls>
+                                <source src="{{asset('/assets/img/video.mpg')}}" type="video/mpg">
+                                Error Message
+                              </video> --}}
+                              <video width="320" height="240" controls>
+                                <source src="{{asset('/assets/img/v1.mp4')}}" type="video/mp4">
+                                <source src="{{asset('/assets/img/v1.mp4')}}" type="video/webm">
+                              Your browser does not support the video tag.
+                              </video>
                         </div>
                     </div>
                 </div>

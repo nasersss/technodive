@@ -52,7 +52,7 @@
                 <h5 class="text-light mb-4">{{__('footer.news')}}</h5>
                 <p>{{__('footer.text')}}</p>
                 <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input class="form-control bg-transparent border-secondary w-100 py-3  " type="text" placeholder="البريد الالكتروني">
+                    <input class="form-control bg-transparent border-secondary w-100 py-3  " type="text" placeholder="{{__('contact.email')}}">
                     <button type="button" class="btn btn-primary py-2 position-absolute top-0 start-0 mt-2 ms-2 end-english">{{__('footer.Sign_Up')}}</button>
                 </div>
             </div>

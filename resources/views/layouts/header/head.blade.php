@@ -1,12 +1,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description"
-content=""/>
-<meta name="keywords"  content=""/>
+content="شركة تكنو دايف لخدمات الغوص التجاري
+تعمل شركة تكنو دايف في مجال الغوص التجاري لكثر من واحد وعشرين عام وتمتلك فريق من الغوصين المهارين ذو كفاءات عالية ومؤهلات تمكنه من القيام بالعمل بأفضل شكل وتمتتلك الشركة مجموعة من الاجهزة الحديثة التي تساعدها من القيام بالاعمال بصورة صحيحة قامت شركة تكنو دايف بالكثير من الاعمال لجهات محلية ودولية ,Techno Diving Company for commercial diving services
+Techno Dive Company has been working in the field of commercial diving for more than twenty-one years. It has a team of skilled divers with high qualifications and qualifications that enable it to do the work in the best way. The company has a set of modern equipment that helps it to do the work correctly. and international"/>
+<meta name="keywords"  content="غوصين في المكلا, تكنو دايف,انقاذ السفن,اصلاح السفن,مخططوطات بحرية,معالج السفن,صيانة بحرية,الفحص الفني للبواخر,اللحام تحت الماء,القص تحت الماء,عمل المسوحات للتضاريس واعماق الموانى والمراسي البحرية,تصفية البواخر والمنشئات البحرية من الحشف والعوالق البحرية,اخراج وانقاذ السفن الغارقة في البحر والجانحة على الشواطى البحرية,عمل المراسي البحرية للبواخر وتمديد خطوط الانبيب ,Diving in Mukalla, Techno Diving, Ship Rescue, Ship Repair, Marine Charts, Ship Handling, Marine Maintenance, Technical Inspection of Ships, Underwater Welding, Underwater Cutting, Surveying the Terrain and Depths of Ports and Marinas, Filtering Ships and Marine Facilities from Fouling and Plankton Taking out and rescuing ships sunken in the sea and stranded on the sea beaches, making marine anchors for ships and extending pipelines"/>
 <meta name="author" content="Go Up"/>
 <title>@yield('title')</title>
 <!-- Favicon -->
-<link href="img/favicon.ico" rel="icon">
+<link href="{{asset('/assets/img/logo.jpg')}}" rel="icon">
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +30,7 @@ content=""/>
 
 <!-- Template Stylesheet -->
 <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}"/>
-{{-- <link rel="stylesheet" href="{{asset('/assets/css/styleEnglishLanguage.css')}}"/> --}}
+<link rel="stylesheet" href="{{asset('/assets/css/styleEnglishLanguage.css')}}"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:ital,wght@0,300;1,100&display=swap" rel="stylesheet">

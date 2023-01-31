@@ -5,6 +5,10 @@ body
 .navbar-expand-lg .navbar-collapse {
     direction: rtl;
 }
+.text-english-align
+{
+    text-align: left;
+}
 .section-title-about {
     padding-left: 0rem !important;
     padding-right: 1rem !important;
