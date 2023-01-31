@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CodingController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Services\UploadController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
 
     ######## works ######################33
- 
+
 
 });
 Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->name('change.language');
@@ -95,3 +99,21 @@ Route::get('/works/list',[WorkController::class,'index'])->name('work_list');
 
 Route::post('upload/image',[UploadController::class,'uploadImage'])->name('uploadImage');
 Route::get('delete/image/{path}',[UploadController::class,'deleteImage'])->name('deleted_image');
+
+#equipment
+Route::get('/equipments/list',[EquipmentController::class,'index'])->name('equipment_list');
+Route::post('/equipments/store',[EquipmentController::class,'store'])->name('equipment_store');
+
+#certificate
+Route::get('/certificates/list',[CertificateController::class,'index'])->name('certificate_list');
+Route::post('/certificates/store',[CertificateController::class,'store'])->name('certificate_store');
+
+
+#team
+Route::get('/team/list',[TeamController::class,'index'])->name('team_list');
+Route::post('/team/store',[TeamController::class,'store'])->name('team_store');
+
+
+#customer
+Route::get('/customer/list',[CustomerController::class,'index'])->name('customer_list');
+Route::post('/customer/store',[CustomerController::class,'store'])->name('customer_store');

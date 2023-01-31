@@ -45631,3 +45631,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 {
     background: hsl(0deg 0% 0% / 50%);
 }
+
+.hide{
+    display: none;
+}

@@ -15,7 +15,7 @@
                     <span class="nav-text">المعدات</span>
                 </a>
                 <ul aria-expanded="false" class="mm-collapse" style="height: 16px;">
-                    <li><a href="#">عرض المعدات</a></li>
+                    <li><a href="{{route('equipment_list')}}">عرض المعدات</a></li>
                 </ul>
             </li>
             <li class=""><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -31,7 +31,7 @@
                     <span class="nav-text">أراء العملاء</span>
                 </a>
                 <ul aria-expanded="false" class="mm-collapse" style="height: 16px;">
-                    <li><a href="#">عرض أراء العملاء</a></li>
+                    <li><a href="{{route('customer_list')}}">عرض أراء العملاء</a></li>
                 </ul>
                 </a>
             </li>
@@ -40,7 +40,7 @@
                     <span class="nav-text">الشهادات</span>
                 </a>
                 <ul aria-expanded="false" class="mm-collapse" style="height: 16px;">
-                    <li><a href="#">عرض الشهادات</a></li>
+                    <li><a href="{{route('certificate_list')}}">عرض الشهادات</a></li>
                 </ul>
                 </a>
             </li>
@@ -51,14 +51,14 @@
                 </a>
                 <ul aria-expanded="false" class="mm-collapse" style="height: 16px;">
                     <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
+                        <a href="{{route('team_list')}}" class="ai-icon" aria-expanded="false">
                             <span class="nav-text">إدارة فريق العمل</span>
                         </a>
                     </li>
                 </ul>
                 </a>
             </li>
-           
+
 
         </ul>
 

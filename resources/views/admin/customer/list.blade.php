@@ -1,14 +1,14 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    عرض الخدمات
+    عرض اراء العملاء
 @endsection
 
 @section('first-css')
 @endsection
 
 @section('header-content')
-    عرض الخدمات
+    عرض اراء العملاء
 @endsection
 
 @section('content-body')
@@ -21,11 +21,11 @@
         <!--**********************************Tabs Start***********************************-->
         <div class="d-flex flex-wrap align-items-center mb-3">
             <button type="button" class="btn btn-primary  me-1 add-item"
-             data-route="{{route("service_store")}}"
-             
+             data-route="{{route("customer_store")}}"
+             data-type="customer"
              data-method="POST"
-             data-modal_title ='إضافة خدمة جديدة'>
-                <i class="mdi mdi-plus-circle ms-2"></i>اضافة خدمة جديدة
+             data-modal_title ='إضافة رأي جديدة'>
+                <i class="mdi mdi-plus-circle ms-2"></i>اضافة رأي جديدة
             </button>
         </div>
         <!--**********************************Tabs End***********************************-->
@@ -40,49 +40,63 @@
                             <thead>
                                 <tr>
                                     <th>رقم</th>
-                                    <th>العنوان بالعربي</th>
-                                    <th>العنوان بالانجليزي</th>
-                                    <th>الوصف بالعربي</th>
-                                    <th>الوصف بالانجليزي</th>
+                                    <th>الاسم بالعربي</th>
+                                    <th>الاسم بالانجليزي</th>
+                                    <th>الوضيفة بالعربي</th>
+                                    <th>الوضيفة بالانجليزي</th>
+                                    <th>رأى العميل بالعربي</th>
+                                    <th>رأى العميل بالانجليزي</th>
                                     <th>الصورة</th>
                                     <th>الحالة</th>
                                     <th>العمليات</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @isset($services)
-                                    @foreach ($services as $service)
+                                @isset($customers)
+                                    @foreach ($customers as $customer)
                                         <tr class="odd" role="row">
                                             <td>
                                                 {{ $loop->iteration }}
                                             </td>
                                             <td>
-                                                @isset($service->getTranslations('title')['ar'])
-                                                {{ $service->getTranslations('title')['ar'] }}
+                                                @isset($customer->getTranslations('name')['ar'])
+                                                {{ $customer->getTranslations('name')['ar'] }}
                                                 @endisset
                                             </td>
                                             <td>
-                                                @isset($service->getTranslations('title')['en'])
-                                                {{ $service->getTranslations('title')['en'] }}
+                                                @isset($customer->getTranslations('name')['en'])
+                                                {{ $customer->getTranslations('name')['en'] }}
                                                 @endisset
                                             </td>
                                             <td>
-                                                @isset($service->getTranslations('description')['ar'])
-                                                {{ $service->getTranslations('description')['ar'] }}
+                                                @isset($customer->getTranslations('job')['ar'])
+                                                {{ $customer->getTranslations('job')['ar'] }}
                                                 @endisset
 
                                             </td>
                                             <td>
-                                                @isset($service->getTranslations('description')['en'])
-                                                {{ $service->getTranslations('description')['en'] }}
+                                                @isset($customer->getTranslations('job')['en'])
+                                                {{ $customer->getTranslations('job')['en'] }}
+                                                @endisset
+                                            </td>
+
+                                            <td>
+                                                @isset($customer->getTranslations('description')['ar'])
+                                                {{ $customer->getTranslations('description')['ar'] }}
+                                                @endisset
+
+                                            </td>
+                                            <td>
+                                                @isset($customer->getTranslations('description')['en'])
+                                                {{ $customer->getTranslations('description')['en'] }}
                                                 @endisset
                                             </td>
                                             <td>
-                                                <img src="{{asset('storage/images/'.$service->image)}}" width="200px" alt="">
+                                                <img src="{{asset('storage/images/'.$customer->image)}}" width="200px" alt="">
                                             </td>
                                             <td>
-                                                @isset($service->is_active)
-                                                <span class="badge badge-danger light">{{$service->is_active}}</span>
+                                                @isset($customer->is_active)
+                                                <span class="badge badge-danger light">{{$customer->is_active}}</span>
                                                 @endisset
                                             <td>
                                                 <div class="dropdown dropstart">

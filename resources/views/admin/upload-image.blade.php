@@ -12,15 +12,15 @@
                                         <div class="card-footer p-2" style="display: none">
                                             {{-- <input  type="hidden" id="imageUrlPreview" name="imageUrl[]"> --}}
                                             <img  id="videoPreview" src="" width="100%" alt="">
-                                        </div> 
+                                        </div>
                                     </div>
                          </div>
                     </div>
                 </div>
-                <script src="{{asset('/vendor/global/global.min.js')}}"></script>
-                <script src="{{asset('/vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
-                
-{{-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> --}}
+                {{-- <script src="{{asset('/vendor/global/global.min.js')}}"></script> --}}
+                {{-- <script src="{{asset('/vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script> --}}
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
 <script type="text/javascript">
  let imagespath = [];
@@ -29,14 +29,14 @@
         target: '{{ route('uploadImage') }}',
         query:{_token:'{{ csrf_token() }}'} ,// CSRF token
         fileType: ['png','jpg'],
-        chunkSize: 10*1024*1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
+        chunkSize: 10*1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
         headers: {
             'Accept' : 'application/json'
         },
         testChunks: false,
         throttleProgressCallbacks: 1,
     });
-    
+
     resumable.assignBrowse(browseFile[0]);
 
     resumable.on('fileAdded', function (file) { // trigger when file picked
@@ -51,7 +51,7 @@
     resumable.on('fileSuccess', function (file, response) { // trigger when file upload complete
         response = JSON.parse(response)
         $('#videoPreview').attr('src', response.path);
-       
+
         imagespath.push(response.filename);
         $('#imageUrlPreview').val(imagespath);
         if(imagespath.length>1)
@@ -64,7 +64,7 @@
     });
 
     resumable.on('fileError', function (file, response) { // trigger when there is any error
-        alert('file uploading error.')
+        alert('file uploading error.' + response)
     });
 
 
