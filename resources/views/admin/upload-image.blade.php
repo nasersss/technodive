@@ -17,10 +17,8 @@
                          </div>
                     </div>
                 </div>
-                <script src="{{asset('/vendor/global/global.min.js')}}"></script>
-                <script src="{{asset('/vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
-                
-{{-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> --}}
+              
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
 <script type="text/javascript">
  let imagespath = [];
