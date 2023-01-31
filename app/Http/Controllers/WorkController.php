@@ -59,7 +59,7 @@ class WorkController extends Controller
                 }
                 }
             }
-            return redirect()->route('work_list')->with(['success', 'تمت عملية الاضافة بنجاح']);
+            return redirect()->route('work_list')->with(['success'=> 'تمت عملية الاضافة بنجاح']);
         } catch (\Throwable$th) {
             return redirect()->route('work_list')->with(['error' => 'لم يتم حفظ البيانات']);
 
