@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Services\UploadController;
 use App\Models\Service;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
@@ -65,16 +66,7 @@ class ServiceController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Service $service)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -85,7 +77,22 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        //
+        // return $request;
+        $uploadController = new UploadController();
+      $updateService = Service::find($request->id);
+       $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+        $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+        $updateService->setTranslations('title', $translationTitle);
+        $updateService->setTranslations('description', $translationDescription);
+        if(!$request->imageUrl==null)
+        {
+            $uploadController->deleteImage($updateService->image);
+            $updateService->image=$request->imageUrl;
+
+        }
+        $updateService->update();
+        return redirect()->route('service_list')->with(['success'=>'تمت إضافة البيانات بنجاح']);
+
     }
 
     /**

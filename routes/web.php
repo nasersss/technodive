@@ -83,9 +83,10 @@ Route::get('/login', function () {
     return view('auth.login');
 })->middleware('guest');
 
-Route::get('test',[TestController::class,'test']);
+#services
 Route::get('/services/list',[ServiceController::class,'index'])->name('service_list');
 Route::post('/services/store',[ServiceController::class,'store'])->name('service_store');
+Route::post('/services/update',[ServiceController::class,'update'])->name('service_update');
 
 #works
 Route::post('/works/store',[WorkController::class,'store'])->name('work_store');

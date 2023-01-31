@@ -25,3 +25,10 @@ document.querySelectorAll('.close-modal-image').forEach(item => {
     $('#addImageModal').hide();
   })
 });
+
+document.querySelectorAll('.close-image-preview').forEach(item => {
+  item.addEventListener('click', e => {
+    e.preventDefault();
+    $('#addImageModal').hide();
+  })
+});

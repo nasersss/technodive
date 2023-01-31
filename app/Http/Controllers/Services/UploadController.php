@@ -49,11 +49,19 @@ class UploadController extends Controller
     public function deleteImage($path)
     {
 
-        if (Storage::disk('public')->exists('images/' . $path)) {
-            Storage::disk('public')->delete('images/' . $path);
-            return redirect()->back();
-        } else {
-            return redirect()->back();
+        // return $path;
+        if ($path != "") 
+        {foreach (explode(',', $path) as $path) 
+            {
+           
+                if (Storage::disk('public')->exists('images/' . $path)) {
+                    Storage::disk('public')->delete('images/' . $path);
+                } else {
+                    return 'error';
+                }
+            }
         }
+        
+        return redirect()->back();
     }
 }

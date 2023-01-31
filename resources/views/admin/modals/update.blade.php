@@ -1,19 +1,18 @@
 <!-- Modal -->
-<div class="modal  " id="addModal" style="background:#00000050;">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable " style="" role="document">
+<div class="modal   " id="updateModal" style="background:#00000050;">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" style="" role="document">
         <div class="modal-content ">
             <div class="modal-header">
-                <h5 class="modal-title second-color" id="addModalLabel"></h5>
+                <h5 class="modal-title second-color" id="updateModalLabel"></h5>
             </div>
             <div class="modal-body">
-
-                <form id="add-item-Form" action="" method=""
+                <form id="update-item-Form" action="" method=""
                     class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework needs-validation" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-md-6 col-sm-12 ">
                             <label class="form-label" for="titleAr">العنوان بالعربي </label>
-                            <input type="text" id="titleAr" required="" value="{{ old('titleAr') }}"
+                            <input type="text" id="updateTitleAr" required="" value="{{ old('titleAr') }}"
                                 name="titleAr" class="form-control" placeholder="الرجاء ادخال العنوان بالعربي ">
                             <div class="fv-plugins-message-container invalid-feedback ">
                                 الرجاء إدخال العنوان بالعربي
@@ -26,8 +25,8 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label class="form-label" for="titleEn">العنوان بالإنجليزية </label>
-                            <input type="text" id="titleEn" required="" value="{{ old('titleEn') }}"
-                                name="titleEn" class="form-control" placeholder="الرجاء ادخال العنوان بالإنجليزية ">
+                            <input type="text" id="updateTitleEn" required="" name="titleEn" class="form-control"
+                                placeholder="الرجاء ادخال العنوان بالإنجليزية ">
                             <div class="fv-plugins-message-container invalid-feedback ">
                                 الرجاء إدخال العنوان بالإنجليزية
                             </div>
@@ -39,7 +38,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12 mt-2">
                             <label class="form-label" for="descriptionAr">الوصف بالعربي </label>
-                            <textarea id="descriptionAr" required="" name="descriptionAr" class="form-control"
+                            <textarea id="updateDescriptionAr" required="" name="descriptionAr" class="form-control"
                                 placeholder="الرجاء ادخال الوصف بالعربي ">
                               {{-- {{ old('descriptionAr') }} --}}
                           </textarea>
@@ -54,7 +53,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12 mt-2">
                             <label class="form-label" for="descriptionEn">الوصف بالإنجليزية </label>
-                            <textarea id="descriptionEn" required="" name="descriptionEn" class="form-control"
+                            <textarea id="updateDescriptionEn" required="" name="descriptionEn" class="form-control"
                                 placeholder="الرجاء ادخال الوصف بالإنجليزية ">
                               {{-- {{ old('descriptionEn') }} --}}
                             </textarea>
@@ -67,21 +66,24 @@
                                 </div>
                             @enderror
                         </div>
-                       <button class="btn btn-primary mt-3 show-add-image"> ارفاق الصورة</button>
-                        <input type="hidden" class="form-control imageUrlPreview" name="imageUrl" id=""  >
+                        <div class="col-md-6 col-sm-12 mt-2">
+                            <img id="imageUrlUpdate" src="" width="100%" alt="">
+                        </div>
+                        <button class="btn btn-primary mt-3 show-add-image"> استبدال الصورة السابقة</button>
+                        <input type="hidden" class="form-control imageUrlPreview" name="imageUrl" id="">
                         <input type="hidden" class="typeImage" name="typeImage" id="">
-
+                        <input type="hidden" id="updateId" name="id">
                     </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" id="closeAddModal" class="btn btn-danger" data-dismiss="modal">إلغاء</button>
+                <button type="button" id="closedUpdateModal" class="btn btn-danger" data-dismiss="modal">إلغاء</button>
                 <button type="submit" class="btn btn-primary ">إضافة</button>
             </div>
             </form>
-            {{-- Modal upload image --}}
-             <!-- Modal -->
-            {{-- End Modal upload image  --}}
+            {{-- @include('admin.modals.image') --}}
+
         </div>
     </div>
+</div>
 </div>
