@@ -15,7 +15,6 @@
             <a href="{{ route('hardware') }}" class="nav-item nav-link">{{__('navbar.hardware')}}</a>
             {{-- <a href="{{ route('team') }}" class="nav-item nav-link">{{__('navbar.team')}}</a> --}}
             <a href="{{ route('ourExpertise') }}" class="nav-item nav-link">{{__('navbar.certificates')}}</a>
-            <a href="{{ route('testimonial') }}" class="nav-item nav-link">{{__('navbar.testimonials')}}</a>
             <a href="{{ route('contact') }}" class="nav-item nav-link">{{__('navbar.contact')}}</a>
         </div>
         <div class="nav-item dropdown">
