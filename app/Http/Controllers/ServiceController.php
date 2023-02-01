@@ -77,10 +77,10 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        // return $request;
+       try{
         $uploadController = new UploadController();
-      $updateService = Service::find($request->id);
-       $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+        $updateService = Service::find($request->id);
+        $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
         $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
         $updateService->setTranslations('title', $translationTitle);
         $updateService->setTranslations('description', $translationDescription);
@@ -92,7 +92,10 @@ class ServiceController extends Controller
         }
         $updateService->update();
         return redirect()->route('service_list')->with(['success'=>'تمت إضافة البيانات بنجاح']);
+    } catch (\Throwable $th) {
+        return redirect()->route('service_list')->with(['error'=>'لم يتم حفظ البيانات']);
 
+    }
     }
 
     /**

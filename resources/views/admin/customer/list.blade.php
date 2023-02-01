@@ -121,15 +121,19 @@
                                                     <div class="dropdown-menu">
 
                                                         <button type="button"
+                                                        data-type="customer"
                                                         data-route="{{route("customer_update")}}"
                                                         data-method="POST"
-                                                        data-modal_title ='تحديث بيانات العميل '
+                                                        data-modal_title ='تحديث بيانات رأي العميل '
                                                         data-id="@isset($customer->id){{$customer->id}}@endisset"
-                                                        data-title_ar="@isset($customer->getTranslations('name')['ar']){{ $customer->getTranslations('name')['ar'] }} @endisset"
-                                                        data-title_en="@isset($customer->getTranslations('name')['en']){{ $customer->getTranslations('name')['en'] }} @endisset"
-                                                        data-description_ar="@isset($customer->getTranslations('job')['ar']){{ $customer->getTranslations('job')['ar'] }} @endisset"
-                                                        data-description_en="@isset($customer->getTranslations('job')['en']){{ $customer->getTranslations('job')['en'] }} @endisset"
-                                                         data-path="{{asset('storage/images/'.$customer->image)}}"
+                                                        data-name_ar="@isset($customer->getTranslations('name')['ar']){{ $customer->getTranslations('name')['ar'] }} @endisset"
+                                                        data-name_en="@isset($customer->getTranslations('name')['en']){{ $customer->getTranslations('name')['en'] }} @endisset"
+                                                        data-job_ar="@isset($customer->getTranslations('job')['ar']){{ $customer->getTranslations('job')['ar'] }} @endisset"
+                                                        data-job_en="@isset($customer->getTranslations('job')['en']){{ $customer->getTranslations('job')['en'] }} @endisset"
+                                                        data-description_ar="@isset($customer->getTranslations('description')['ar']){{ $customer->getTranslations('description')['ar'] }} @endisset"
+                                                        data-description_en="@isset($customer->getTranslations('description')['en']){{ $customer->getTranslations('description')['en'] }} @endisset"
+                                                        data-path="{{asset('storage/images/'.$customer->image)}}"
+
                                                         class="update-item dropdown-item"
                                                            href="#"><i
                                                                 class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>

@@ -107,7 +107,7 @@
                                                         <button type="button"
                                                         data-route="{{route("work_update")}}"
                                                         data-method="POST"
-                                                        data-modal_title ='تحديث الخدمة '
+                                                        data-modal_title ='تحديث العمل '
                                                         data-id="@isset($work->id){{$work->id}}@endisset"
                                                         data-title_ar="@isset($work->getTranslations('title')['ar']){{ $work->getTranslations('title')['ar'] }} @endisset"
                                                         data-title_en="@isset($work->getTranslations('title')['en']){{ $work->getTranslations('title')['en'] }} @endisset"
@@ -123,13 +123,16 @@
                                                             href="toggle "><i
                                                                 class="fa fa-trash ms-3 text-danger"></i>تعليق</button>
 
-
-                                                        <button type="button" value="" data-id="1" data-is_active="-1"
+                                                         <a  class=" dropdown-item "
+                                                                href="{{route('work_show_images',$work->id)}} "><i
+                                                                    class="bi bi-pencil-square text-success ms-3"></i> تعديل الصور</a>
+    
+                                                        {{-- <button type="button" value="" data-id="1" data-is_active="-1"
                                                             data-title="العمل" data-route='#' class="toggle dropdown-item"
                                                             href="toggle "><i
-                                                                class="fa fa-trash ms-3 text-success"></i>تفعيل</button>
+                                                                class="fa fa-trash ms-3 text-success"></i>تفعيل</button> --}}
 
-
+                                                                
                                                     </div>
                                                 </div>
                                             </td>
@@ -159,7 +162,7 @@
     @include('admin.modals.update')
     @include('admin.modals.new')
     @include('admin.toggle.toggle')
-
+    @include('admin.works.modal.images-update')
     <!--**********************************
                 strat modals
             ***********************************-->
@@ -230,7 +233,7 @@
         progress.hide();
     }
 </script>
-
+    <script src="{{asset('/js/modal-image/image-privew.js')}}"></script>
     <script src="{{ asset('/js/update/update-pmup.js') }}"></script>
     <script src="{{ asset('/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/js/plugins-init/datatables.init.js') }}"></script>

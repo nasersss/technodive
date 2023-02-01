@@ -95,7 +95,9 @@ Route::post('/services/update',[ServiceController::class,'update'])->name('servi
 #works
 Route::post('/works/store',[WorkController::class,'store'])->name('work_store');
 Route::get('/works/list',[WorkController::class,'index'])->name('work_list');
-
+Route::post('/works/update',[WorkController::class,'update'])->name('work_update');
+Route::get('/works/show/{workId}',[WorkController::class,'showImages'])->name('work_show_images');
+Route::get('/works/image/delete/{imageId}',[WorkController::class,'deleteImage'])->name('work_image_delete');
 #upload image
 
 Route::post('upload/image',[UploadController::class,'uploadImage'])->name('uploadImage');

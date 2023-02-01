@@ -123,7 +123,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-12 mt-2 hide" id="certificate-type">
+                        <div class="col-12 mt-2 hide certificate-type">
                             <label class="form-label" for="type">نوع الشهادة </label>
                             <select name="type" id="type" class="form-control">
                                 <option selected disabled>حدد نوع الشهادة</option>

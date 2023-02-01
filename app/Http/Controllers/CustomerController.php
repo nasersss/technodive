@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Controllers\Services\UploadController;
 
 class CustomerController extends Controller
 {
@@ -86,7 +87,29 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        return $request;
+        // return $request;
+        try{
+        $uploadController = new UploadController();
+
+            $updateCustomer = Customer::find($request->id);
+            $translationName = ['en' => $request->nameEn, 'ar' => $request->nameAr];
+            $translationJob = ['en' => $request->jobEn, 'ar' => $request->jobAr];
+            $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+            $updateCustomer->setTranslations('name', $translationName);
+            $updateCustomer->setTranslations('job', $translationJob);
+            $updateCustomer->setTranslations('description', $translationDescription);
+            if(!$request->imageUrl==null)
+        {
+            $uploadController->deleteImage($updateCustomer->image);
+            $updateCustomer->image=$request->imageUrl;
+
+        }
+            $updateCustomer->image = $request->imageUrl;
+            $updateCustomer->save();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+        }
     }
 
     /**

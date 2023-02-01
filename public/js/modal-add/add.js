@@ -7,7 +7,7 @@ document.querySelectorAll('.add-item').forEach(item => {
         $('#add-item-Form').attr('method', item.dataset.method);
         $('#addModal').show();
         if (item.dataset.type == "certificate"){
-            $('#certificate-type').show();
+            $('.certificate-type').show();
             $('.normal').show();
         }else if(item.dataset.type == 'customer'){
             $('.customer').show();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Equipment;
 use App\Http\Requests\StoreEquipmentRequest;
 use App\Http\Requests\UpdateEquipmentRequest;
+use App\Http\Controllers\Services\UploadController;
 
 class EquipmentController extends Controller
 {
@@ -84,7 +85,25 @@ class EquipmentController extends Controller
      */
     public function update(UpdateEquipmentRequest $request, Equipment $equipment)
     {
-        return $request;
+    
+        try{
+        $uploadController = new UploadController();
+        $updateEquipment = Equipment::find($request->id);
+        $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+        $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+        $updateEquipment->setTranslations('title', $translationTitle);
+        $updateEquipment->setTranslations('description', $translationDescription);
+        if(!$request->imageUrl==null)
+        {
+            $uploadController->deleteImage($updateEquipment->image);
+            $updateEquipment->image=$request->imageUrl;
+
+        }
+        $updateEquipment->update();
+        return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+    } catch (\Throwable $th) {
+        return back()->with(['error' => 'لم يتم حفظ البيانات']);
+    }
     }
 
     /**
