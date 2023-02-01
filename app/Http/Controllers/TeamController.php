@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
+use App\Http\Controllers\Services\UploadController;
 
 class TeamController extends Controller
 {
@@ -84,7 +85,25 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        return $request;
+      
+        try{
+        $uploadController = new UploadController();
+        $updateTeam =  Team::find($request->id);
+        $translationName = ['en' => $request->nameEn, 'ar' => $request->nameAr];
+        $translationJob = ['en' => $request->jobEn, 'ar' => $request->jobAr];
+        $updateTeam->setTranslations('name', $translationName);
+        $updateTeam->setTranslations('job', $translationJob);
+        if(!$request->imageUrl==null)
+        {
+            $uploadController->deleteImage($updateTeam->image);
+            $updateTeam->image=$request->imageUrl;
+
+        }
+        $updateTeam->update();
+        return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+    } catch (\Throwable $th) {
+        return back()->with(['error' => 'لم يتم حفظ البيانات']);
+    }
     }
 
     /**
