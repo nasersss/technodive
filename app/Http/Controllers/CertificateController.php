@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Certificate;
 use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
+use App\Http\Controllers\Services\UploadController;
 
 class CertificateController extends Controller
 {
@@ -96,8 +97,16 @@ class CertificateController extends Controller
      * @param  \App\Models\Certificate  $certificate
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Certificate $certificate)
+    public function destroy(Certificate $certificate,$id)
     {
-        //
+        try{
+            ;
+            $uploadController = new UploadController();
+            $uploadController->deleteImage(Certificate::find($id)->image);
+            Certificate::find($id)->delete();
+            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+        }
     }
 }

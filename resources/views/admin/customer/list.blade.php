@@ -142,7 +142,12 @@
                                                                 data-is_active="5" data-title="الطرمبة"
                                                                 data-route='' class="toggle dropdown-item"
                                                                 href="toggle "><i class="fa fa-trash ms-3 text-success"></i>تفعيل</button>
-
+                                                                
+                                                                <button type="button" 
+                                                                data-route="{{route("customer_delete",$customer->id)}}"
+                                                                 class=" delete-item   dropdown-item"
+                                                                href="toggle "><i class="fa fa-trash ms-3 text-danger"></i>حذف</button>
+                                                                
                                                     </div>
                                                 </div>
                                             </td>

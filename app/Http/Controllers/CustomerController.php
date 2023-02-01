@@ -118,8 +118,16 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Customer $customer,$id)
     {
-        //
+        try{
+            ;
+            $uploadController = new UploadController();
+            $uploadController->deleteImage(Customer::find($id)->image);
+            Customer::find($id)->delete();
+            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+        }
     }
 }

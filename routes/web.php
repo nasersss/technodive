@@ -91,13 +91,15 @@ Route::get('/login', function () {
 Route::get('/services/list',[ServiceController::class,'index'])->name('service_list');
 Route::post('/services/store',[ServiceController::class,'store'])->name('service_store');
 Route::post('/services/update',[ServiceController::class,'update'])->name('service_update');
-
+Route::get('/service/delete/{id}',[ServiceController::class,'destroy'])->name('service_delete');
 #works
 Route::post('/works/store',[WorkController::class,'store'])->name('work_store');
 Route::get('/works/list',[WorkController::class,'index'])->name('work_list');
 Route::post('/works/update',[WorkController::class,'update'])->name('work_update');
 Route::get('/works/show/{workId}',[WorkController::class,'showImages'])->name('work_show_images');
 Route::get('/works/image/delete/{imageId}',[WorkController::class,'deleteImage'])->name('work_image_delete');
+Route::get('/works/delete/{id}',[WorkController::class,'destroy'])->name('work_delete');
+
 #upload image
 
 Route::post('upload/image',[UploadController::class,'uploadImage'])->name('uploadImage');
@@ -107,20 +109,23 @@ Route::get('delete/image/{path}',[UploadController::class,'deleteImage'])->name(
 Route::get('/equipments/list',[EquipmentController::class,'index'])->name('equipment_list');
 Route::post('/equipments/store',[EquipmentController::class,'store'])->name('equipment_store');
 Route::post('/equipments/update',[EquipmentController::class,'update'])->name('equipments_update');
+Route::get('/equipments/delete/{id}',[EquipmentController::class,'destroy'])->name('equipments_delete');
 
 #certificate
 Route::get('/certificates/list',[CertificateController::class,'index'])->name('certificate_list');
 Route::post('/certificates/store',[CertificateController::class,'store'])->name('certificate_store');
 Route::post('/certificates/update',[CertificateController::class,'update'])->name('certificates_update');
-
+Route::get('/certificates/delete/{id}',[CertificateController::class,'destroy'])->name('certificate_delete');
 
 #team
 Route::get('/team/list',[TeamController::class,'index'])->name('team_list');
 Route::post('/team/store',[TeamController::class,'store'])->name('team_store');
 Route::post('/team/update',[TeamController::class,'update'])->name('team_update');
+Route::get('/team/delete/{id}',[TeamController::class,'destroy'])->name('team_delete');
 
 
 #customer
 Route::get('/customer/list',[CustomerController::class,'index'])->name('customer_list');
 Route::post('/customer/store',[CustomerController::class,'store'])->name('customer_store');
 Route::post('/customer/update',[CustomerController::class,'update'])->name('customer_update');
+Route::get('/customer/delete/{id}',[CustomerController::class,'destroy'])->name('customer_delete');

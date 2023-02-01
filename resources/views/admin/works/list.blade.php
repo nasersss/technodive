@@ -127,10 +127,11 @@
                                                                 href="{{route('work_show_images',$work->id)}} "><i
                                                                     class="bi bi-pencil-square text-success ms-3"></i> تعديل الصور</a>
     
-                                                        {{-- <button type="button" value="" data-id="1" data-is_active="-1"
-                                                            data-title="العمل" data-route='#' class="toggle dropdown-item"
-                                                            href="toggle "><i
-                                                                class="fa fa-trash ms-3 text-success"></i>تفعيل</button> --}}
+                                                                    <button type="button" 
+                                                                    data-route="{{route("work_delete",$work->id)}}"
+                                                                     class=" delete-item   dropdown-item"
+                                                                    href="toggle "><i class="fa fa-trash ms-3 text-danger"></i>حذف</button>
+                                                                   
 
                                                                 
                                                     </div>

@@ -10,6 +10,7 @@
 {{-- <script src="{{asset('/js/update/update-transfer.js')}}"></script> --}}
 <script src="{{asset('/js/modal-add/add.js')}}"></script>
 <script src="{{asset('/js/modal-update/update.js')}}"></script>
+<script src="{{asset('/js/modal-delete-confirm/confirm.js')}}"></script>
 
 <!-- Required vendors -->
 <script src="{{asset('/vendor/chart.js/Chart.bundle.min.js')}}"></script>

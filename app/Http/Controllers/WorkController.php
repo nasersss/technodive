@@ -139,8 +139,21 @@ class WorkController extends Controller
      * @param  \App\Models\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Work $work)
+    public function destroy(Work $work,$id)
     {
-        //
+        try{
+            
+            $uploadController = new UploadController();
+            $images = WorkImage::where('work_id',$id)->get();
+            foreach ( $images as $image) {
+                 $uploadController->deleteImage($image->image);
+            }
+            Work::find($id)->delete();
+            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+        }
+    
+        
     }
 }

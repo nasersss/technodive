@@ -112,8 +112,21 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy(Team $team,$id)
     {
-        //
+        try{
+            
+            $uploadController = new UploadController();
+            $uploadController->deleteImage(Team::find($id)->image);
+            Team::find($id)->delete();
+            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+        }
+    }
+    public function toggle($id)
+    {
+     return $id;
+     
     }
 }

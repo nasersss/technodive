@@ -112,8 +112,16 @@ class EquipmentController extends Controller
      * @param  \App\Models\Equipment  $equipment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipment $equipment)
+    public function destroy(Equipment $equipment,$id)
     {
-        //
+        try{
+            ;
+            $uploadController = new UploadController();
+            $uploadController->deleteImage(Equipment::find($id)->image);
+            Equipment::find($id)->delete();
+            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+        }
     }
 }

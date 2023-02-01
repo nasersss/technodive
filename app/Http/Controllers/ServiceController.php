@@ -104,8 +104,16 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Service $service,$id)
     {
-        //
+       try{
+        ;
+        $uploadController = new UploadController();
+        $uploadController->deleteImage(Service::find($id)->image);
+        Service::find($id)->delete();
+        return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
+    } catch (\Throwable $th) {
+        return back()->with(['error'=>'لم يتم حذف البيانات ']);
+    }
     }
 }
