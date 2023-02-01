@@ -52,13 +52,11 @@ class WorkController extends Controller
             $work->setTranslations('title', $titleTranslations);
             $work->setTranslations('description', $descriptionTranslations);
             $work->save();
-            if ($request->typeImage == 'array') {
                 if ($request->imageUrl != "") {foreach (explode(',', $request->imageUrl) as $image) {
                     $workImage = new WorkImage();
                     $workImage->image = $image;
                     $workImage->work_id = $work->id;
                     $workImage->save();
-                }
                 }
             }
             return redirect()->route('work_list')->with(['success'=> 'تمت عملية الاضافة بنجاح']);
@@ -118,19 +116,17 @@ class WorkController extends Controller
             $work->setTranslations('title', $titleTranslations);
             $work->setTranslations('description', $descriptionTranslations);
             $work->save();
-            if ($request->typeImage == 'array') {
                 if ($request->imageUrl != "") {foreach (explode(',', $request->imageUrl) as $image) {
                     $workImage = new WorkImage();
                     $workImage->image = $image;
                     $workImage->work_id = $work->id;
                     $workImage->save();
                 }
-                }
+               
             }
-            return redirect()->route('work_list')->with(['success'=> 'تمت عملية الاضافة بنجاح']);
-        } catch (\Throwable$th) {
-            return redirect()->route('work_list')->with(['error' => 'لم يتم حفظ البيانات']);
-
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 
@@ -164,9 +160,9 @@ class WorkController extends Controller
             $work = Work::find($request->id);
             $work->is_active *= -1;
             $work->save();
-            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
         } catch (\Throwable $th) {
-            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 }

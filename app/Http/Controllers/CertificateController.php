@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\UploadController;
-use App\Models\Certificate;
 use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
+use App\Models\Certificate;
 use Illuminate\Http\Request;
 
 class CertificateController extends Controller
@@ -40,8 +40,15 @@ class CertificateController extends Controller
     public function store(StoreCertificateRequest $request)
     {
         try {
-            if ($request->imageUrl == null)
+            if ($request->imageUrl == null) {
                 return back()->with(['error' => 'يرجى إرفاق الصورة']);
+            }
+
+            if ($request->typeImage == 'array') {
+                $uploadController = new UploadController();
+                $uploadController->deleteImage($request->imageUrl);
+                return back()->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+            }
             $type = explode('-', $request->type);
             $newCertificate = new Certificate();
             $translationType = ['en' => $type[1], 'ar' => $type[0]];
@@ -53,7 +60,7 @@ class CertificateController extends Controller
             $newCertificate->image = $request->imageUrl;
             $newCertificate->save();
             return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
-        } catch (\Throwable $th) {
+        } catch (\Throwable$th) {
             return back()->with(['error' => 'لم يتم حفظ البيانات']);
         }
     }
@@ -100,13 +107,18 @@ class CertificateController extends Controller
             $translationType = ['en' => $type[1], 'ar' => $type[0]];
             $updateCertificate->setTranslations('type', $translationType);
             if (!$request->imageUrl == null) {
+                if ($request->typeImage == 'array') {
+                    $uploadController = new UploadController();
+                    $uploadController->deleteImage($request->imageUrl);
+                    return back()->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+                }
                 $uploadController->deleteImage($updateCertificate->image);
                 $updateCertificate->image = $request->imageUrl;
             }
             $updateCertificate->update();
-            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
         } catch (\Throwable $th) {
-            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 
@@ -116,16 +128,16 @@ class CertificateController extends Controller
      * @param  \App\Models\Certificate  $certificate
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Certificate $certificate,$id)
+    public function destroy(Certificate $certificate, $id)
     {
-        try{
+        try {
             ;
             $uploadController = new UploadController();
             $uploadController->deleteImage(Certificate::find($id)->image);
             Certificate::find($id)->delete();
-            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
-        } catch (\Throwable $th) {
-            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+            return back()->with(['success' => 'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable$th) {
+            return back()->with(['error' => 'لم يتم حذف البيانات ']);
         }
     }
 
@@ -135,9 +147,9 @@ class CertificateController extends Controller
             $certificate = Certificate::find($request->id);
             $certificate->is_active *= -1;
             $certificate->save();
-            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
         } catch (\Throwable $th) {
-            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 }

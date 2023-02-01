@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipment;
+use App\Http\Controllers\Services\UploadController;
 use App\Http\Requests\StoreEquipmentRequest;
 use App\Http\Requests\UpdateEquipmentRequest;
-use App\Http\Controllers\Services\UploadController;
+use App\Models\Equipment;
 use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
@@ -40,8 +40,15 @@ class EquipmentController extends Controller
     public function store(StoreEquipmentRequest $request)
     {
         try {
-            if ($request->imageUrl == null)
+            if ($request->imageUrl == null) {
                 return back()->with(['error' => 'يرجى إرفاق الصورة']);
+            }
+
+            if ($request->typeImage == 'array') {
+                $uploadController = new UploadController();
+                $uploadController->deleteImage($request->imageUrl);
+                return back()->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+            }
             $newEquipment = new Equipment();
             $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
             $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
@@ -50,7 +57,7 @@ class EquipmentController extends Controller
             $newEquipment->image = $request->imageUrl;
             $newEquipment->save();
             return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
-        } catch (\Throwable $th) {
+        } catch (\Throwable$th) {
             return back()->with(['error' => 'لم يتم حفظ البيانات']);
         }
     }
@@ -87,24 +94,28 @@ class EquipmentController extends Controller
     public function update(UpdateEquipmentRequest $request, Equipment $equipment)
     {
 
-        try{
-        $uploadController = new UploadController();
-        $updateEquipment = Equipment::find($request->id);
-        $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
-        $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
-        $updateEquipment->setTranslations('title', $translationTitle);
-        $updateEquipment->setTranslations('description', $translationDescription);
-        if(!$request->imageUrl==null)
-        {
-            $uploadController->deleteImage($updateEquipment->image);
-            $updateEquipment->image=$request->imageUrl;
+        try {
+            $uploadController = new UploadController();
+            $updateEquipment = Equipment::find($request->id);
+            $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+            $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+            $updateEquipment->setTranslations('title', $translationTitle);
+            $updateEquipment->setTranslations('description', $translationDescription);
+            if (!$request->imageUrl == null) {
+                if ($request->typeImage == 'array') {
+                    $uploadController = new UploadController();
+                    $uploadController->deleteImage($request->imageUrl);
+                    return back()->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+                }
+                $uploadController->deleteImage($updateEquipment->image);
+                $updateEquipment->image = $request->imageUrl;
 
+            }
+            $updateEquipment->update();
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
-        $updateEquipment->update();
-        return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
-    } catch (\Throwable $th) {
-        return back()->with(['error' => 'لم يتم حفظ البيانات']);
-    }
     }
 
     /**
@@ -113,16 +124,16 @@ class EquipmentController extends Controller
      * @param  \App\Models\Equipment  $equipment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipment $equipment,$id)
+    public function destroy(Equipment $equipment, $id)
     {
-        try{
+        try {
             ;
             $uploadController = new UploadController();
             $uploadController->deleteImage(Equipment::find($id)->image);
             Equipment::find($id)->delete();
-            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
-        } catch (\Throwable $th) {
-            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+            return back()->with(['success' => 'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable$th) {
+            return back()->with(['error' => 'لم يتم حذف البيانات ']);
         }
     }
 
@@ -132,9 +143,9 @@ class EquipmentController extends Controller
             $equipment = Equipment::find($request->id);
             $equipment->is_active *= -1;
             $equipment->save();
-            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
         } catch (\Throwable $th) {
-            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 }

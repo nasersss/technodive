@@ -120,13 +120,10 @@
 
                                                          <a  class=" dropdown-item "
                                                                 href="{{route('work_show_images',$work->id)}} "><i
-                                                                    class="bi bi-pencil-square text-success ms-3"></i> تعديل الصور</a>
+                                                                    class="bi bi-images text-success ms-3"></i> تعديل الصور</a>
     
                                                                    
-                                                        <a class=" dropdown-item "
-                                                            href="{{ route('work_show_images', $work->id) }} "><i
-                                                                class="bi bi-pencil-square text-success ms-3"></i> تعديل
-                                                            الصور</a>
+                                                       
                                                             <button type="button" 
                                                             data-route="{{route("work_delete",$work->id)}}"
                                                              class=" delete-item   dropdown-item"
@@ -137,9 +134,9 @@
                                                             data-route='{{ route('works_toggle') }}'
                                                             class="toggle dropdown-item" href="toggle ">
                                                             @if ($work->is_active == 1)
-                                                                <i class="fa fa-trash ms-3 text-danger"></i>إلغاء
+                                                                <i class="bi bi-eye-slash-fill fa-trash ms-3 text-danger"></i>تعليق
                                                             @else
-                                                                <i class="fa fa-trash ms-3 text-success"></i>تفعيل
+                                                                <i class="bi bi-eye-fill ms-3 text-success"></i>تفعيل
                                                             @endif
                                                         </button>
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Http\Controllers\Services\UploadController;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
-use App\Http\Controllers\Services\UploadController;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -40,8 +40,15 @@ class TeamController extends Controller
     public function store(StoreTeamRequest $request)
     {
         try {
-            if ($request->imageUrl == null)
+            if ($request->imageUrl == null) {
                 return back()->with(['error' => 'يرجى إرفاق الصورة']);
+            }
+
+            if ($request->typeImage == 'array') {
+                $uploadController = new UploadController();
+                $uploadController->deleteImage($request->imageUrl);
+                return back()->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+            }
             $newTeam = new Team();
             $translationName = ['en' => $request->nameEn, 'ar' => $request->nameAr];
             $translationJob = ['en' => $request->jobEn, 'ar' => $request->jobAr];
@@ -50,7 +57,7 @@ class TeamController extends Controller
             $newTeam->image = $request->imageUrl;
             $newTeam->save();
             return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
-        } catch (\Throwable $th) {
+        } catch (\Throwable$th) {
             return back()->with(['error' => 'لم يتم حفظ البيانات']);
         }
     }
@@ -86,25 +93,29 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-      
-        try{
-        $uploadController = new UploadController();
-        $updateTeam =  Team::find($request->id);
-        $translationName = ['en' => $request->nameEn, 'ar' => $request->nameAr];
-        $translationJob = ['en' => $request->jobEn, 'ar' => $request->jobAr];
-        $updateTeam->setTranslations('name', $translationName);
-        $updateTeam->setTranslations('job', $translationJob);
-        if(!$request->imageUrl==null)
-        {
-            $uploadController->deleteImage($updateTeam->image);
-            $updateTeam->image=$request->imageUrl;
 
+        try {
+            $uploadController = new UploadController();
+            $updateTeam = Team::find($request->id);
+            $translationName = ['en' => $request->nameEn, 'ar' => $request->nameAr];
+            $translationJob = ['en' => $request->jobEn, 'ar' => $request->jobAr];
+            $updateTeam->setTranslations('name', $translationName);
+            $updateTeam->setTranslations('job', $translationJob);
+            if (!$request->imageUrl == null) {
+                if ($request->typeImage == 'array') {
+                    $uploadController = new UploadController();
+                    $uploadController->deleteImage($request->imageUrl);
+                    return back()->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+                }
+                $uploadController->deleteImage($updateTeam->image);
+                $updateTeam->image = $request->imageUrl;
+
+            }
+            $updateTeam->update();
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
-        $updateTeam->update();
-        return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
-    } catch (\Throwable $th) {
-        return back()->with(['error' => 'لم يتم حفظ البيانات']);
-    }
     }
 
     /**
@@ -113,28 +124,28 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team,$id)
+    public function destroy(Team $team, $id)
     {
-        try{
-            
+        try {
+
             $uploadController = new UploadController();
             $uploadController->deleteImage(Team::find($id)->image);
             Team::find($id)->delete();
-            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
-        } catch (\Throwable $th) {
-            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+            return back()->with(['success' => 'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable$th) {
+            return back()->with(['error' => 'لم يتم حذف البيانات ']);
         }
     }
-    
+
     public function toggle(Request $request)
     {
         try {
             $team = Team::find($request->id);
             $team->is_active *= -1;
             $team->save();
-            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
         } catch (\Throwable $th) {
-            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 }

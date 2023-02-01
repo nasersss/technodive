@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Http\Controllers\Services\UploadController;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
-use App\Http\Controllers\Services\UploadController;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -19,7 +19,7 @@ class CustomerController extends Controller
     {
         $customers = Customer::get();
         return view('admin.customer.list')->with('customers', $customers);
-        }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,8 +40,14 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         try {
-            if ($request->imageUrl == null)
+            if ($request->imageUrl == null) {
                 return back()->with(['error' => 'يرجى إرفاق الصورة']);
+            }
+            if ($request->typeImage == 'array') {
+                $uploadController = new UploadController();
+                $uploadController->deleteImage($request->imageUrl);
+                return back()->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+            }
             $newCustomer = new Customer();
             $translationName = ['en' => $request->nameEn, 'ar' => $request->nameAr];
             $translationJob = ['en' => $request->jobEn, 'ar' => $request->jobAr];
@@ -52,7 +58,7 @@ class CustomerController extends Controller
             $newCustomer->image = $request->imageUrl;
             $newCustomer->save();
             return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
-        } catch (\Throwable $th) {
+        } catch (\Throwable$th) {
             return back()->with(['error' => 'لم يتم حفظ البيانات']);
         }
     }
@@ -89,8 +95,8 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         // return $request;
-        try{
-        $uploadController = new UploadController();
+        try {
+            $uploadController = new UploadController();
 
             $updateCustomer = Customer::find($request->id);
             $translationName = ['en' => $request->nameEn, 'ar' => $request->nameAr];
@@ -99,17 +105,21 @@ class CustomerController extends Controller
             $updateCustomer->setTranslations('name', $translationName);
             $updateCustomer->setTranslations('job', $translationJob);
             $updateCustomer->setTranslations('description', $translationDescription);
-            if(!$request->imageUrl==null)
-        {
-            $uploadController->deleteImage($updateCustomer->image);
-            $updateCustomer->image=$request->imageUrl;
+            if (!$request->imageUrl == null) {
+                if ($request->typeImage == 'array') {
+                    $uploadController = new UploadController();
+                    $uploadController->deleteImage($request->imageUrl);
+                    return back()->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+                }
+                $uploadController->deleteImage($updateCustomer->image);
+                $updateCustomer->image = $request->imageUrl;
 
-        }
+            }
             $updateCustomer->image = $request->imageUrl;
             $updateCustomer->save();
-            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
         } catch (\Throwable $th) {
-            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 
@@ -119,16 +129,16 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer,$id)
+    public function destroy(Customer $customer, $id)
     {
-        try{
+        try {
             ;
             $uploadController = new UploadController();
             $uploadController->deleteImage(Customer::find($id)->image);
             Customer::find($id)->delete();
-            return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
-        } catch (\Throwable $th) {
-            return back()->with(['error'=>'لم يتم حذف البيانات ']);
+            return back()->with(['success' => 'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable$th) {
+            return back()->with(['error' => 'لم يتم حذف البيانات ']);
         }
     }
 
@@ -138,9 +148,9 @@ class CustomerController extends Controller
             $customer = Customer::find($request->id);
             $customer->is_active *= -1;
             $customer->save();
-            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
         } catch (\Throwable $th) {
-            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 }

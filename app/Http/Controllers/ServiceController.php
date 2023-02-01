@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\UploadController;
-use App\Models\Service;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -39,21 +39,28 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        try{
-       if($request->imageUrl==null)
-        return redirect()->route('service_list')->with(['error'=>'يرجى إرفاق الصورة']);
-        $newService = new Service();
-        $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
-        $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
-        $newService->setTranslations('title', $translationTitle);
-        $newService->setTranslations('description', $translationDescription);
-        $newService->image=$request->imageUrl;
-        $newService->save();
-        return redirect()->route('service_list')->with(['success'=>'تمت إضافة البيانات بنجاح']);
-    } catch (\Throwable $th) {
-        return redirect()->route('service_list')->with(['error'=>'لم يتم حفظ البيانات']);
+        try {
+            if ($request->imageUrl == null) {
+                return redirect()->route('service_list')->with(['error' => 'يرجى إرفاق الصورة']);
+            }
 
-    }
+            if ($request->typeImage == 'array') {
+                $uploadController = new UploadController();
+                $uploadController->deleteImage($request->imageUrl);
+                return redirect()->route('service_list')->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+            }
+            $newService = new Service();
+            $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+            $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+            $newService->setTranslations('title', $translationTitle);
+            $newService->setTranslations('description', $translationDescription);
+            $newService->image = $request->imageUrl;
+            $newService->save();
+            return redirect()->route('service_list')->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable$th) {
+            return redirect()->route('service_list')->with(['error' => 'لم يتم حفظ البيانات']);
+
+        }
     }
 
     /**
@@ -67,8 +74,6 @@ class ServiceController extends Controller
         //
     }
 
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -78,25 +83,27 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-       try{
-        $uploadController = new UploadController();
-        $updateService = Service::find($request->id);
-        $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
-        $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
-        $updateService->setTranslations('title', $translationTitle);
-        $updateService->setTranslations('description', $translationDescription);
-        if(!$request->imageUrl==null)
-        {
-            $uploadController->deleteImage($updateService->image);
-            $updateService->image=$request->imageUrl;
-
+        try {
+            $uploadController = new UploadController();
+            $updateService = Service::find($request->id);
+            $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+            $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+            $updateService->setTranslations('title', $translationTitle);
+            $updateService->setTranslations('description', $translationDescription);
+            if (!$request->imageUrl == null) {
+                if ($request->typeImage == 'array') {
+                    $uploadController = new UploadController();
+                    $uploadController->deleteImage($request->imageUrl);
+                    return redirect()->route('service_list')->with(['error' => 'يرجى إرفاق صورة واحدة فقط']);
+                }
+                $uploadController->deleteImage($updateService->image);
+                $updateService->image = $request->imageUrl;
+            }
+            $updateService->update();
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
-        $updateService->update();
-        return redirect()->route('service_list')->with(['success'=>'تمت إضافة البيانات بنجاح']);
-    } catch (\Throwable $th) {
-        return redirect()->route('service_list')->with(['error'=>'لم يتم حفظ البيانات']);
-
-    }
     }
 
     /**
@@ -105,17 +112,17 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service,$id)
+    public function destroy(Service $service, $id)
     {
-       try{
-        ;
-        $uploadController = new UploadController();
-        $uploadController->deleteImage(Service::find($id)->image);
-        Service::find($id)->delete();
-        return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
-    } catch (\Throwable $th) {
-        return back()->with(['error'=>'لم يتم حذف البيانات ']);
-    }
+        try {
+            ;
+            $uploadController = new UploadController();
+            $uploadController->deleteImage(Service::find($id)->image);
+            Service::find($id)->delete();
+            return back()->with(['success' => 'تمت حذف البيانات بنجاح']);
+        } catch (\Throwable$th) {
+            return back()->with(['error' => 'لم يتم حذف البيانات ']);
+        }
     }
 
     public function toggle(Request $request)
@@ -124,9 +131,9 @@ class ServiceController extends Controller
             $service = Service::find($request->id);
             $service->is_active *= -1;
             $service->save();
-            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+            return back()->with(['success' => 'تمت تحديث البيانات بنجاح']);
         } catch (\Throwable $th) {
-            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+            return back()->with(['error' => 'لم يتم تحديث البيانات']);
         }
     }
 }

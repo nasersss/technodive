@@ -147,9 +147,9 @@
                                                             data-route='{{ route('customers_toggle') }}'
                                                             class="toggle dropdown-item" href="toggle ">
                                                             @if ($customer->is_active == 1)
-                                                                <i class="fa fa-trash ms-3 text-danger"></i>إلغاء
+                                                                <i class="bi bi-eye-slash-fill fa-trash ms-3 text-danger"></i>تعليق
                                                             @else
-                                                                <i class="fa fa-trash ms-3 text-success"></i>تفعيل
+                                                                <i class="bi bi-eye-fill ms-3 text-success"></i>تفعيل
                                                             @endif
                                                         </button>
 
