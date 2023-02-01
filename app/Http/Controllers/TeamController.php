@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
+use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
@@ -96,5 +97,17 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         //
+    }
+
+    public function toggle(Request $request)
+    {
+        try {
+            $team = Team::find($request->id);
+            $team->is_active *= -1;
+            $team->save();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+        }
     }
 }

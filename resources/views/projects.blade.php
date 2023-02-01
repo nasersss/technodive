@@ -6,70 +6,23 @@
                 <!-- <h1 class="display-6 mb-4">Learn More About Our Complete </h1> -->
             </div>
             <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.1s">
+                @foreach ($works as $work)
                 <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="01">
+                    @isset($work->workImages[0]->image)
                     <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo1.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
+                        <img class="img-fluid rounded" src="{{ asset('storage/images/' . $work->workImages[0]->image) }}" style="width:200px ;height:170px ;">
+                        <a href="{{ asset('storage/images/' . $work->workImages[0]->image) }}" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
                     </div>
-                    <h6>اخراج سفينة مبارك</h6>
-                    <span>لقد قام فريق تكنو دايف باخراج السفينة مبارك ...</span>
+                    @endisset
+                    @isset($work->title)
+                        <h6>{{$work->title}}</h6>
+                    @endisset
+                    @isset($work->description)
+                        <span>{{$work->description}}</span>
+                    @endisset
                 </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="02">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo3.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6> لحام  لسفينة المحضار </h6>
-                    <span>لقد قام فريق تكنو دايف باخراج السفينة مبارك ...</span>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="03">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo2.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6>مشاركة في موسم البلدة </h6>
-                    <span>لقد قام فريق تكنو دايف باخراج السفينة مبارك ...</span>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="04">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo4.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6> صيانة لظهر سفينة بن سويدان</h6>
-                    <span>لقد قام فريق تكنو دايف باخراج السفينة مبارك ...</span>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="05">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo1.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6>اخراج سفينة مبارك</h6>
-                    <span>لقد قام فريق تكنو دايف باخراج السفينة مبارك ...</span>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="06">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo3.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6> لحام  لسفينة المحضار </h6>
-                    <span>لقد قام فريق تكنو دايف باخراج السفينة مبارك ...</span>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="07">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo2.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6>مشاركة في موسم البلدة </h6>
-                    <span>لقد قام فريق تكنو دايف باخراج السفينة مبارك ...</span>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="08">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo4.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6> صيانة لظهر سفينة بن سويدان</h6>
-                    <span>لقد قام فريق تكنو دايف باخراج السفينة مبارك ...</span>
-                </div>
+
+                @endforeach
             </div>
         </div>
     </div>

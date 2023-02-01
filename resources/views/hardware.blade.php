@@ -5,62 +5,22 @@
                 <h1 class="section-title bg-white text-center text-primary px-3">{{__('navbar.hardware')}}</h1>
             </div>
             <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.1s">
+                @foreach ($equipments as $equipment)
                 <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="01">
+                    @isset($equipment->image)
                     <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo1.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
+                        <img class="img-fluid rounded" src="{{ asset('storage/images/' . $equipment->image) }}" style="width:200px ;height:170px ;">
+                        <a href="{{ asset('storage/images/' . $equipment->image) }}" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
                     </div>
-                    <h6>اخراج سفينة مبارك</h6>
+                    @endisset
+                    @isset($equipment->title)
+                        <h6>{{$equipment->title}}</h6>
+                    @endisset
+                    @isset($equipment->description)
+                        <span>{{$equipment->description}}</span>
+                    @endisset
                 </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="02">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo3.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6> لحام  لسفينة المحضار </h6>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="03">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo2.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6>مشاركة في موسم البلدة </h6>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="04">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo4.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6> صيانة لظهر سفينة بن سويدان</h6>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="05">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo1.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6>اخراج سفينة مبارك</h6>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="06">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo3.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6> لحام  لسفينة المحضار </h6>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="07">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo2.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6>مشاركة في موسم البلدة </h6>
-                </div>
-                <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="08">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{asset('/assets/img/wo4.jpg')}}" style="width:200px ;height:170px ;">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
-                    </div>
-                    <h6> صيانة لظهر سفينة بن سويدان</h6>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

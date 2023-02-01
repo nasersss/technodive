@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Controllers\Services\UploadController;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -121,5 +122,17 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    public function toggle(Request $request)
+    {
+        try {
+            $customer = Customer::find($request->id);
+            $customer->is_active *= -1;
+            $customer->save();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+        }
     }
 }

@@ -12,7 +12,7 @@
                 <div class="text-center mb-4">
                     <p class="address-subtitle text-danger" id="content"> </p>
                 </div>
-                <form id="toggleForm" method="GET" action=""
+                <form id="toggleForm" method="POST" action=""
                     class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework needs-validation" novalidate="">
                     @csrf
                     <input type="hidden" name="id" id="id_toggle">

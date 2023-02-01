@@ -6,6 +6,7 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CodingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ServiceController;
@@ -27,9 +28,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -124,3 +126,10 @@ Route::post('/team/update',[TeamController::class,'update'])->name('team_update'
 Route::get('/customer/list',[CustomerController::class,'index'])->name('customer_list');
 Route::post('/customer/store',[CustomerController::class,'store'])->name('customer_store');
 Route::post('/customer/update',[CustomerController::class,'update'])->name('customer_update');
+
+Route::post('/certificate/toggle',[CertificateController::class,'toggle'])->name('certificates_toggle');
+Route::post('/customer/toggle',[CustomerController::class,'toggle'])->name('customers_toggle');
+Route::post('/equipment/toggle',[EquipmentController::class,'toggle'])->name('equipments_toggle');
+Route::post('/service/toggle',[ServiceController::class,'toggle'])->name('services_toggle');
+Route::post('/team/toggle',[TeamController::class,'toggle'])->name('teams_toggle');
+Route::post('/work/toggle',[WorkController::class,'toggle'])->name('works_toggle');

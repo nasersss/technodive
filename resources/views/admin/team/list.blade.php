@@ -82,8 +82,11 @@
                                             </td>
                                             <td>
                                                 @isset($team->is_active)
-                                                <span class="badge badge-danger light">{{$team->is_active}}</span>
-                                                @endisset
+                                                @if ($team->is_active == 1)
+                                                <span class="badge badge-success light">نشط</span>
+                                            @else
+                                                <span class="badge badge-danger light">غير نشط</span>
+                                            @endif                                                @endisset
                                             <td>
                                                 <div class="dropdown dropstart">
                                                     <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown"
@@ -121,11 +124,16 @@
                                                            href="#"><i
                                                                 class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>
 
-                                                            <button type="button" value="" data-id="5"
-                                                                data-is_active="5" data-title="الطرمبة"
-                                                                data-route='' class="toggle dropdown-item"
-                                                                href="toggle "><i class="fa fa-trash ms-3 text-success"></i>تفعيل</button>
-
+                                                                <button type="button" value="" data-id="{{ $team->id }}"
+                                                                    data-is_active="{{ $team->is_active }}" data-title="العمل"
+                                                                    data-route='{{ route('teams_toggle') }}'
+                                                                    class="toggle dropdown-item" href="toggle ">
+                                                                    @if ($team->is_active == 1)
+                                                                        <i class="fa fa-trash ms-3 text-danger"></i>إلغاء
+                                                                    @else
+                                                                        <i class="fa fa-trash ms-3 text-success"></i>تفعيل
+                                                                    @endif
+                                                                </button>
                                                     </div>
                                                 </div>
                                             </td>

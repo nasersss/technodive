@@ -49,7 +49,11 @@
                                 </td>
                                 <td>
                                     @isset($certificate->is_active)
-                                        <span class="badge badge-danger light">{{ $certificate->is_active }}</span>
+                                        @if ($certificate->is_active == 1)
+                                            <span class="badge badge-success light">نشط</span>
+                                        @else
+                                            <span class="badge badge-danger light">غير نشط</span>
+                                        @endif
                                     @endisset
                                 <td>
                                     <div class="dropdown dropstart">
@@ -73,23 +77,28 @@
                                         </a>
                                         <div class="dropdown-menu">
 
-                                            <button type="button"
-                                            data-route="{{route("certificates_update")}}"
-                                            data-method="POST"
-                                            data-modal_title ='تحديث الشهادة '
-                                            data-id="@isset($certificate->id){{$certificate->id}}@endisset"
-                                            data-title_ar="@isset($certificate->getTranslations('title')['ar']){{ $certificate->getTranslations('title')['ar'] }} @endisset"
-                                            data-title_en="@isset($certificate->getTranslations('title')['en']){{ $certificate->getTranslations('title')['en'] }} @endisset"
-                                            data-description_ar="@isset($certificate->getTranslations('description')['ar']){{ $certificate->getTranslations('description')['ar'] }} @endisset"
-                                            data-description_en="@isset($certificate->getTranslations('description')['en']){{ $certificate->getTranslations('description')['en'] }} @endisset"
-                                             data-path="{{asset('storage/images/'.$certificate->image)}}"
-                                            class="update-item dropdown-item"
-                                               href="#"><i
+                                            <button type="button" data-route="{{ route('certificates_update') }}"
+                                                data-method="POST" data-type="certificate" data-modal_title='تحديث الشهادة '
+                                                data-id="@isset($certificate->id){{ $certificate->id }}@endisset"
+                                                data-title_ar="@isset($certificate->getTranslations('title')['ar']){{ $certificate->getTranslations('title')['ar'] }} @endisset"
+                                                data-title_en="@isset($certificate->getTranslations('title')['en']){{ $certificate->getTranslations('title')['en'] }} @endisset"
+                                                data-description_ar="@isset($certificate->getTranslations('description')['ar']){{ $certificate->getTranslations('description')['ar'] }} @endisset"
+                                                data-description_en="@isset($certificate->getTranslations('description')['en']){{ $certificate->getTranslations('description')['en'] }} @endisset"
+                                                data-certificate_type="@isset($certificate->getTranslations('type')['ar']){{ $certificate->getTranslations('type')['ar'] }}@endisset-@isset($certificate->getTranslations('type')['en']){{ $certificate->getTranslations('type')['en'] }}@endisset"
+                                                data-path="{{ asset('storage/images/' . $certificate->image) }}"
+                                                class="update-item dropdown-item" href="#"><i
                                                     class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>
 
-                                            <button type="button" value="" data-id="5" data-is_active="5"
-                                                data-title="الطرمبة" data-route='' class="toggle dropdown-item"
-                                                href="toggle "><i class="fa fa-trash ms-3 text-success"></i>تفعيل</button>
+                                            <button type="button" value="" data-id="{{ $certificate->id }}"
+                                                data-is_active="{{ $certificate->is_active }}" data-title="الشهادة"
+                                                data-route='{{ route('certificates_toggle') }}'
+                                                class="toggle dropdown-item" href="toggle ">
+                                                @if ($certificate->is_active == 1)
+                                                <i class="fa fa-trash ms-3 text-danger"></i>إلغاء
+                                                @else
+                                                <i class="fa fa-trash ms-3 text-success"></i>تفعيل
+                                                @endif
+                                                </button>
 
                                         </div>
                                     </div>

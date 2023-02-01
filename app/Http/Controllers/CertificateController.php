@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Services\UploadController;
 use App\Models\Certificate;
 use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
+use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
@@ -40,7 +42,7 @@ class CertificateController extends Controller
         try {
             if ($request->imageUrl == null)
                 return back()->with(['error' => 'يرجى إرفاق الصورة']);
-            $type = explode('-',$request->type);
+            $type = explode('-', $request->type);
             $newCertificate = new Certificate();
             $translationType = ['en' => $type[1], 'ar' => $type[0]];
             $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
@@ -87,7 +89,25 @@ class CertificateController extends Controller
      */
     public function update(UpdateCertificateRequest $request, Certificate $certificate)
     {
-        return $request;
+        try {
+            $type = explode('-', $request->type);
+            $uploadController = new UploadController();
+            $updateCertificate = Certificate::find($request->id);
+            $translationTitle = ['en' => $request->titleEn, 'ar' => $request->titleAr];
+            $translationDescription = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
+            $updateCertificate->setTranslations('title', $translationTitle);
+            $updateCertificate->setTranslations('description', $translationDescription);
+            $translationType = ['en' => $type[1], 'ar' => $type[0]];
+            $updateCertificate->setTranslations('type', $translationType);
+            if (!$request->imageUrl == null) {
+                $uploadController->deleteImage($updateCertificate->image);
+                $updateCertificate->image = $request->imageUrl;
+            }
+            $updateCertificate->update();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+        }
     }
 
     /**
@@ -99,5 +119,17 @@ class CertificateController extends Controller
     public function destroy(Certificate $certificate)
     {
         //
+    }
+
+    public function toggle(Request $request)
+    {
+        try {
+            $certificate = Certificate::find($request->id);
+            $certificate->is_active *= -1;
+            $certificate->save();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+        }
     }
 }

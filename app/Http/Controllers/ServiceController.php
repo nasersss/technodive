@@ -6,6 +6,7 @@ use App\Http\Controllers\Services\UploadController;
 use App\Models\Service;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
+use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
@@ -66,7 +67,7 @@ class ServiceController extends Controller
         //
     }
 
-   
+
 
     /**
      * Update the specified resource in storage.
@@ -107,5 +108,17 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         //
+    }
+
+    public function toggle(Request $request)
+    {
+        try {
+            $service = Service::find($request->id);
+            $service->is_active *= -1;
+            $service->save();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+        }
     }
 }
