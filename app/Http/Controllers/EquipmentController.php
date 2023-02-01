@@ -84,7 +84,7 @@ class EquipmentController extends Controller
      */
     public function update(UpdateEquipmentRequest $request, Equipment $equipment)
     {
-        //
+        return $request;
     }
 
     /**

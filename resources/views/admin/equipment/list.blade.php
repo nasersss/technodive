@@ -105,9 +105,18 @@
                                                     </a>
                                                     <div class="dropdown-menu">
 
-                                                        <button type="button" value="" data-tank="8"
-                                                            data-id="8" class="edit dropdown-item"
-                                                            href="edit all-details.html"><i
+                                                        <button type="button"
+                                                        data-route="{{route("equipments_update")}}"
+                                                        data-method="POST"
+                                                        data-modal_title ='تحديث المعدات '
+                                                        data-id="@isset($equipment->id){{$equipment->id}}@endisset"
+                                                        data-title_ar="@isset($equipment->getTranslations('title')['ar']){{ $equipment->getTranslations('title')['ar'] }} @endisset"
+                                                        data-title_en="@isset($equipment->getTranslations('title')['en']){{ $equipment->getTranslations('title')['en'] }} @endisset"
+                                                        data-description_ar="@isset($equipment->getTranslations('description')['ar']){{ $equipment->getTranslations('description')['ar'] }} @endisset"
+                                                        data-description_en="@isset($equipment->getTranslations('description')['en']){{ $equipment->getTranslations('description')['en'] }} @endisset"
+                                                         data-path="{{asset('storage/images/'.$equipment->image)}}"
+                                                        class="update-item dropdown-item"
+                                                           href="#"><i
                                                                 class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>
 
                                                             <button type="button" value="" data-id="5"
@@ -140,7 +149,8 @@
     <!--**********************************
         strat modals
     ***********************************-->
-
+    @include('admin.modals.image')
+    @include('admin.modals.update')
     @include('admin.modals.new')
     @include('admin.toggle.toggle')
 
@@ -149,6 +159,72 @@
     ***********************************-->
 @endsection
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
+<script type="text/javascript">
+    let imagespath = [];
+    let browseFile = $('.browseFile');
+
+    let resumable = new Resumable({
+        target: '{{ route('uploadImage') }}',
+        query:{_token:'{{ csrf_token() }}'} ,// CSRF token
+        fileType: ['png','jpg'],
+        chunkSize: 10*1024*1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
+        headers: {
+            'Accept' : 'application/json'
+        },
+        testChunks: false,
+        throttleProgressCallbacks: 1,
+    });
+
+    resumable.assignBrowse(browseFile[0]);
+
+    resumable.on('fileAdded', function (file) { // trigger when file picked
+        showProgress();
+        resumable.upload() // to actually start uploading.
+    });
+
+    resumable.on('fileProgress', function (file) { // trigger when file progress update
+        updateProgress(Math.floor(file.progress() * 100));
+    });
+
+    resumable.on('fileSuccess', function (file, response) { // trigger when file upload complete
+        response = JSON.parse(response)
+        $('.imagePreview').attr('src', response.path);
+        imagespath.push(response.filename);
+        $('.imageUrlPreview').val(imagespath);
+        if(imagespath.length>1)
+            $('.typeImage').val('array');
+        var url = '{{ route("deleted_image", ":id") }}';
+        url = url.replace(':id',imagespath);
+        $('.canceledUploadVideo').attr('href',url);
+        $('.close-image-preview').hide();
+        $('.card-footer').show();
+        $('.browseFile').hide();
+    });
+
+    resumable.on('fileError', function (file, response) { // trigger when there is any error
+        alert('file uploading error.')
+    });
+
+
+    let progress = $('.progress');
+    function showProgress() {
+        progress.find('.progress-bar').css('width', '0%');
+        progress.find('.progress-bar').html('0%');
+        progress.find('.progress-bar').removeClass('bg-success');
+        progress.show();
+    }
+
+    function updateProgress(value) {
+        progress.find('.progress-bar').css('width', `${value}%`)
+        progress.find('.progress-bar').html(`${value}%`)
+    }
+
+    function hideProgress() {
+        progress.hide();
+    }
+</script>
+
     <script src="{{ asset('/js/update/update-pmup.js') }}"></script>
     <script src="{{ asset('/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/js/plugins-init/datatables.init.js') }}"></script>

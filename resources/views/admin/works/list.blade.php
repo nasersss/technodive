@@ -24,7 +24,7 @@
                 <i class="mdi mdi-plus-circle ms-2"></i>اضافة طرمبة جديدة
             </button> --}}
             <button type="button" class="btn btn-primary  me-1 add-item"
-            data-route="{{route("work_store")}}" 
+            data-route="{{route("work_store")}}"
             data-method="POST"
             data-modal_title ='إضافة عمل جديدة'>
                <i class="mdi mdi-plus-circle ms-2"></i>اضافة عمل جديدة
@@ -104,8 +104,18 @@
                                                     </a>
                                                     <div class="dropdown-menu">
 
-                                                        <button type="button" value="" data-tank="1" data-id="5"
-                                                            class="edit dropdown-item" href="edit all-details.html"><i
+                                                        <button type="button"
+                                                        data-route="{{route("work_update")}}"
+                                                        data-method="POST"
+                                                        data-modal_title ='تحديث الخدمة '
+                                                        data-id="@isset($work->id){{$work->id}}@endisset"
+                                                        data-title_ar="@isset($work->getTranslations('title')['ar']){{ $work->getTranslations('title')['ar'] }} @endisset"
+                                                        data-title_en="@isset($work->getTranslations('title')['en']){{ $work->getTranslations('title')['en'] }} @endisset"
+                                                        data-description_ar="@isset($work->getTranslations('description')['ar']){{ $work->getTranslations('description')['ar'] }} @endisset"
+                                                        data-description_en="@isset($work->getTranslations('description')['en']){{ $work->getTranslations('description')['en'] }} @endisset"
+                                                         data-path="{{asset('storage/images/'.$work->image)}}"
+                                                        class="update-item dropdown-item"
+                                                           href="#"><i
                                                                 class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>
 
                                                         <button type="button" value="" data-id="1" data-is_active="1"
@@ -145,8 +155,9 @@
     <!--**********************************
                 strat modals
             ***********************************-->
-
-     @include('admin.modals.new')
+    @include('admin.modals.image')
+    @include('admin.modals.update')
+    @include('admin.modals.new')
     @include('admin.toggle.toggle')
 
     <!--**********************************
@@ -154,6 +165,72 @@
             ***********************************-->
 @endsection
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
+<script type="text/javascript">
+    let imagespath = [];
+    let browseFile = $('.browseFile');
+
+    let resumable = new Resumable({
+        target: '{{ route('uploadImage') }}',
+        query:{_token:'{{ csrf_token() }}'} ,// CSRF token
+        fileType: ['png','jpg'],
+        chunkSize: 10*1024*1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
+        headers: {
+            'Accept' : 'application/json'
+        },
+        testChunks: false,
+        throttleProgressCallbacks: 1,
+    });
+
+    resumable.assignBrowse(browseFile[0]);
+
+    resumable.on('fileAdded', function (file) { // trigger when file picked
+        showProgress();
+        resumable.upload() // to actually start uploading.
+    });
+
+    resumable.on('fileProgress', function (file) { // trigger when file progress update
+        updateProgress(Math.floor(file.progress() * 100));
+    });
+
+    resumable.on('fileSuccess', function (file, response) { // trigger when file upload complete
+        response = JSON.parse(response)
+        $('.imagePreview').attr('src', response.path);
+        imagespath.push(response.filename);
+        $('.imageUrlPreview').val(imagespath);
+        if(imagespath.length>1)
+            $('.typeImage').val('array');
+        var url = '{{ route("deleted_image", ":id") }}';
+        url = url.replace(':id',imagespath);
+        $('.canceledUploadVideo').attr('href',url);
+        $('.close-image-preview').hide();
+        $('.card-footer').show();
+        $('.browseFile').hide();
+    });
+
+    resumable.on('fileError', function (file, response) { // trigger when there is any error
+        alert('file uploading error.')
+    });
+
+
+    let progress = $('.progress');
+    function showProgress() {
+        progress.find('.progress-bar').css('width', '0%');
+        progress.find('.progress-bar').html('0%');
+        progress.find('.progress-bar').removeClass('bg-success');
+        progress.show();
+    }
+
+    function updateProgress(value) {
+        progress.find('.progress-bar').css('width', `${value}%`)
+        progress.find('.progress-bar').html(`${value}%`)
+    }
+
+    function hideProgress() {
+        progress.hide();
+    }
+</script>
+
     <script src="{{ asset('/js/update/update-pmup.js') }}"></script>
     <script src="{{ asset('/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/js/plugins-init/datatables.init.js') }}"></script>
