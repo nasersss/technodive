@@ -32,5 +32,5 @@ background-size: cover;
     </div>
 </div>
 @include('our-expertise')
-@include('testimonial')
+{{-- @include('testimonial') --}}
 @endsection

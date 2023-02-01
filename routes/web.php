@@ -51,43 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/makeNotificationSeen/{id}', [NotificationController::class, 'makeNotificationSeen'])->name('makeNotificationSeen');
 
-    ######## works ######################33
-
-
-});
-Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->name('change.language');
-
-Route::get('/about', function () {
-    return view('about_page');
-})->name('about');
-// Route::get('/services', function () {
-//     return view('services_page');
-// })->name('services');
-// Route::get('/projects', function () {
-//     return view('projects_page');
-// })->name('projects');
-// Route::get('/hardware', function () {
-//     return view('hardware_page');
-// })->name('hardware');
-
-// Route::get('/our-expertise', function () {
-//     return view('our-expertise_page');
-// })->name('ourExpertise');
-
-// Route::get('/testimonial', function () {
-//     return view('testimonial_page');
-// })->name('testimonial');
-// Route::get('/team', function () {
-//     return view('team_page');
-// })->name('team');
-
-Route::get('/contact', [ContactController::class,'contact'])->name('contact');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/login', function () {
-    return view('auth.login');
-})->middleware('guest');
-
-#services
+    #services
 Route::get('/services/list',[ServiceController::class,'index'])->name('service_list');
 Route::post('/services/store',[ServiceController::class,'store'])->name('service_store');
 Route::post('/services/update',[ServiceController::class,'update'])->name('service_update');
@@ -130,13 +94,6 @@ Route::post('/customer/store',[CustomerController::class,'store'])->name('custom
 Route::post('/customer/update',[CustomerController::class,'update'])->name('customer_update');
 Route::get('/customer/delete/{id}',[CustomerController::class,'destroy'])->name('customer_delete');
 
-Route::post('/contact/store',[ContactController::class,'store'])->name('contact_us_store');
-Route::get('/services',[HomeController::class,'services'])->name('services');
-Route::get('/hardware',[HomeController::class,'hardware'])->name('hardware');
-Route::get('/projects',[HomeController::class,'projects'])->name('projects');
-Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
-Route::get('/team',[HomeController::class,'team'])->name('team');
-Route::get('/our-expertise',[HomeController::class,'ourExpertise'])->name('ourExpertise');
 
 Route::post('/certificate/toggle',[CertificateController::class,'toggle'])->name('certificates_toggle');
 Route::post('/customer/toggle',[CustomerController::class,'toggle'])->name('customers_toggle');
@@ -144,3 +101,27 @@ Route::post('/equipment/toggle',[EquipmentController::class,'toggle'])->name('eq
 Route::post('/service/toggle',[ServiceController::class,'toggle'])->name('services_toggle');
 Route::post('/team/toggle',[TeamController::class,'toggle'])->name('teams_toggle');
 Route::post('/work/toggle',[WorkController::class,'toggle'])->name('works_toggle');
+
+
+
+});
+Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->name('change.language');
+
+// Route::get('/about', function () {
+//     return view('about_page');
+// })->name('about');
+
+Route::get('/contact', [ContactController::class,'contact'])->name('contact');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/login', function () {
+    return view('auth.login');
+})->middleware('guest');
+
+Route::post('/contact/store',[ContactController::class,'store'])->name('contact_us_store');
+Route::get('/services',[HomeController::class,'services'])->name('services');
+Route::get('/hardware',[HomeController::class,'hardware'])->name('hardware');
+Route::get('/projects',[HomeController::class,'projects'])->name('projects');
+Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
+Route::get('/team',[HomeController::class,'team'])->name('team');
+Route::get('/our-expertise',[HomeController::class,'ourExpertise'])->name('ourExpertise');
+Route::get('/about',[HomeController::class,'about'])->name('about');

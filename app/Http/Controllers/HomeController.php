@@ -56,13 +56,14 @@ class HomeController extends Controller
     public function projects()
     
     {
-        $works = Work::with('workImage')->where('is_active',1)->get();
+        $works = Work::with('workImages')->where('is_active',1)->get();
         return view('projects_page')->with('works',$works);
     }
     public function hardware()
     {
-        $equipments = Equipment::where('is_active',1)->get();
-        return view('hardware_page')->with('equipments ',$equipments);
+        $equipments  = Equipment::where('is_active',1)->get();
+        $customers =Customer::where('is_active',1)->get();
+        return view('hardware_page')->with(['equipments'=>$equipments,'customers'=>$customers]);
     }
     public function ourExpertise()
     {
@@ -71,12 +72,17 @@ class HomeController extends Controller
     }
     public function testimonial()
     {
-        $testimonials = Customer::where('is_active',1)->get();
-        return view('testimonial_page')->with('testimonials ',$testimonials);
+        $customers  = Customer::where('is_active',1)->get();
+        return view('testimonial_page')->with('customers',$customers );
     }
     public function team()
     {
         $teams = Team::where('is_active',1)->get();
         return view('team_page')->with('teams ',$teams);
+    }
+    public function about()
+    {
+            return view('about_page');
+
     }
 }
