@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Services\UploadController;
 use App\Http\Controllers\Services\ContactController;
@@ -58,27 +59,27 @@ Route::get('/change-language/{locale}', [LocaleController::class, 'switch'])->na
 Route::get('/about', function () {
     return view('about_page');
 })->name('about');
-Route::get('/services', function () {
-    return view('services_page');
-})->name('services');
-Route::get('/projects', function () {
-    return view('projects_page');
-})->name('projects');
-Route::get('/hardware', function () {
-    return view('hardware_page');
-})->name('hardware');
+// Route::get('/services', function () {
+//     return view('services_page');
+// })->name('services');
+// Route::get('/projects', function () {
+//     return view('projects_page');
+// })->name('projects');
+// Route::get('/hardware', function () {
+//     return view('hardware_page');
+// })->name('hardware');
 
+// Route::get('/our-expertise', function () {
+//     return view('our-expertise_page');
+// })->name('ourExpertise');
 
-Route::get('/our-expertise', function () {
-    return view('our-expertise_page');
-})->name('ourExpertise');
+// Route::get('/testimonial', function () {
+//     return view('testimonial_page');
+// })->name('testimonial');
+// Route::get('/team', function () {
+//     return view('team_page');
+// })->name('team');
 
-Route::get('/testimonial', function () {
-    return view('testimonial_page');
-})->name('testimonial');
-Route::get('/team', function () {
-    return view('team_page');
-})->name('team');
 Route::get('/contact', [ContactController::class,'contact'])->name('contact');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', function () {
@@ -129,3 +130,9 @@ Route::post('/customer/update',[CustomerController::class,'update'])->name('cust
 Route::get('/customer/delete/{id}',[CustomerController::class,'destroy'])->name('customer_delete');
 
 Route::post('/contact/store',[ContactController::class,'store'])->name('contact_us_store');
+Route::get('/services',[HomeController::class,'services'])->name('services');
+Route::get('/hardware',[HomeController::class,'hardware'])->name('hardware');
+Route::get('/projects',[HomeController::class,'projects'])->name('projects');
+Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
+Route::get('/team',[HomeController::class,'team'])->name('team');
+Route::get('/our-expertise',[HomeController::class,'ourExpertise'])->name('ourExpertise');
