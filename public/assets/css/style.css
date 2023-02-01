@@ -800,3 +800,15 @@ body
 {
     color:#ffffff;
 }
+
+.nav-tabs-cef {
+    display: flex;
+    justify-content: center;
+}
+.nav-tabs .nav-link {
+    color: #005e99;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #005e99;
+    font-weight: bold;
+}

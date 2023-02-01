@@ -70,11 +70,11 @@
 @import url(./../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
 @import url(./../vendor/metismenu/css/metisMenu.min.css); */
 */:root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -275,7 +275,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --bs-white: #fff;
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
-  --bs-primary: #5bcfc5;
+  --bs-primary: #005e99;
   --bs-secondary: #709fba;
   --bs-success: #68e365;
   --bs-info: #b48dd3;
@@ -485,7 +485,7 @@ sup {
 }
 
 a {
-  color: #5bcfc5;
+  color: #005e99;
   text-decoration: underline;
 }
 
@@ -2778,8 +2778,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked {
-  background-color: #5bcfc5;
-  border-color: #5bcfc5;
+  background-color: #005e99;
+  border-color: #005e99;
 }
 
 .form-check-input:checked[type="checkbox"] {
@@ -2791,8 +2791,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input[type="checkbox"]:indeterminate {
-  background-color: #5bcfc5;
-  border-color: #5bcfc5;
+  background-color: #005e99;
+  border-color: #005e99;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
 }
 
@@ -2881,7 +2881,7 @@ textarea.form-control-lg {
   width: 1rem;
   height: 1rem;
   margin-top: -0.25rem;
-  background-color: #5bcfc5;
+  background-color: #005e99;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2911,7 +2911,7 @@ textarea.form-control-lg {
 .form-range::-moz-range-thumb {
   width: 1rem;
   height: 1rem;
-  background-color: #5bcfc5;
+  background-color: #005e99;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3324,8 +3324,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #000;
-  background-color: #5bcfc5;
-  border-color: #5bcfc5;
+  background-color: #005e99;
+  border-color: #005e99;
 }
 
 .btn-primary:hover {
@@ -3363,8 +3363,8 @@ fieldset:disabled .btn {
 .btn-primary:disabled,
 .btn-primary.disabled {
   color: #000;
-  background-color: #5bcfc5;
-  border-color: #5bcfc5;
+  background-color: #005e99;
+  border-color: #005e99;
 }
 
 .btn-secondary {
@@ -3683,14 +3683,14 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-primary {
-  color: #5bcfc5;
-  border-color: #5bcfc5;
+  color: #005e99;
+  border-color: #005e99;
 }
 
 .btn-outline-primary:hover {
   color: #000;
-  background-color: #5bcfc5;
-  border-color: #5bcfc5;
+  background-color: #005e99;
+  border-color: #005e99;
 }
 
 .btn-check:focus+.btn-outline-primary,
@@ -3704,8 +3704,8 @@ fieldset:disabled .btn {
 .btn-outline-primary.active,
 .btn-outline-primary.dropdown-toggle.show {
   color: #000;
-  background-color: #5bcfc5;
-  border-color: #5bcfc5;
+  background-color: #005e99;
+  border-color: #005e99;
 }
 
 .btn-check:checked+.btn-outline-primary:focus,
@@ -3718,7 +3718,7 @@ fieldset:disabled .btn {
 
 .btn-outline-primary:disabled,
 .btn-outline-primary.disabled {
-  color: #5bcfc5;
+  color: #005e99;
   background-color: transparent;
 }
 
@@ -4004,7 +4004,7 @@ fieldset:disabled .btn {
 
 .btn-link {
   font-weight: 400;
-  color: #5bcfc5;
+  color: #005e99;
   text-decoration: underline;
 }
 
@@ -4402,7 +4402,7 @@ fieldset:disabled .btn {
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #5bcfc5;
+  background-color: #005e99;
 }
 
 .dropdown-item.disabled,
@@ -4450,7 +4450,7 @@ fieldset:disabled .btn {
 .dropdown-menu-dark .dropdown-item.active,
 .dropdown-menu-dark .dropdown-item:active {
   color: #fff;
-  background-color: #5bcfc5;
+  background-color: #005e99;
 }
 
 .dropdown-menu-dark .dropdown-item.disabled,
@@ -4654,7 +4654,7 @@ fieldset:disabled .btn {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
   color: #fff;
-  background-color: #5bcfc5;
+  background-color: #005e99;
 }
 
 .nav-fill>.nav-link,
@@ -5402,7 +5402,7 @@ fieldset:disabled .btn {
 .page-link {
   position: relative;
   display: block;
-  color: #5bcfc5;
+  color: #005e99;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -5437,8 +5437,8 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #5bcfc5;
-  border-color: #5bcfc5;
+  background-color: #005e99;
+  border-color: #005e99;
 }
 
 .page-item.disabled .page-link {
@@ -5645,7 +5645,7 @@ fieldset:disabled .btn {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #5bcfc5;
+  background-color: #005e99;
   transition: width 0.6s ease;
 }
 
@@ -5726,8 +5726,8 @@ fieldset:disabled .btn {
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  background-color: #5bcfc5;
-  border-color: #5bcfc5;
+  background-color: #005e99;
+  border-color: #005e99;
 }
 
 .list-group-item+.list-group-item {
@@ -7063,7 +7063,7 @@ fieldset:disabled .btn {
 }
 
 .link-primary {
-  color: #5bcfc5;
+  color: #005e99;
 }
 
 .link-primary:hover,
@@ -7489,7 +7489,7 @@ fieldset:disabled .btn {
 }
 
 .border-primary {
-  border-color: #5bcfc5 !important;
+  border-color: #005e99 !important;
 }
 
 .border-secondary {
@@ -8275,7 +8275,7 @@ fieldset:disabled .btn {
 }
 
 .text-primary {
-  color: #5bcfc5 !important;
+  color: #005e99 !important;
 }
 
 .text-secondary {
@@ -8347,7 +8347,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-  background-color: #5bcfc5 !important;
+  background-color: #005e99 !important;
 }
 
 .bg-secondary {
@@ -17067,7 +17067,7 @@ svg.pulse-svg .third-circle {
 
   [direction="rtl"] .widget-timeline-icon li {
     border-left: 0;
-    border-right: 6px solid #5bcfc5;
+    border-right: 6px solid #005e99;
   }
 
   [direction="rtl"] .widget-timeline-icon li a {
@@ -18307,7 +18307,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-sibebarbg="color_3"][data-layout="horizontal"] .dlabnav .metismenu>li.mega-menu:hover>ul::after {
-  background-color: #38bfb3;
+  background-color: #005e99d6;
 }
 
 [data-sibebarbg="color_4"][data-layout="horizontal"] .dlabnav .metismenu>li.mega-menu:hover>ul::after {
@@ -18408,11 +18408,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -18696,11 +18696,11 @@ The smaller device rules always should write below the bigger device rules
 Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Component
 */
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -19053,11 +19053,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -20659,7 +20659,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 .sidebar-right #header_color_3+label,
 .sidebar-right #sidebar_color_3+label,
 .sidebar-right #primary_color_3+label {
-  background-color: #5bcfc5;
+  background-color: #005e99;
 }
 
 .sidebar-right #nav_header_color_4+label,
@@ -21452,7 +21452,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-nav-headerbg="color_3"] {
-  --nav-headbg: #5bcfc5;
+  --nav-headbg: #005e99;
 }
 
 [data-nav-headerbg="color_4"] {
@@ -21934,8 +21934,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sibebarbg="color_3"][data-theme-version="dark"],
 [data-sibebarbg="color_3"] {
-  --sidebar-bg: #5bcfc5;
-  --nav-headbg: #5bcfc5;
+  --sidebar-bg: #005e99;
+  --nav-headbg: #005e99;
 }
 
 [data-sibebarbg="color_3"][data-theme-version="dark"] .hamburger .line,
@@ -22027,7 +22027,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .dlabnav .metismenu li>ul,
 [data-sibebarbg="color_3"][data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .dlabnav .metismenu li>ul {
-  background: #5bcfc5;
+  background: #005e99;
 }
 
 [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .dlabnav .metismenu>li.mm-active>a,
@@ -22046,7 +22046,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="mini"] .dlabnav .metismenu li>ul,
 [data-sibebarbg="color_3"][data-sidebar-style="mini"] .dlabnav .metismenu li>ul {
-  background: #5bcfc5;
+  background: #005e99;
 }
 
 [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="mini"] .dlabnav .metismenu>li.mm-active>a,
@@ -22070,7 +22070,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="compact"][data-layout="vertical"] .dlabnav .metismenu li>ul,
 [data-sibebarbg="color_3"][data-sidebar-style="compact"][data-layout="vertical"] .dlabnav .metismenu li>ul {
-  background: #5bcfc5;
+  background: #005e99;
 }
 
 [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="compact"][data-layout="vertical"] .dlabnav .metismenu li>a,
@@ -22114,7 +22114,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 [data-sibebarbg="color_3"][data-sidebar-style="modern"] .dlabnav .metismenu li>ul,
 [data-sibebarbg="color_3"][data-sidebar-style="overlay"] .dlabnav .metismenu li>ul,
 [data-sibebarbg="color_3"][data-sidebar-style="icon-hover"] .dlabnav .metismenu li>ul {
-  background: #5bcfc5;
+  background: #005e99;
 }
 
 [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="modern"] .dlabnav .metismenu>li.mm-active>a,
@@ -22204,7 +22204,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sibebarbg="color_3"][data-theme-version="dark"] .dropdown-menu .dropdown-item:hover,
 [data-sibebarbg="color_3"] .dropdown-menu .dropdown-item:hover {
-  background: #5bcfc5;
+  background: #005e99;
   color: #fff !important;
 }
 
@@ -27514,7 +27514,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-headerbg="color_3"] {
-  --headerbg: #5bcfc5;
+  --headerbg: #005e99;
 }
 
 [data-headerbg="color_4"] {
@@ -27734,11 +27734,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 [data-primary="color_3"] {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -27962,11 +27962,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -28073,7 +28073,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-theme-version="transparent"] .header-left input:focus {
   box-shadow: none;
-  border-color: #5bcfc5;
+  border-color: #005e99;
 }
 
 [data-theme-version="transparent"] .header-left input::placeholder {
@@ -28170,11 +28170,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -31040,11 +31040,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -31734,11 +31734,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -32104,11 +32104,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -32161,11 +32161,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -32234,11 +32234,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
@@ -40364,11 +40364,11 @@ table.dataTable.display tbody td {
 }
 
 .coin-card {
-  background: #5bcfc5;
-  background: -moz-linear-gradient(left, #5bcfc5 25%, #3197b7 100%);
-  background: -webkit-linear-gradient(left, #5bcfc5 25%, #3197b7 100%);
-  background: linear-gradient(to right, #5bcfc5 25%, #3197b7 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5bcfc5', endColorstr='#3197b7', GradientType=1);
+  background: #005e99;
+  background: -moz-linear-gradient(left, #005e99 25%, #3197b7 100%);
+  background: -webkit-linear-gradient(left, #005e99 25%, #3197b7 100%);
+  background: linear-gradient(to right, #005e99 25%, #3197b7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#005e99', endColorstr='#3197b7', GradientType=1);
   color: #fff;
 }
 
@@ -44484,7 +44484,7 @@ table.dataTable.display tbody td {
 
   [direction="rtl"] .widget-timeline-icon li {
     border-left: 0;
-    border-right: 6px solid #5bcfc5;
+    border-right: 6px solid #005e99;
   }
 
   [direction="rtl"] .widget-timeline-icon li a {
@@ -44749,11 +44749,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 :root {
-  --primary: #5bcfc5;
+  --primary: #005e99;
   --secondary: #709fba;
-  --primary-hover: #38bfb3;
+  --primary-hover: #005e99d6;
   --primary-dark: #217069;
-  --rgba-primary-1: rgba(91, 207, 197, 0.1);
+  --rgba-primary-1: rgba(91, 94, 153, 0.11);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
   --rgba-primary-4: rgba(91, 207, 197, 0.4);
