@@ -29,9 +29,10 @@ use App\Http\Controllers\Services\ContactController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -136,3 +137,10 @@ Route::get('/projects',[HomeController::class,'projects'])->name('projects');
 Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
 Route::get('/team',[HomeController::class,'team'])->name('team');
 Route::get('/our-expertise',[HomeController::class,'ourExpertise'])->name('ourExpertise');
+
+Route::post('/certificate/toggle',[CertificateController::class,'toggle'])->name('certificates_toggle');
+Route::post('/customer/toggle',[CustomerController::class,'toggle'])->name('customers_toggle');
+Route::post('/equipment/toggle',[EquipmentController::class,'toggle'])->name('equipments_toggle');
+Route::post('/service/toggle',[ServiceController::class,'toggle'])->name('services_toggle');
+Route::post('/team/toggle',[TeamController::class,'toggle'])->name('teams_toggle');
+Route::post('/work/toggle',[WorkController::class,'toggle'])->name('works_toggle');

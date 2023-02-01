@@ -7,6 +7,7 @@ use App\Models\WorkImage;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
 use App\Http\Controllers\Services\UploadController;
+use Illuminate\Http\Request;
 
 class WorkController extends Controller
 {
@@ -155,5 +156,17 @@ class WorkController extends Controller
         }
     
         
+    }
+
+    public function toggle(Request $request)
+    {
+        try {
+            $work = Work::find($request->id);
+            $work->is_active *= -1;
+            $work->save();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+        }
     }
 }

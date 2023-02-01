@@ -6,6 +6,7 @@ use App\Models\Equipment;
 use App\Http\Requests\StoreEquipmentRequest;
 use App\Http\Requests\UpdateEquipmentRequest;
 use App\Http\Controllers\Services\UploadController;
+use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
 {
@@ -85,7 +86,7 @@ class EquipmentController extends Controller
      */
     public function update(UpdateEquipmentRequest $request, Equipment $equipment)
     {
-    
+
         try{
         $uploadController = new UploadController();
         $updateEquipment = Equipment::find($request->id);
@@ -122,6 +123,18 @@ class EquipmentController extends Controller
             return back()->with(['success'=>'تمت حذف البيانات بنجاح']);
         } catch (\Throwable $th) {
             return back()->with(['error'=>'لم يتم حذف البيانات ']);
+        }
+    }
+
+    public function toggle(Request $request)
+    {
+        try {
+            $equipment = Equipment::find($request->id);
+            $equipment->is_active *= -1;
+            $equipment->save();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
         }
     }
 }

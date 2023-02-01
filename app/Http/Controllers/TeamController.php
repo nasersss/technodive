@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
 use App\Http\Controllers\Services\UploadController;
+use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
@@ -124,9 +125,16 @@ class TeamController extends Controller
             return back()->with(['error'=>'لم يتم حذف البيانات ']);
         }
     }
-    public function toggle($id)
+    
+    public function toggle(Request $request)
     {
-     return $id;
-     
+        try {
+            $team = Team::find($request->id);
+            $team->is_active *= -1;
+            $team->save();
+            return back()->with(['success' => 'تمت إضافة البيانات بنجاح']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'لم يتم حفظ البيانات']);
+        }
     }
 }
