@@ -104,17 +104,21 @@ Route::get('delete/image/{path}',[UploadController::class,'deleteImage'])->name(
 #equipment
 Route::get('/equipments/list',[EquipmentController::class,'index'])->name('equipment_list');
 Route::post('/equipments/store',[EquipmentController::class,'store'])->name('equipment_store');
+Route::post('/equipments/update',[EquipmentController::class,'update'])->name('equipments_update');
 
 #certificate
 Route::get('/certificates/list',[CertificateController::class,'index'])->name('certificate_list');
 Route::post('/certificates/store',[CertificateController::class,'store'])->name('certificate_store');
+Route::post('/certificates/update',[CertificateController::class,'update'])->name('certificates_update');
 
 
 #team
 Route::get('/team/list',[TeamController::class,'index'])->name('team_list');
 Route::post('/team/store',[TeamController::class,'store'])->name('team_store');
+Route::post('/team/update',[TeamController::class,'update'])->name('team_update');
 
 
 #customer
 Route::get('/customer/list',[CustomerController::class,'index'])->name('customer_list');
 Route::post('/customer/store',[CustomerController::class,'store'])->name('customer_store');
+Route::post('/customer/update',[CustomerController::class,'update'])->name('customer_update');

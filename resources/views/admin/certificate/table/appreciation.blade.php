@@ -73,8 +73,18 @@
                                         </a>
                                         <div class="dropdown-menu">
 
-                                            <button type="button" value="" data-tank="8" data-id="8"
-                                                class="edit dropdown-item" href="edit all-details.html"><i
+                                            <button type="button"
+                                            data-route="{{route("certificates_update")}}"
+                                            data-method="POST"
+                                            data-modal_title ='تحديث الشهادة '
+                                            data-id="@isset($certificate->id){{$certificate->id}}@endisset"
+                                            data-title_ar="@isset($certificate->getTranslations('title')['ar']){{ $certificate->getTranslations('title')['ar'] }} @endisset"
+                                            data-title_en="@isset($certificate->getTranslations('title')['en']){{ $certificate->getTranslations('title')['en'] }} @endisset"
+                                            data-description_ar="@isset($certificate->getTranslations('description')['ar']){{ $certificate->getTranslations('description')['ar'] }} @endisset"
+                                            data-description_en="@isset($certificate->getTranslations('description')['en']){{ $certificate->getTranslations('description')['en'] }} @endisset"
+                                             data-path="{{asset('storage/images/'.$certificate->image)}}"
+                                            class="update-item dropdown-item"
+                                               href="#"><i
                                                     class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>
 
                                             <button type="button" value="" data-id="5" data-is_active="5"

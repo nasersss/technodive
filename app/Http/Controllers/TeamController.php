@@ -84,7 +84,7 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        //
+        return $request;
     }
 
     /**

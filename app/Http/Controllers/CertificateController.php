@@ -87,7 +87,7 @@ class CertificateController extends Controller
      */
     public function update(UpdateCertificateRequest $request, Certificate $certificate)
     {
-        //
+        return $request;
     }
 
     /**
