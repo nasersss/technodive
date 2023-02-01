@@ -17,4 +17,5 @@ return [
     'setenceOne' => 'Extraction of ship remains',
     'setenceTow' => 'A specialized diving team',
     'setenceThree' => 'handling ship problems',
+    'setenceFour' => 'Highly skilled and experienced staff',
 ];

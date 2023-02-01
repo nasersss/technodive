@@ -11,19 +11,13 @@
             <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3">
                 <img class="img-fluid" src="{{asset('/assets/img/ta12.jpg')}}" alt="Image">
             </button>
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="3" aria-label="Slide 3">
+                <img class="img-fluid" src="{{asset('/assets/img/ta5.jpg')}}" alt="Image">
+            </button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="w-100" src="{{asset('/assets/img/ta11.jpg')}}" alt="Image">
-                <div class="carousel-caption">
-                    <div class="p-3" style="max-width: 900px;">
-                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">{{__('sectionslider.nameCompany')}}</h4>
-                        <h1 class="display-1 text-white mb-0 animated zoomIn">{{__('sectionslider.setenceOne')}}</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="w-100" src="{{asset('/assets/img/ta10.jpg')}}" alt="Image">
                 <div class="carousel-caption">
                     <div class="p-3" style="max-width: 900px;">
                         <h4 class="text-white text-uppercase mb-4 animated zoomIn">{{__('sectionslider.nameCompany')}}</h4>
@@ -32,11 +26,29 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="w-100" src="{{asset('/assets/img/ta12.jpg')}}" alt="Image">
+                <img class="w-100" src="{{asset('/assets/img/ta10.jpg')}}" alt="Image">
                 <div class="carousel-caption">
                     <div class="p-3" style="max-width: 900px;">
                         <h4 class="text-white text-uppercase mb-4 animated zoomIn">{{__('sectionslider.nameCompany')}}</h4>
                         <h1 class="display-1 text-white mb-0 animated zoomIn">{{__('sectionslider.setenceThree')}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="w-100" src="{{asset('/assets/img/ta12.jpg')}}" alt="Image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">{{__('sectionslider.nameCompany')}}</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">{{__('sectionslider.setenceOne')}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="w-100" src="{{asset('/assets/img/ta5.jpg')}}" alt="Image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">{{__('sectionslider.nameCompany')}}</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">{{__('sectionslider.setenceFour')}}</h1>
                     </div>
                 </div>
             </div>
