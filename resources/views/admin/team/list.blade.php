@@ -109,12 +109,13 @@
                                                         <button type="button"
                                                         data-route="{{route("team_update")}}"
                                                         data-method="POST"
+                                                        data-type="team"
                                                         data-modal_title ='تحديث عضو '
                                                         data-id="@isset($team->id){{$team->id}}@endisset"
-                                                        data-title_ar="@isset($team->getTranslations('name')['ar']){{ $team->getTranslations('name')['ar'] }} @endisset"
-                                                        data-title_en="@isset($team->getTranslations('name')['en']){{ $team->getTranslations('name')['en'] }} @endisset"
-                                                        data-description_ar="@isset($team->getTranslations('job')['ar']){{ $team->getTranslations('job')['ar'] }} @endisset"
-                                                        data-description_en="@isset($team->getTranslations('job')['en']){{ $team->getTranslations('job')['en'] }} @endisset"
+                                                        data-name_ar="@isset($team->getTranslations('name')['ar']){{ $team->getTranslations('name')['ar'] }} @endisset"
+                                                        data-name_en="@isset($team->getTranslations('name')['en']){{ $team->getTranslations('name')['en'] }} @endisset"
+                                                        data-job_ar="@isset($team->getTranslations('job')['ar']){{ $team->getTranslations('job')['ar'] }} @endisset"
+                                                        data-job_en="@isset($team->getTranslations('job')['en']){{ $team->getTranslations('job')['en'] }} @endisset"
                                                          data-path="{{asset('storage/images/'.$team->image)}}"
                                                         class="update-item dropdown-item"
                                                            href="#"><i

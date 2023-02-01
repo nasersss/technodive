@@ -37,8 +37,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6 col-sm-12 mt-2 hide team">
-                            <label class="form-label" for="nameAr">الاسم بالعربي </label>
-                            <input type="text" id="nameAr" value="{{ old('nameAr') }}"
+                            <label class="form-label" for="updateNameAr">الاسم بالعربي </label>
+                            <input type="text" id="updateNameAr" value="{{ old('nameAr') }}"
                                 name="nameAr" class="form-control" placeholder="الرجاء ادخال الاسم بالعربي ">
                             <div class="fv-plugins-message-container invalid-feedback ">
                                 الرجاء إدخال الاسم بالعربي
@@ -50,8 +50,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6 col-sm-12 mt-2 hide team">
-                            <label class="form-label" for="nameEn">الاسم بالإنجليزية </label>
-                            <input type="text" id="nameEn" value="{{ old('nameEn') }}"
+                            <label class="form-label" for="updateNameEn">الاسم بالإنجليزية </label>
+                            <input type="text" id="updateNameEn" value="{{ old('nameEn') }}"
                                 name="nameEn" class="form-control" placeholder="الرجاء ادخال الاسم بالإنجليزية ">
                             <div class="fv-plugins-message-container invalid-feedback ">
                                 الرجاء إدخال الاسم بالإنجليزية
@@ -64,11 +64,11 @@
                         </div>
 
                         <div class="col-md-6 col-sm-12 mt-2 hide team">
-                            <label class="form-label" for="jobAr">الوضيفة بالعربي </label>
-                            <input type="text" id="jobAr" value="{{ old('jobAr') }}"
-                                name="jobAr" class="form-control" placeholder="الرجاء ادخال الوضيفة بالعربي ">
+                            <label class="form-label" for="updateJobAr">الوظيفة بالعربي </label>
+                            <input type="text" id="updateJobAr" value="{{ old('jobAr') }}"
+                                name="jobAr" class="form-control" placeholder="الرجاء ادخال الوظيفة بالعربي ">
                             <div class="fv-plugins-message-container invalid-feedback ">
-                                الرجاء إدخال الوضيفة بالعربي
+                                الرجاء إدخال الوظيفة بالعربي
                             </div>
                             @error('jobAr')
                                 <div class="text-danger px-2 showModalAdd ">
@@ -77,11 +77,11 @@
                             @enderror
                         </div>
                         <div class="col-md-6 col-sm-12 mt-2 hide team">
-                            <label class="form-label" for="jobEn">الوضيفة بالإنجليزية </label>
-                            <input type="text" id="jobEn" value="{{ old('jobEn') }}"
-                                name="jobEn" class="form-control" placeholder="الرجاء ادخال الوضيفة بالإنجليزية ">
+                            <label class="form-label" for="updateJobEn">الوظيفة بالإنجليزية </label>
+                            <input type="text" id="updateJobEn" value="{{ old('jobEn') }}"
+                                name="jobEn" class="form-control" placeholder="الرجاء ادخال الوظيفة بالإنجليزية ">
                             <div class="fv-plugins-message-container invalid-feedback ">
-                                الرجاء إدخال الوضيفة بالإنجليزية
+                                الرجاء إدخال الوظيفة بالإنجليزية
                             </div>
                             @error('jobEn')
                                 <div class="text-danger px-2 showModalAdd ">

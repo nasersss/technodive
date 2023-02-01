@@ -11,10 +11,10 @@ document.querySelectorAll('.update-item').forEach(item => {
       $('.certificate-type').show();
       $('.normal').show();
     } else if (item.dataset.type == 'customer') {
-      $('#jobEn').val(item.dataset.job_en);
-      $('#jobAr').val(item.dataset.job_ar);
-      $('#nameAr').val(item.dataset.name_ar);
-      $('#nameEn').val(item.dataset.name_en);
+      $('#updateJobEn').val(item.dataset.job_en);
+      $('#updateJobAr').val(item.dataset.job_ar);
+      $('#updateNameAr').val(item.dataset.name_ar);
+      $('#updateNameEn').val(item.dataset.name_en);
       $('#updateDescriptionAr').val(item.dataset.description_ar);
       $('#updateDescriptionEn').val(item.dataset.description_en);
       $('.customer').show();
@@ -22,6 +22,10 @@ document.querySelectorAll('.update-item').forEach(item => {
       
     } else if (item.dataset.type == 'team') {
       $('.team').show();
+      $('#updateJobEn').val(item.dataset.job_en);
+      $('#updateJobAr').val(item.dataset.job_ar);
+      $('#updateNameAr').val(item.dataset.name_ar);
+      $('#updateNameEn').val(item.dataset.name_en);
     } else {
       $('.normal').show();
 
