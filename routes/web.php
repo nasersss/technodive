@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CertificateController;
-use App\Http\Controllers\CodingController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\EquipmentController;
-use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\Services\UploadController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\WorkController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CodingController;
+use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Services\UploadController;
+use App\Http\Controllers\Services\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,10 +79,7 @@ Route::get('/testimonial', function () {
 Route::get('/team', function () {
     return view('team_page');
 })->name('team');
-Route::get('/contact', function () {
-    return view('contact_page');
-})->name('contact');
-
+Route::get('/contact', [ContactController::class,'contact'])->name('contact');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/login', function () {
     return view('auth.login');
@@ -129,3 +127,5 @@ Route::get('/customer/list',[CustomerController::class,'index'])->name('customer
 Route::post('/customer/store',[CustomerController::class,'store'])->name('customer_store');
 Route::post('/customer/update',[CustomerController::class,'update'])->name('customer_update');
 Route::get('/customer/delete/{id}',[CustomerController::class,'destroy'])->name('customer_delete');
+
+Route::post('/contact/store',[ContactController::class,'store'])->name('contact_us_store');

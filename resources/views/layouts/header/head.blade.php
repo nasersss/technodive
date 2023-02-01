@@ -17,20 +17,26 @@ Techno Dive Company has been working in the field of commercial diving for more 
 
 @yield('css')
 <!-- Icon Font Stylesheet -->
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
 <link rel="stylesheet" href="{{asset('/assets/lib/animate/animate.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('/assets/lib/owlcarousel/assets/owl.carousel.min.css')}}"/>
-<link rel="stylesheet" href="{{asset('/assets/lib/lightbox/css/lightbox.min.css')}}"/>
+{{-- <link rel="stylesheet" href="{{asset('/assets/lib/lightbox/css/lightbox.min.css')}}"/> --}}
 
 <!-- Customized Bootstrap Stylesheet -->
 <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.min.css')}}"/>
 
 <!-- Template Stylesheet -->
 <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}"/>
+@if (config('locales.languages')[app()->getLocale()]['rtl_support'] == 'ltr')
 <link rel="stylesheet" href="{{asset('/assets/css/styleEnglishLanguage.css')}}"/>
+    @endif
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
+<link href="{{asset('/css/toastr/toastr.css')}}" rel="stylesheet" type="text/css">

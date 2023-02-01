@@ -6,7 +6,7 @@
                 <h5 class="modal-title second-color" id="updateModalLabel"></h5>
             </div>
             <div class="modal-body">
-                <form id="update-item-Form" action="" method=""
+                <form id="update-item-Form" class="form-disable" action="" method=""
                     class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework " novalidate>
                     @csrf
                     <div class="row" id="elementUpdateForm">
@@ -148,7 +148,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="closedUpdateModal" class="btn btn-danger" data-dismiss="modal">إلغاء</button>
-                <button type="submit" class="btn btn-primary ">إضافة</button>
+                <button type="submit" class="btn btn-primary form-btn-disable">تحديث</button>
             </div>
             </form>
             {{-- @include('admin.modals.image') --}}

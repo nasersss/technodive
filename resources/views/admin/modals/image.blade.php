@@ -9,8 +9,8 @@
           @include('admin.upload-image') 
         </div>
         <div class="modal-footer card-footer" style="display: none">
-          <a href="" id="" class="btn btn-secondary canceledUploadVideo" >إلغاء</a>
-          <button type="button" class="btn btn-primary close-modal-image" data-dismiss="modal">حفظ </button>
+          <a href="" id="" class="btn btn-primary canceledUploadVideo" >إلغاء</a>
+          <button type="button" class="btn btn-success close-modal-image" data-dismiss="modal">حفظ </button>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
     @include('layouts.header.head')
 </head>
-<body>
+<body onload="getMassage()">
   @include('layouts.navbar')
   {{-- @include('about') --}}
 

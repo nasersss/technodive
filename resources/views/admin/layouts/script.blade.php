@@ -11,6 +11,7 @@
 <script src="{{asset('/js/modal-add/add.js')}}"></script>
 <script src="{{asset('/js/modal-update/update.js')}}"></script>
 <script src="{{asset('/js/modal-delete-confirm/confirm.js')}}"></script>
+<script src="{{asset('/js/form/submit-disable.js')}}"> </script>
 
 <!-- Required vendors -->
 <script src="{{asset('/vendor/chart.js/Chart.bundle.min.js')}}"></script>

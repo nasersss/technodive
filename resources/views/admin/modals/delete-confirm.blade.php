@@ -9,11 +9,11 @@
            <p class="text-danger">
             هل أنت متأكد من عملية الحذف؟
            </p>
-          <form  id="ConfirmDeleteForm" action="" method="GET">
+          <form  id="ConfirmDeleteForm" class="form-disable" action="" method="GET">
         </div>
         <div class="modal-footer">
-          <button type="button" id="closeConfirmDelete" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
-          <button type="submit" class="btn btn-primary ">نعم</button>
+          <button type="button" id="closeConfirmDelete"  class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+          <button type="submit" class="btn btn-danger form-btn-disable ">نعم</button>
         </div>
     </form>
       </div>
