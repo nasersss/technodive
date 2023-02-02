@@ -10,10 +10,10 @@
                 <div class="testimonial-item bg-light rounded p-4 direction-rtl">
                     <div class="d-flex align-items-center mb-4">
                         @isset($customer->image)
-                            <img class="flex-shrink-0 rounded-circle border p-1"
+                            <img class="flex-shrink-0 rounded-circle border p-1" style="width: 60px;height:60px ;"
                                 src="{{ asset('storage/images/' . $customer->image) }}" alt="">
                         @endisset
-                        <div class="me-4">
+                        <div class="me-4 me-english-image">
                             @isset($customer->name)
                                 <h6>{{ $customer->name }}</h6>
                             @endisset

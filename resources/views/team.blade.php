@@ -10,7 +10,7 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item text-center p-4">
                         @isset($team->image)
-                            <img class="img-fluid border rounded-circle w-75 p-2 mb-4"
+                            <img class="img-fluid border rounded-circle  p-2 mb-4" style="width: 230px;height:30px ;"
                                 src="{{ asset('storage/images/' . $team->image) }}" alt="">
                         @endisset
                         <div class="team-text">

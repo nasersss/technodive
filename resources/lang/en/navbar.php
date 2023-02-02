@@ -17,7 +17,7 @@ return [
     'about' => 'About',
     'services' => 'Services',
     'works' => 'Works',
-    'hardware' => 'Hardware',
+    'hardware' => 'Equipment',
     'team' => 'Team',
     'certificates' => 'Certificates',
     'testimonials' => 'Testimonials',
