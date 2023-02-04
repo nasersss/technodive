@@ -11,14 +11,15 @@
                     @isset($work->workImages[0]->image)
                     <div class="position-relative mb-4">
                         <img class="img-fluid rounded" src="{{ asset('storage/images/' . $work->workImages[0]->image) }}" style="width:200px ;height:170px ;">
-                        <a href="{{ asset('storage/images/' . $work->workImages[0]->image) }}" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
+                        {{-- <a href="{{ asset('storage/images/' . $work->workImages[0]->image) }}" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a> --}}
                     </div>
                     @endisset
                     @isset($work->title)
-                        <h6>{{$work->title}}</h6>
+                       <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <h6>{{$work->title}}</h6></a>
                     @endisset
                     @isset($work->description)
-                        <span>{{$work->description}}</span>
+                        <span class="descripton-work">{{$work->description}}</span>
                     @endisset
                 </div>
 

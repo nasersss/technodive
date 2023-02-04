@@ -309,23 +309,19 @@ body
 
 /*** Project ***/
 .project-item a {
-    position: absolute;
     width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
-    background: rgba(0, 0, 0, .5);
     border-radius: 6px;
-    opacity: 0;
+}
+.project-item a h2
+{
+    color: #111;
     transition: .5s;
 }
-
-.project-item:hover a {
-    opacity: 1;
+.project-item a:hover h6 {
+    color: #005e99;
 }
 
 .project-carousel .owl-dots {
@@ -811,4 +807,11 @@ body
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     color: #005e99;
     font-weight: bold;
+}
+.descripton-work
+{
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

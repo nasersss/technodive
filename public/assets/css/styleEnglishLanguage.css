@@ -76,3 +76,9 @@ body
     display: flex;
     justify-content: flex-end;
 }
+
+.me-english-image
+{
+    margin-right: 0rem !important;
+    margin-left: 1.5rem !important;
+}

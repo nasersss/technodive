@@ -123,4 +123,16 @@ class HomeController extends Controller
             "teams" => $teams,
         ]);
     }
+
+    public function showSingleProject()
+    {
+        $equipments = Equipment::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
+        $certificates = Certificate::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
+        return view('single_project')->with([
+            'equipments' => $equipments,
+            'certificates' => $certificates,
+
+        ]);
+       
+    }
 }
