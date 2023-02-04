@@ -125,5 +125,5 @@ Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimon
 Route::get('/team',[HomeController::class,'team'])->name('team');
 Route::get('/our-expertise',[HomeController::class,'ourExpertise'])->name('ourExpertise');
 Route::get('/about',[HomeController::class,'about'])->name('about');
-Route::get('/singleProjects',[HomeController::class,'showSingleProject'])->name('singleProjects');
+Route::get('/singleProjects/{id}',[HomeController::class,'showSingleProject'])->name('singleProjects');
 

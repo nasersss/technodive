@@ -9,20 +9,22 @@
                 @foreach ($works as $work)
                 <div class="project-item border rounded h-100 p-4 direction-rtl" data-dot="01">
                     @isset($work->workImages[0]->image)
+                <a href="{{route('singleProjects',$work->id)}}">
                     <div class="position-relative mb-4">
                         <img class="img-fluid rounded" src="{{ asset('storage/images/' . $work->workImages[0]->image) }}" style="width:200px ;height:170px ;">
                         {{-- <a href="{{ asset('storage/images/' . $work->workImages[0]->image) }}" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a> --}}
                     </div>
+            </a>
+
                     @endisset
                     @isset($work->title)
-                       <a href="http://" target="_blank" rel="noopener noreferrer">
+                       <a href="{{route('singleProjects',$work->id)}}" target="_blank" rel="noopener noreferrer">
                         <h6>{{$work->title}}</h6></a>
                     @endisset
                     @isset($work->description)
                         <span class="descripton-work">{{$work->description}}</span>
                     @endisset
                 </div>
-
                 @endforeach
             </div>
         </div>

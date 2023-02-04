@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'nameCompany' => 'TECHNNO DIVE-YE FOR UNDER WATER WORKS',
+    'nameCompany' => 'TECHNO DIVE-YE FOR UNDER WATER WORKS',
     'setenceOne' => 'Extraction of ship remains',
     'setenceTow' => 'A specialized diving team',
     'setenceThree' => 'handling ship problems',

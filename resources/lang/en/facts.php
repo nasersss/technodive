@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'nameComWork_Performedpany' => 'NameComWork Performedpany',
-    'satisfied_lients' => 'Satisfied Lients',
+    'nameComWork_Performedpany' => 'Completed Works',
+    'satisfied_lients' => 'Satisfied Clients',
     'team' => 'Work team members',
     'yearsExperience' => 'Years Of Experience',
 ];

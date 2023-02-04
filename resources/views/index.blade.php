@@ -1,5 +1,7 @@
 @extends('master')
-
+@section('title')
+{{__('about.title')}}
+@endsection
 @section('content')
 
 @include('carousel')

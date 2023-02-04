@@ -16,7 +16,7 @@ return [
     'name' => 'Your name',
     'email' => 'Your email',
     'subject' => 'subject',
-    'massege' => 'massege',
+    'massege' => 'message',
     'button' => 'Send the message',
     'thankMessuage'=>'Thank you for contacting us, we will reply to you as soon as possible.',
     'errorMessuage'=>'Oops some thing error pleat try agin,'

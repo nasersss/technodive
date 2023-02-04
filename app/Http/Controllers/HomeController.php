@@ -30,9 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $services = Service::where('is_active', 1)->orderBy('id', 'DESC')->paginate(3);
+        $services = Service::where('is_active', 1)->orderBy('id', 'DESC')->get();
         $works = Work::with('workImages')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(4);
-        $teams = Team::where('is_active', 1)->orderBy('id', 'DESC')->paginate(4);
+        $teams = Team::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
         $certificates = Certificate::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
         $equipments = Equipment::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
         $customers = Customer::where('is_active', 1)->orderBy('id', 'DESC')->paginate(4);
@@ -124,13 +124,16 @@ class HomeController extends Controller
         ]);
     }
 
-    public function showSingleProject()
+    public function showSingleProject($id)
     {
+        
+         $work = Work::with('workImages')->find($id);
         $equipments = Equipment::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
         $certificates = Certificate::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
         return view('single_project')->with([
             'equipments' => $equipments,
             'certificates' => $certificates,
+            'work'=>$work
 
         ]);
        
