@@ -10,7 +10,7 @@
 
 
 	<!-- PAGE TITLE HERE -->
-	<title></title>
+	<title> تكنو دايف</title>
 
 	<!-- FAVICONS ICON -->
 	{{-- <link rel="shortcut icon" type="image/png" href="images/favicon.png" /> --}}
