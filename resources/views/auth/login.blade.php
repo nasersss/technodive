@@ -10,7 +10,7 @@
 
 
 	<!-- PAGE TITLE HERE -->
-	<title>محطة حُنيش |تسجيل</title>
+	<title></title>
 
 	<!-- FAVICONS ICON -->
 	{{-- <link rel="shortcut icon" type="image/png" href="images/favicon.png" /> --}}

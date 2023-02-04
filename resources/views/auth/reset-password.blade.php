@@ -9,7 +9,7 @@
 
 
 	<!-- PAGE TITLE HERE -->
-	<title>محطة حُنيش |اعادة تعيين كلمة المرور</title>
+	<title>تكنو دايف  |اعادة تعيين كلمة المرور</title>
 
 	<!-- FAVICONS ICON -->
 	{{-- <link rel="shortcut icon" type="image/png" href="images/favicon.png" /> --}}
