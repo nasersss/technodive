@@ -19,7 +19,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="fact-item bg-light rounded text-center h-100 p-5">
                     <i class="fa fa-users fa-4x text-primary mb-4"></i>
-                    <h5 class="mb-3">{{__('facts.<i class="bi bi-eye-fill ms-3 text-success"></i>تفعيل')}}</h5>
+                    <h5 class="mb-3">{{__('facts.satisfied_lients')}}</h5>
                     <h1 class="display-5 mb-0" data-toggle="counter-up">50</h1>
                 </div>
             </div>

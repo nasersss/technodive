@@ -21,9 +21,8 @@
                                 Error Message
                               </video> --}}
                               <video width="320" height="240" controls>
-                                <source src="{{asset('/assets/img/v1.mp4')}}" type="video/mp4">
-                                <source src="{{asset('/assets/img/v1.mp4')}}" type="video/webm">
-                              Your browser does not support the video tag.
+                                <source src="{{asset('/videos/teach.mp4')}}" type="video/mp4">
+                                <source src="{{asset('/videos/teach.mp4')}}" type="video/mp4">
                               </video>
                         </div>
                     </div>
