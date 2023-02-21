@@ -28,19 +28,22 @@
         </p>
         </div>
             <div class="container-fluid p-0 wow fadeIn col-sm-12 col-lg-8 " data-wow-delay="0.1s">
-                <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner col-12" > 
-                        
-                        @foreach ($work->workImages as $image)
-                       
-                        <div class="carousel-item  @if($loop->iteration ==1) active @endif ">
-                            <img class="img-fluid" src="{{asset('storage/images/'.$image->image)}}" alt="Image">
-                        </div>
-                        
-                        @endforeach
 
+
+                <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner col-12" >
+                        @foreach ($work->workImages as $image)
+                        <div class="carousel-item  @if($loop->iteration ==1) active @endif ">
+                             {{-- if images  --}}
+                            <img class="img-fluid" src="{{asset('storage/images/'.$image->image)}}" alt="Image">
+                             {{-- if video  --}}
+                            <video class="img-fluid"  width="100%" height="120%" controls>
+                                <source src="{{asset('/videos/teach.mp4')}}" type="video/mp4">
+                            </video>
+                        </div>
+                        @endforeach
                     </div>
-                    <button class="carousel-control-prev bg-dark " type="button" data-bs-target="#header-carousel"
+                    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon text-primary" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -51,9 +54,12 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
+
+
+
             </div>
         <!-- Carousel End -->
-        
+
     </div>
     @endisset
 </div>

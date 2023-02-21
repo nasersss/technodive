@@ -15,13 +15,7 @@
                     <div class="modal-body">
                         <!-- 16:9 aspect ratio -->
                         <div class="ratio ratio-16x9">
-                            {{-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DWRcNpR6Kdc" id="video" allowfullscreen="" allowscriptaccess="always" allow="autoplay"></iframe> --}}
-                            {{-- <video width="320" height="240" controls>
-                                <source src="{{asset('/assets/img/video.mpg')}}" type="video/mpg">
-                                Error Message
-                              </video> --}}
                               <video width="320" height="240" controls>
-                                <source src="{{asset('/videos/teach.mp4')}}" type="video/mp4">
                                 <source src="{{asset('/videos/teach.mp4')}}" type="video/mp4">
                               </video>
                         </div>

@@ -815,3 +815,59 @@ body
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.works-btn-play
+{
+    position: relative;
+    padding:  0;
+    background: transparent;
+}
+.works-btn-play .btn-play {
+    position: absolute;
+    box-sizing: content-box;
+    display: block;
+    width: 15px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    padding: 0px 17px 0px 19px;
+    margin-bottom: 0rem;
+}
+.works-btn-play .btn-play:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    transition: all 200ms;
+}
+.works-btn-play .btn-play:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-55%) translateY(-50%);
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    animation: pulse-border 1500ms ease-out infinite;
+}
+.works-btn-play .btn-play span {
+    display: block;
+    position: relative;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    border-left: 16px solid var(--primary);
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
