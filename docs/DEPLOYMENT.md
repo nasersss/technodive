@@ -1,18 +1,11 @@
-# النشر التلقائي (CI/CD)
+# النشر التلقائي للبرودكشن (CI/CD)
 
-ملف واحد `.github/workflows/deploy.yml` يخدم البيئتين:
-
-| الفرع | البيئة في GitHub | الموقع |
-|---|---|---|
-| `develop` | `staging` | `technodive.goupdev.net` |
-| `main` | `production` | `technodive-ye.com` |
-
-كل push أو merge على أحد الفرعين يشغّل:
+كل push أو merge إلى `main` يشغّل `.github/workflows/deploy.yml`:
 
 1. **Checks:** تثبيت الحزم، فحص صياغة PHP، وتجميع views و routes و config للتأكد إن التطبيق يقلع.
 2. **Deploy:** يدخل السيرفر عبر SSH ويشغّل `scripts/deploy.sh`، وهذا يسوي التالي:
    وضع الصيانة ← `git reset` على `origin/main` ← `composer install --no-dev` ← `migrate --force` ← تحديث الكاش ← إلغاء وضع الصيانة.
-3. **Smoke test:** يتأكد إن الصفحة الرئيسية ترجع 200، أو 401 لو الموقع محمي بكلمة مرور (لو تم ضبط `SITE_URL`).
+3. **Smoke test:** يتأكد إن الصفحة الرئيسية ترجع 200 (لو تم ضبط `SITE_URL`).
 
 تقدر تشغّله يدوياً من تبويب **Actions ← Deploy production ← Run workflow**.
 
@@ -57,9 +50,9 @@ cd public_html && DEPLOY_PATH=$PWD bash scripts/deploy.sh
 
 ### 3. Secrets و Variables في GitHub
 
-أنشئ من **Settings ← Environments** بيئتين: `staging` و `production`. كل وحدة لها نفس أسماء الـ secrets بقيم سيرفرها. وتقدر تضيف **Required reviewers** لو تبغى موافقة يدوية قبل كل نشر.
+أنشئ من **Settings ← Environments** بيئة باسم `production`، وفعّل فيها **Required reviewers** عشان كل نشر ينتظر موافقتك. وتقدر تضيف **Required reviewers** لو تبغى موافقة يدوية قبل كل نشر.
 
-**Secrets** (في كل environment):
+**Secrets** (داخل environment `production`):
 
 | الاسم | القيمة |
 |---|---|
@@ -67,7 +60,7 @@ cd public_html && DEPLOY_PATH=$PWD bash scripts/deploy.sh
 | `SSH_PORT` | `65002` |
 | `SSH_USER` | `u123456789` |
 | `SSH_PRIVATE_KEY` | محتوى الملف `technodive_deploy` (المفتاح الخاص كامل) |
-| `DEPLOY_PATH` | staging: `/home/u123456789/domains/technodive.goupdev.net/app` · production: `/home/u123456789/domains/technodive-ye.com/public_html` |
+| `DEPLOY_PATH` | `/home/u123456789/domains/technodive-ye.com/public_html` |
 | `SSH_KNOWN_HOSTS` | ناتج `ssh-keyscan` (اختياري لكنه مستحسن) |
 
 **Variables** (اختيارية):
@@ -87,33 +80,3 @@ cd public_html && DEPLOY_PATH=$PWD bash scripts/deploy.sh
 - لو فشلت خطوة، الموقع يرجع من وضع الصيانة والـ job يظهر أحمر في GitHub.
 - الرجوع لنسخة سابقة: اعمل `git revert` للـ commit واعمل merge إلى `main`.
 
----
-
-## نسخ قاعدة بيانات البرودكشن إلى staging
-
-لما يكون الموقعان على نفس حساب Hostinger، شغّل هذا الأمر على السيرفر عبر SSH:
-
-```bash
-bash ~/domains/technodive.goupdev.net/app/scripts/copy-production-db.sh \
-     ~/domains/technodive-ye.com/public_html \
-     ~/domains/technodive.goupdev.net/app \
-     'Staging@2026'
-```
-
-السكربت يقرأ بيانات الاتصال من ملف `.env` حق كل موقع، وما يغيّر شي في البرودكشن. خطواته:
-1. نسخة احتياطية من قاعدة staging الحالية في `~/db-backups`.
-2. `mysqldump` لقاعدة البرودكشن.
-3. يفرّغ قاعدة staging ويستورد النسخة فيها.
-4. ينسخ الصور المرفوعة.
-5. يشغّل `migrate`، ثم **يغيّر كلمات مرور كل المستخدمين** عبر `php artisan staging:reset-passwords`.
-
-يرفض يكمل لو القاعدتين نفس الاسم، أو لو `.env` حق staging فيه `APP_ENV=production`.
-
-## تغيير كلمات مرور كل المستخدمين
-
-```bash
-php artisan staging:reset-passwords --password='Staging@2026'   # نفس كلمة المرور للكل
-php artisan staging:reset-passwords                               # كلمة عشوائية لكل مستخدم تُطبع مرة واحدة
-```
-
-الأمر **يرفض يشتغل** لو `APP_ENV=production`، ويلغي جلسات "تذكرني" لكل المستخدمين.

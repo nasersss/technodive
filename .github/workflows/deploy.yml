@@ -1,18 +1,17 @@
-name: Deploy
+name: Deploy production
 
-# develop -> staging   (e.g. technodive.goupdev.net)
-# main    -> production
-# Each GitHub environment ("staging" / "production") holds its own secrets with the
-# same names, so one workflow serves both. Can also be started by hand from the
-# Actions tab ("Run workflow") on either branch.
+# Every push / merge into main deploys to production (Hostinger).
+# Secrets live in the GitHub environment "production"; add "Required reviewers"
+# there to make each deployment wait for your approval.
+# Can also be started by hand from the Actions tab ("Run workflow").
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
   workflow_dispatch:
 
-# Never run two deployments of the same branch at once; a newer one waits.
+# Never run two deployments at once; a newer one waits for the current one.
 concurrency:
-  group: deploy-${{ github.ref_name }}
+  group: deploy-production
   cancel-in-progress: false
 
 permissions:
@@ -49,12 +48,12 @@ jobs:
           php artisan config:cache
 
   deploy:
-    name: Deploy ${{ github.ref_name }} to ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+    name: Deploy to production
     needs: checks
-    if: github.ref_name == 'main' || github.ref_name == 'develop'
+    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+      name: production
       url: ${{ vars.SITE_URL }}
     env:
       SSH_HOST: ${{ secrets.SSH_HOST }}
@@ -94,7 +93,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o BatchMode=yes -o ConnectTimeout=20 \
             "$SSH_USER@$SSH_HOST" \
-            "DEPLOY_PATH='$DEPLOY_PATH' DEPLOY_BRANCH='${{ github.ref_name }}' DEPLOY_SHA='${{ github.sha }}' PHP_BIN='${{ vars.PHP_BIN || 'php' }}' COMPOSER_BIN='${{ vars.COMPOSER_BIN || 'composer' }}' bash -s" \
+            "DEPLOY_PATH='$DEPLOY_PATH' DEPLOY_BRANCH='main' DEPLOY_SHA='${{ github.sha }}' PHP_BIN='${{ vars.PHP_BIN || 'php' }}' COMPOSER_BIN='${{ vars.COMPOSER_BIN || 'composer' }}' bash -s" \
             < scripts/deploy.sh
 
       - name: Smoke test
@@ -102,8 +101,7 @@ jobs:
         run: |
           code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 -L "${{ vars.SITE_URL }}")
           echo "Home page returned HTTP $code"
-          # 401 = site is up behind password protection (typical for staging)
-          [ "$code" = "200" ] || [ "$code" = "401" ]
+          [ "$code" = "200" ]
 
       - name: Clean up key
         if: always()
