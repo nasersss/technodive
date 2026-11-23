@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Production deploy for Techno Dive (Hostinger shared hosting).
+# Deploy script for Techno Dive (Hostinger shared hosting): staging (develop) and production (main).
 # Runs ON THE SERVER. The GitHub Actions workflow pipes it over SSH:
 #   ssh user@host "DEPLOY_PATH=... bash -s" < scripts/deploy.sh
 # It can also be run by hand from the project folder:
