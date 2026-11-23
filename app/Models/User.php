@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
     ];
 
@@ -41,4 +41,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    ### Relations
+    public function notificationFrom()
+    {
+        return $this->hasMany(   Notification::class, 'from_user_id');
+    }
+
+    public function notificationTo()
+    {
+        return $this->hasMany(Notification::class, 'to_user_id');
+    }
+
+    // public function ScopeCountNotIsSeen($query)
+    // {
+    //     // return $query->get();
+    //     $query->whereHas('notificationTo',function ($query)
+    //     {
+    //         return $query->where('is_seen',-1)->get();
+    //     });
+    // }
 }
+
