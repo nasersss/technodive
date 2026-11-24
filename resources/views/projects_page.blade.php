@@ -12,12 +12,15 @@
 
     <section class="td-section td-works-page">
         <div class="td-container">
-            <div class="td-tabs" role="tablist" aria-label="{{ __('landing.works_filter') }}" data-reveal>
-                <button type="button" role="tab" class="td-tab is-active" aria-selected="true" data-work-filter="all">{{ __('landing.filter_all') }}</button>
-                @foreach ($categories as $category)
-                    <button type="button" role="tab" class="td-tab" aria-selected="false" data-work-filter="{{ $category->id }}">{{ $category->name }}</button>
-                @endforeach
-            </div>
+            {{-- No filters until at least one work has a visible category --}}
+            @if ($categories->isNotEmpty())
+                <div class="td-tabs" role="tablist" aria-label="{{ __('landing.works_filter') }}" data-reveal>
+                    <button type="button" role="tab" class="td-tab is-active" aria-selected="true" data-work-filter="all">{{ __('landing.filter_all') }}</button>
+                    @foreach ($categories as $category)
+                        <button type="button" role="tab" class="td-tab" aria-selected="false" data-work-filter="{{ $category->id }}">{{ $category->name }}</button>
+                    @endforeach
+                </div>
+            @endif
 
             @if ($works->isNotEmpty())
                 @include('landing.partials.work-card', ['work' => $works->first(), 'wide' => true])

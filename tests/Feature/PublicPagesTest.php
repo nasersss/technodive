@@ -156,6 +156,29 @@ class PublicPagesTest extends TestCase
             ->assertSee('جزيرة سقطرى');
     }
 
+    public function test_works_page_has_no_filter_bar_while_no_work_has_a_category()
+    {
+        // Existing works on production have no category until an admin picks one
+        Work::query()->update(['category_id' => null]);
+
+        $this->get(route('projects'))
+            ->assertOk()
+            ->assertDontSee('data-work-filter="all"', false)
+            ->assertSee('إخراج السفينة الجانحة «قلف دوف»');
+    }
+
+    public function test_english_visitors_see_the_arabic_text_when_there_is_no_english()
+    {
+        $work = $this->makeWork('عمل بالعربي فقط', null);
+        $work->forgetTranslation('title', 'en');
+        $work->save();
+        $this->assertSame(['ar' => 'عمل بالعربي فقط'], $work->fresh()->getTranslations('title'));
+
+        $this->withHeader('Accept-Language', 'en')
+            ->get(route('projects'))
+            ->assertSee('<a href="' . route('singleProjects', $work->id) . '">عمل بالعربي فقط</a>', false);
+    }
+
     public function test_a_suspended_category_is_hidden_from_visitors()
     {
         $this->survey->is_active = -1;
