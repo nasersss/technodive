@@ -6,6 +6,7 @@ use App\Models\Certificate;
 use App\Models\Service;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Translatable\Facades\Translatable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Content entered in Arabic only still shows to English visitors (and vice versa)
+        // instead of an empty title. The dashboard reads each language explicitly, so it is unaffected.
+        Translatable::fallback(fallbackLocale: 'ar', fallbackAny: true);
+
         // The public footer lists services and certificate thumbnails on every page
         View::composer('landing.partials.footer', function ($view) {
             $view->with([
