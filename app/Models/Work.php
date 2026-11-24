@@ -10,9 +10,6 @@ class Work extends Model
 {
     use HasFactory,HasTranslations;
 
-    /** The kinds of work, used to filter the works page and shown as the project's service type. */
-    public const CATEGORIES = ['salvage', 'welding', 'survey'];
-
     protected $fillable = [
         'title',
         'description',
@@ -25,9 +22,14 @@ class Work extends Model
         return $this->hasMany(WorkImage::class, 'work_id');
     }
 
-    /** The category in the current language, e.g. «إنقاذ سفن», or null when the work has none. */
-    public function categoryLabel(): ?string
+    public function category()
     {
-        return in_array($this->category, self::CATEGORIES, true) ? __('landing.category_' . $this->category) : null;
+        return $this->belongsTo(WorkCategory::class, 'category_id');
+    }
+
+    /** The category visitors may see: null when the work has none or it is suspended. */
+    public function visibleCategory(): ?WorkCategory
+    {
+        return $this->category && (int) $this->category->is_active === 1 ? $this->category : null;
     }
 }

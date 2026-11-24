@@ -6,11 +6,12 @@
     $photos = $work->workImages;
     $cover = $photos->isNotEmpty() ? asset('storage/images/' . $photos->first()->image) : asset('/assets/img/wo1.jpg');
     $paragraphs = array_filter(preg_split('/\R+/u', trim((string) $work->description)), 'filled');
+    $category = $work->visibleCategory()?->name;
     $facts = array_filter([
         __('landing.fact_client') => $work->client,
         __('landing.fact_location') => $work->location,
-        __('landing.fact_service') => $work->categoryLabel(),
-        __($work->category === 'salvage' ? 'landing.fact_duration_salvage' : 'landing.fact_duration') => $work->duration,
+        __('landing.fact_service') => $category,
+        __('landing.fact_duration') => $work->duration,
     ], 'filled');
 @endphp
 
@@ -55,7 +56,7 @@
                         @endforeach
                     </dl>
                 @endif
-                <a href="{{ route('contact', ['subject' => $work->categoryLabel() ?? $work->title]) }}#contact" class="td-btn td-btn--amber td-btn--block">{{ __('landing.request_similar') }}</a>
+                <a href="{{ route('contact', ['subject' => $category ?? $work->title]) }}#contact" class="td-btn td-btn--amber td-btn--block">{{ __('landing.request_similar') }}</a>
             </aside>
         </div>
     </section>

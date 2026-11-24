@@ -2,9 +2,9 @@
      $work · optional $wide (featured, image beside the text on desktop) · optional $showText (default true) --}}
 @php
     $url = route('singleProjects', $work->id);
-    $category = $work->categoryLabel();
+    $category = $work->visibleCategory();
 @endphp
-<article @class(['td-work', 'td-work--card', 'td-work--wide' => $wide ?? false]) data-work-category="{{ $work->category ?: 'other' }}" data-reveal>
+<article @class(['td-work', 'td-work--card', 'td-work--wide' => $wide ?? false]) data-work-category="{{ $category?->id ?? 'none' }}" data-reveal>
     <div class="td-work__media">
         <a href="{{ $url }}" class="td-work__media-link" tabindex="-1" aria-hidden="true">
             @isset($work->workImages[0])
@@ -12,7 +12,7 @@
             @endisset
         </a>
         @if ($category)
-            <span class="td-work__badge">{{ $category }}</span>
+            <span class="td-work__badge">{{ $category->name }}</span>
         @endif
     </div>
     <div class="td-work__body">

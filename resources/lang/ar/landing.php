@@ -86,9 +86,9 @@ return [
 
     // Contact
     'contact_eyebrow' => 'اتصل بنا',
-    'contact_title_1' => 'تحدّث مع فريقنا',
-    'contact_title_2' => 'عن مشروعك القادم',
-    'contact_text' => 'تواصل معنا لمعاينة الموقع وتقديم عرض فني ومالي يناسب مشروعك.',
+    'contact_title_1' => 'نصل إلى حيث',
+    'contact_title_2' => 'لا يصل الآخرون',
+    'contact_text' => 'تواصل معنا لمعاينة الموقع وتقديم عرض فني ومالي يناسب احتياجك.',
     'address_label' => 'العنوان',
     'address' => 'اليمن · حضرموت · المكلا',
     'phone_label' => 'الهاتف',
@@ -114,15 +114,12 @@ return [
     'page_contact_text' => 'نسعد بتواصلك، وفريقنا جاهز للمعاينة وتقديم العروض.',
 
     // Call to action band
-    'cta_title' => 'عندك مشروع تحت الماء؟',
+    'cta_title' => 'هل تحتاج إلى فريق غوص محترف؟',
     'cta_text' => 'فريقنا جاهز للمعاينة وتقديم عرض فني ومالي.',
     'whatsapp' => 'واتساب',
 
     // Works page and project details
     'works_filter' => 'تصفية الأعمال حسب التصنيف',
-    'category_salvage' => 'إنقاذ سفن',
-    'category_welding' => 'لحام وقص',
-    'category_survey' => 'مسوحات',
     'no_works' => 'لا توجد أعمال في هذا التصنيف حالياً.',
     'project_story' => 'قصة المشروع',
     'project_photo' => 'صورة :number من المشروع',
@@ -130,7 +127,6 @@ return [
     'fact_location' => 'الموقع',
     'fact_service' => 'نوع الخدمة',
     'fact_duration' => 'مدة العمل',
-    'fact_duration_salvage' => 'مدة الجنوح',
     'request_similar' => 'اطلب خدمة مشابهة',
     'other_projects' => 'مشاريع أخرى',
 

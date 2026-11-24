@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\WorkCategoryController;
 use App\Http\Controllers\CodingController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\ServiceController;
@@ -63,6 +64,12 @@ Route::post('/works/update',[WorkController::class,'update'])->name('work_update
 Route::get('/works/show/{workId}',[WorkController::class,'showImages'])->name('work_show_images');
 Route::get('/works/image/delete/{imageId}',[WorkController::class,'deleteImage'])->name('work_image_delete');
 Route::get('/works/delete/{id}',[WorkController::class,'destroy'])->name('work_delete');
+#work categories
+Route::get('/work-categories/list',[WorkCategoryController::class,'index'])->name('work_category_list');
+Route::post('/work-categories/store',[WorkCategoryController::class,'store'])->name('work_category_store');
+Route::post('/work-categories/update',[WorkCategoryController::class,'update'])->name('work_category_update');
+Route::get('/work-categories/delete/{id}',[WorkCategoryController::class,'destroy'])->name('work_category_delete');
+Route::post('/work-categories/toggle',[WorkCategoryController::class,'toggle'])->name('work_categories_toggle');
 
 #upload image
 

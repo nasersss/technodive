@@ -8,6 +8,7 @@ use App\Models\Equipment;
 use App\Models\Service;
 use App\Models\Team;
 use App\Models\Work;
+use App\Models\WorkCategory;
 
 class HomeController extends Controller
 {
@@ -57,7 +58,8 @@ class HomeController extends Controller
     public function projects()
     {
         return view('projects_page')->with([
-            'works' => Work::with('workImages')->where('is_active', 1)->orderBy('id', 'DESC')->get(),
+            'works' => Work::with(['workImages', 'category'])->where('is_active', 1)->orderBy('id', 'DESC')->get(),
+            'categories' => WorkCategory::shownOnWorksPage()->get(),
         ]);
     }
 
@@ -97,8 +99,8 @@ class HomeController extends Controller
 
     public function showSingleProject($id)
     {
-        $work = Work::with('workImages')->where('is_active', 1)->findOrFail($id);
-        $others = Work::with('workImages')->where('is_active', 1)->whereKeyNot($work->id)
+        $work = Work::with(['workImages', 'category'])->where('is_active', 1)->findOrFail($id);
+        $others = Work::with(['workImages', 'category'])->where('is_active', 1)->whereKeyNot($work->id)
             ->orderBy('id', 'DESC')->take(3)->get();
 
         return view('single_project')->with([

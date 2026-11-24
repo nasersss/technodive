@@ -14,8 +14,8 @@
         <div class="td-container">
             <div class="td-tabs" role="tablist" aria-label="{{ __('landing.works_filter') }}" data-reveal>
                 <button type="button" role="tab" class="td-tab is-active" aria-selected="true" data-work-filter="all">{{ __('landing.filter_all') }}</button>
-                @foreach (\App\Models\Work::CATEGORIES as $category)
-                    <button type="button" role="tab" class="td-tab" aria-selected="false" data-work-filter="{{ $category }}">{{ __('landing.category_' . $category) }}</button>
+                @foreach ($categories as $category)
+                    <button type="button" role="tab" class="td-tab" aria-selected="false" data-work-filter="{{ $category->id }}">{{ $category->name }}</button>
                 @endforeach
             </div>
 

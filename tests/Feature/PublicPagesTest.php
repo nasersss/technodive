@@ -8,6 +8,7 @@ use App\Models\Equipment;
 use App\Models\Service;
 use App\Models\Team;
 use App\Models\Work;
+use App\Models\WorkCategory;
 use App\Models\WorkImage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -17,6 +18,9 @@ class PublicPagesTest extends TestCase
     use RefreshDatabase;
 
     private Work $work;
+    private WorkCategory $salvage;
+    private WorkCategory $survey;
+    private WorkCategory $empty;
 
     protected function setUp(): void
     {
@@ -30,8 +34,12 @@ class PublicPagesTest extends TestCase
         $service->image = 'se1.jpg';
         $service->save();
 
-        $this->work = $this->makeWork('إخراج السفينة الجانحة «قلف دوف»', 'salvage');
-        $this->makeWork('مسوحات بحرية لصالح أدمير إنرجي', 'survey');
+        $this->salvage = $this->makeCategory('انتشال وإنقاذ', 'Salvage');
+        $this->survey = $this->makeCategory('مسح بحري', 'Marine survey');
+        $this->empty = $this->makeCategory('قسم بلا أعمال', 'Empty');
+
+        $this->work = $this->makeWork('إخراج السفينة الجانحة «قلف دوف»', $this->salvage);
+        $this->makeWork('مسوحات بحرية لصالح أدمير إنرجي', $this->survey);
 
         $equipment = new Equipment();
         $equipment->setTranslations('title', ['ar' => 'معدات الهيدروليك', 'en' => 'Hydraulic equipment']);
@@ -55,12 +63,21 @@ class PublicPagesTest extends TestCase
         $certificate->save();
     }
 
-    private function makeWork(string $title, ?string $category): Work
+    private function makeCategory(string $ar, string $en): WorkCategory
+    {
+        $category = new WorkCategory();
+        $category->setTranslations('name', ['ar' => $ar, 'en' => $en]);
+        $category->save();
+
+        return $category;
+    }
+
+    private function makeWork(string $title, ?WorkCategory $category): Work
     {
         $work = new Work();
         $work->setTranslations('title', ['ar' => $title, 'en' => $title]);
         $work->setTranslations('description', ['ar' => 'وصف المشروع', 'en' => 'Project description']);
-        $work->category = $category;
+        $work->category_id = $category?->id;
         $work->setTranslations('client', ['ar' => 'شركة العيسي', 'en' => 'Al-Essi Company']);
         $work->setTranslations('location', ['ar' => 'جزيرة سقطرى', 'en' => 'Socotra Island']);
         $work->setTranslations('duration', ['ar' => 'قرابة 6 أشهر', 'en' => 'About 6 months']);
@@ -106,7 +123,7 @@ class PublicPagesTest extends TestCase
     public function test_project_page_shows_client_location_service_type_and_duration()
     {
         $this->get(route('singleProjects', $this->work->id))
-            ->assertSeeInOrder(['شركة العيسي', 'جزيرة سقطرى', 'إنقاذ سفن', 'قرابة 6 أشهر']);
+            ->assertSeeInOrder(['العميل', 'شركة العيسي', 'الموقع', 'جزيرة سقطرى', 'نوع الخدمة', 'انتشال وإنقاذ', 'مدة العمل', 'قرابة 6 أشهر']);
     }
 
     public function test_project_page_lists_other_projects_but_not_itself()
@@ -128,15 +145,34 @@ class PublicPagesTest extends TestCase
         $this->get(route('singleProjects', $this->work->id))->assertNotFound();
     }
 
-    public function test_works_page_offers_category_filters_and_tags_each_card()
+    public function test_works_page_offers_a_filter_for_each_category_that_has_works()
     {
         $this->get(route('projects'))
-            ->assertSee('data-work-filter="salvage"', false)
-            ->assertSee('data-work-filter="welding"', false)
-            ->assertSee('data-work-filter="survey"', false)
-            ->assertSee('data-work-category="salvage"', false)
-            ->assertSee('data-work-category="survey"', false)
+            ->assertSee('data-work-filter="' . $this->salvage->id . '">انتشال وإنقاذ</button>', false)
+            ->assertSee('data-work-filter="' . $this->survey->id . '">مسح بحري</button>', false)
+            ->assertDontSee('قسم بلا أعمال')
+            ->assertSee('data-work-category="' . $this->salvage->id . '"', false)
+            ->assertSee('data-work-category="' . $this->survey->id . '"', false)
             ->assertSee('جزيرة سقطرى');
+    }
+
+    public function test_a_suspended_category_is_hidden_from_visitors()
+    {
+        $this->survey->is_active = -1;
+        $this->survey->save();
+
+        $this->get(route('projects'))
+            ->assertDontSee('مسح بحري')
+            ->assertSee('مسوحات بحرية لصالح أدمير إنرجي')
+            ->assertSee('data-work-category="none"', false);
+    }
+
+    public function test_categories_are_shown_in_the_visitor_language()
+    {
+        $this->withHeader('Accept-Language', 'en')
+            ->get(route('projects'))
+            ->assertSee('>Salvage</button>', false)
+            ->assertSee('>Marine survey</button>', false);
     }
 
     public function test_team_and_testimonial_pages_redirect_to_the_about_page()
@@ -153,8 +189,15 @@ class PublicPagesTest extends TestCase
     public function test_contact_heading_uses_the_new_wording()
     {
         $this->get(route('contact'))
-            ->assertSee('تحدّث مع فريقنا')
+            ->assertSee('نصل إلى حيث')
+            ->assertSee('لا يصل الآخرون')
+            ->assertSee('عرض فني ومالي يناسب احتياجك')
             ->assertDontSee('يبدأ تحت السطح');
+    }
+
+    public function test_inner_pages_close_with_the_professional_team_band()
+    {
+        $this->get(route('about'))->assertSee('هل تحتاج إلى فريق غوص محترف؟');
     }
 
     public function test_the_mobile_menu_is_rendered_outside_the_sticky_header()

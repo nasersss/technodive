@@ -1,4 +1,5 @@
 {{-- Project facts for works (shown only when the modal is opened from the works page: class "work").
+     $workCategories: every category, passed by WorkController@index.
      $prefix: '' for the add modal, 'update' for the edit modal, so the ids stay unique. --}}
 @php
     $fieldId = fn (string $name) => $prefix ? $prefix . ucfirst($name) : $name;
@@ -12,14 +13,14 @@
     ];
 @endphp
 <div class="col-12 mt-2 hide work">
-    <label class="form-label" for="{{ $fieldId('category') }}">تصنيف العمل (يظهر كنوع الخدمة)</label>
-    <select name="category" id="{{ $fieldId('category') }}" class="form-control">
-        <option value="">بدون تصنيف</option>
-        @foreach (\App\Models\Work::CATEGORIES as $category)
-            <option value="{{ $category }}">{{ __('landing.category_' . $category, [], 'ar') }} - {{ __('landing.category_' . $category, [], 'en') }}</option>
+    <label class="form-label" for="{{ $fieldId('category') }}">قسم العمل (يظهر كنوع الخدمة) · <a href="{{ route('work_category_list') }}">إدارة الأقسام</a></label>
+    <select name="category_id" id="{{ $fieldId('category') }}" class="form-control">
+        <option value="">بدون قسم</option>
+        @foreach ($workCategories ?? [] as $category)
+            <option value="{{ $category->id }}">{{ $category->getTranslation('name', 'ar', false) }} - {{ $category->getTranslation('name', 'en', false) }}@if ($category->is_active != 1) (معلّق)@endif</option>
         @endforeach
     </select>
-    @error('category')
+    @error('category_id')
         <div class="text-danger px-2">{{ $message }}</div>
     @enderror
 </div>

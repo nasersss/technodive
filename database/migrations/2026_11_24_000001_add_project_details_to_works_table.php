@@ -8,14 +8,15 @@ return new class extends Migration
 {
     /**
      * Project facts shown on the works page and the project details page.
-     * category: salvage | welding | survey (also shown as the "service type").
+     * category_id: the work's category; deleting a category leaves its works uncategorised.
      * client, location, duration: translatable (ar/en) like title and description.
      */
     public function up()
     {
         Schema::table('works', function (Blueprint $table) {
-            $table->string('category', 20)->nullable()->after('description');
-            $table->json('client')->nullable()->after('category');
+            $table->foreignId('category_id')->nullable()->after('description')
+                ->constrained('work_categories')->cascadeOnUpdate()->nullOnDelete();
+            $table->json('client')->nullable()->after('category_id');
             $table->json('location')->nullable()->after('client');
             $table->json('duration')->nullable()->after('location');
         });
@@ -24,7 +25,11 @@ return new class extends Migration
     public function down()
     {
         Schema::table('works', function (Blueprint $table) {
-            $table->dropColumn(['category', 'client', 'location', 'duration']);
+            // SQLite never created the foreign key (it can't add one to an existing table)
+            if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+                $table->dropForeign(['category_id']);
+            }
+            $table->dropColumn(['category_id', 'client', 'location', 'duration']);
         });
     }
 };
