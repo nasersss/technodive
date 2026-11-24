@@ -25,11 +25,11 @@
                 </ul>
             </div>
 
-            @if (isset($services) && count($services))
+            @if ($footerServices->isNotEmpty())
                 <div class="td-footer__col">
                     <h2 class="td-footer__title">{{ __('landing.our_services') }}</h2>
                     <ul>
-                        @foreach ($services->take(5) as $service)
+                        @foreach ($footerServices as $service)
                             <li><a href="{{ route('services') }}">{{ $service->title ?: $service->description }}</a></li>
                         @endforeach
                     </ul>
@@ -44,9 +44,9 @@
                     <li><a href="tel:+967777375652" dir="ltr">+967 777 375 652</a></li>
                     <li><a href="mailto:saeed78ba@yahoo.com">saeed78ba@yahoo.com</a></li>
                 </ul>
-                @if (isset($certificates) && count($certificates))
+                @if ($footerCertificates->isNotEmpty())
                     <div class="td-footer__thumbs">
-                        @foreach ($certificates as $certificate)
+                        @foreach ($footerCertificates as $certificate)
                             @if ($certificate->image)
                                 <a href="{{ route('ourExpertise') }}" aria-label="{{ __('landing.certificates') }}">
                                     <img src="{{ asset('storage/images/' . $certificate->image) }}" alt="" loading="lazy">

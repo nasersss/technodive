@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\Services;
 
 use App\Http\Controllers\Controller;
-use App\Models\Certificate;
-use App\Models\Equipment;
-use App\Models\Team;
 use Illuminate\Http\Request;
 use Mail;
 
@@ -14,12 +11,7 @@ class ContactController extends Controller
 
     public function contact()
     {
-        $equipments = Equipment::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
-        $certificates = Certificate::where('is_active', 1)->orderBy('id', 'DESC')->paginate(6);
-        return view('contact_page')->with([
-            'equipments' => $equipments,
-            'certificates' => $certificates,
-        ]);
+        return view('contact_page');
     }
     public function store(Request $request)
     {

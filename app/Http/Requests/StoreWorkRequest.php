@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Work;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreWorkRequest extends FormRequest
 {
@@ -24,7 +26,13 @@ class StoreWorkRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'category' => ['nullable', Rule::in(Work::CATEGORIES)],
+            'clientAr' => ['nullable', 'string', 'max:255'],
+            'clientEn' => ['nullable', 'string', 'max:255'],
+            'locationAr' => ['nullable', 'string', 'max:255'],
+            'locationEn' => ['nullable', 'string', 'max:255'],
+            'durationAr' => ['nullable', 'string', 'max:255'],
+            'durationEn' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

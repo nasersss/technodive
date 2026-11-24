@@ -14,6 +14,9 @@ document.querySelectorAll('.add-item').forEach(item => {
             $('.team').show();
         }else if(item.dataset.type == 'team'){
             $('.team').show();
+        }else if(item.dataset.type == 'work'){
+            $('.normal').show();
+            $('.work').show();
         }else{
             $('.normal').show();
         }

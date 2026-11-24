@@ -139,6 +139,7 @@
                                 </div>
                             @enderror
                         </div>
+                        @include('admin.modals.work-fields', ['prefix' => ''])
                        <button class="btn btn-primary mt-3 show-add-image"> ارفاق الصورة</button>
                         <input type="hidden" class="form-control imageUrlPreview" name="imageUrl" id=""  >
                         <input type="hidden" class="typeImage" name="typeImage" id="">

@@ -51,6 +51,7 @@ class WorkController extends Controller
             $descriptionTranslations = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
             $work->setTranslations('title', $titleTranslations);
             $work->setTranslations('description', $descriptionTranslations);
+            $this->fillProjectDetails($work, $request);
             $work->save();
                 if ($request->imageUrl != "") {foreach (explode(',', $request->imageUrl) as $image) {
                     $workImage = new WorkImage();
@@ -115,6 +116,7 @@ class WorkController extends Controller
             $descriptionTranslations = ['en' => $request->descriptionEn, 'ar' => $request->descriptionAr];
             $work->setTranslations('title', $titleTranslations);
             $work->setTranslations('description', $descriptionTranslations);
+            $this->fillProjectDetails($work, $request);
             $work->save();
                 if ($request->imageUrl != "") {foreach (explode(',', $request->imageUrl) as $image) {
                     $workImage = new WorkImage();
@@ -152,6 +154,18 @@ class WorkController extends Controller
         }
     
         
+    }
+
+    /** Category, client, location and duration from the add/edit form. */
+    private function fillProjectDetails(Work $work, Request $request): void
+    {
+        $work->category = $request->input('category') ?: null;
+        foreach (['client', 'location', 'duration'] as $field) {
+            $work->setTranslations($field, array_filter([
+                'ar' => $request->input($field . 'Ar'),
+                'en' => $request->input($field . 'En'),
+            ], 'filled'));
+        }
     }
 
     public function toggle(Request $request)

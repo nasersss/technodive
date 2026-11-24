@@ -1,10 +1,12 @@
 <section class="td-section td-certs" id="certificates">
     <div class="td-container">
-        @include('landing.partials.section-head', [
-            'eyebrow' => __('landing.certificates_eyebrow'),
-            'title1' => __('landing.certificates_title_1'),
-            'title2' => __('landing.certificates_title_2'),
-        ])
+        @if ($withHead ?? true)
+            @include('landing.partials.section-head', [
+                'eyebrow' => __('landing.certificates_eyebrow'),
+                'title1' => __('landing.certificates_title_1'),
+                'title2' => __('landing.certificates_title_2'),
+            ])
+        @endif
 
         <div class="td-tabs" role="tablist" aria-label="{{ __('landing.certificates_eyebrow') }}" data-reveal>
             <button type="button" role="tab" class="td-tab is-active" aria-selected="true" data-cert-filter="all">{{ __('landing.filter_all') }}</button>

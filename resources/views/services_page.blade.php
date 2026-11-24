@@ -1,33 +1,22 @@
+@extends('landing.layout')
 
-@extends('master')
+@section('title', __('landing.services_eyebrow') . ' · ' . __('landing.brand_short'))
 
-@section('title')
-{{__('navbar.services')}}
-@endsection
-
-{{-- page css files or code  --}}
-@section('css')
-
-@endsection
-{{-- page css files or code !!!! --}}
-
-{{-- content of page  --}}
 @section('content')
-<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style='visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;
-background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("{{asset('/assets/img/paner2.png')}}") center center no-repeat;background-size: cover;
-'>
-    <div class="container text-center py-5">
-        <h1 class="display-4 text-white  slideInDown mb-3">{{__('navbar.services')}}</h1>
-        <nav aria-label="breadcrumb animated slideInDown">
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a class="text-white" href="{{ route('index') }}"> {{__('navbar.home')}}</a></li>
-                {{-- <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li> --}}
-                <li class="breadcrumb-item text-primary active" aria-current="page">{{__('navbar.services')}}</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-@include('services')
-{{-- @include('testimonial') --}}
+    @include('landing.partials.page-hero', [
+        'image' => asset('/assets/img/ta10.jpg'),
+        'title' => __('landing.services_eyebrow'),
+        'crumb' => __('navbar.services'),
+        'text' => __('landing.page_services_text'),
+    ])
 
+    @if ($services->isNotEmpty())
+        @include('landing.partials.services', ['page' => true])
+    @endif
+
+    @if ($equipments->isNotEmpty())
+        @include('landing.partials.equipment', ['layout' => 'two'])
+    @endif
+
+    @include('landing.partials.cta')
 @endsection

@@ -136,6 +136,7 @@
                                 </div>
                             @enderror
                         </div>
+                        @include('admin.modals.work-fields', ['prefix' => 'update'])
                         <div class="col-md-6 col-sm-12 mt-2 ">
                             <button class="btn btn-primary mt-3 show-add-image">إضافة صورة جديدة</button>
                             <img id="imageUrlUpdate" src="" width="100%" alt="">

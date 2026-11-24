@@ -1,19 +1,24 @@
+{{-- $page: true on the services page (no heading, 3-column grid, each card opens the contact form for that service) --}}
+@php $page = $page ?? false; @endphp
 <section class="td-section td-services" id="services">
     <div class="td-container">
-        @include('landing.partials.section-head', [
-            'eyebrow' => __('landing.services_eyebrow'),
-            'title1' => __('landing.services_title_1'),
-            'title2' => __('landing.services_title_2'),
-            'text' => __('landing.services_text'),
-        ])
+        @unless ($page)
+            @include('landing.partials.section-head', [
+                'eyebrow' => __('landing.services_eyebrow'),
+                'title1' => __('landing.services_title_1'),
+                'title2' => __('landing.services_title_2'),
+                'text' => __('landing.services_text'),
+            ])
+        @endunless
 
-        <div class="td-services__grid">
+        <div @class(['td-services__grid', 'td-services__grid--page' => $page])>
             @foreach ($services as $i => $service)
                 @php
                     $heading = $service->title ?: $service->description;
                     $sub = $service->title ? $service->description : null;
                 @endphp
-                <a href="{{ route('services') }}" class="td-service td-service--{{ $loop->iteration }}" data-reveal>
+                <a href="{{ $page ? route('contact', ['subject' => $heading]) . '#contact' : route('services') }}"
+                    @class(['td-service', 'td-service--' . $loop->iteration => ! $page]) data-reveal>
                     @if ($service->image)
                         <img src="{{ asset('storage/images/' . $service->image) }}" alt="" loading="lazy">
                     @endif

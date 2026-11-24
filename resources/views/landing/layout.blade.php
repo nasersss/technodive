@@ -9,18 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="شركة تكنو دايف لخدمات الغوص التجاري في المكلا، اليمن: إنقاذ السفن، اللحام والقص تحت الماء، المراسي وخطوط الأنابيب، والمسوحات البحرية. Techno Dive commercial diving services in Mukalla, Yemen.">
     <meta name="keywords" content="غوصين في المكلا, تكنو دايف, انقاذ السفن, اصلاح السفن, اللحام تحت الماء, القص تحت الماء, مسوحات بحرية, Techno Dive, Commercial diving, Ship salvage, Underwater welding, Mukalla">
-    <meta name="theme-color" content="#f4f7fa" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#061826" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f4f7fa">
     <title>@yield('title', __('landing.meta_title'))</title>
     <link rel="icon" href="{{ asset('/assets/img/logo.jpg') }}">
 
-    {{-- Apply the saved / preferred theme before first paint to avoid a flash --}}
+    {{-- Light is the default; dark only when the visitor chose it. Applied before first paint to avoid a flash. --}}
     <script>
         (function () {
             try {
-                var t = localStorage.getItem('td-theme');
-                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', t);
+                if (localStorage.getItem('td-theme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#061826');
+                }
             } catch (e) {}
         })();
     </script>
