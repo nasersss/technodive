@@ -76,6 +76,9 @@ trait AuthenticatesUsers
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
+        ], [
+            $this->username() . '.required' => 'يرجى إدخال اسم المستخدم',
+            'password.required' => 'يرجى إدخال كلمة المرور',
         ]);
     }
 
