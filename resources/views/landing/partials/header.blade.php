@@ -3,12 +3,14 @@
         ['route' => 'index', 'label' => __('landing.home')],
         ['route' => 'about', 'label' => __('navbar.about')],
         ['route' => 'services', 'label' => __('navbar.services')],
-        ['route' => 'projects', 'label' => __('landing.works')],
+        ['route' => 'projects', 'label' => __('landing.works'), 'also' => 'singleProjects'],
         ['route' => 'hardware', 'label' => __('navbar.hardware')],
         ['route' => 'ourExpertise', 'label' => __('landing.certificates')],
         ['route' => 'contact', 'label' => __('navbar.contact')],
     ];
     $otherLocales = collect(config('locales.languages'))->except(app()->getLocale());
+    // On the home page the quote button scrolls to the contact form; elsewhere it opens the contact page
+    $quoteUrl = request()->routeIs('index') ? '#contact' : route('contact');
 @endphp
 <header class="td-header" data-header>
     <div class="td-container td-header__bar">
@@ -19,9 +21,10 @@
         <nav class="td-nav" aria-label="{{ __('landing.menu') }}">
             <ul class="td-nav__list">
                 @foreach ($navLinks as $link)
+                    @php $active = request()->routeIs($link['route'], $link['also'] ?? $link['route']); @endphp
                     <li>
-                        <a href="{{ route($link['route']) }}" @class(['td-nav__link', 'is-active' => request()->routeIs($link['route'])])
-                            @if (request()->routeIs($link['route'])) aria-current="page" @endif>{{ $link['label'] }}</a>
+                        <a href="{{ route($link['route']) }}" @class(['td-nav__link', 'is-active' => $active])
+                            @if ($active) aria-current="page" @endif>{{ $link['label'] }}</a>
                     </li>
                 @endforeach
             </ul>
@@ -35,33 +38,14 @@
                 @include('landing.partials.icon', ['name' => 'sun', 'class' => 'td-theme-toggle__sun', 'size' => 18])
                 @include('landing.partials.icon', ['name' => 'moon', 'class' => 'td-theme-toggle__moon', 'size' => 18])
             </button>
-            <a href="#contact" class="td-btn td-btn--amber td-header__cta">{{ __('landing.request_quote') }}</a>
+            <a href="{{ $quoteUrl }}" class="td-btn td-btn--amber td-header__cta">{{ __('landing.request_quote') }}</a>
             <button type="button" class="td-round-btn td-round-btn--dark td-menu-btn" data-menu-open aria-controls="td-drawer" aria-expanded="false" aria-label="{{ __('landing.menu') }}">
                 @include('landing.partials.icon', ['name' => 'menu', 'size' => 20])
             </button>
         </div>
     </div>
-
-    {{-- Mobile / tablet drawer --}}
-    <div class="td-drawer" id="td-drawer" data-drawer hidden>
-        <div class="td-drawer__backdrop" data-menu-close></div>
-        <div class="td-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ __('landing.menu') }}">
-            <div class="td-drawer__head">
-                <img src="{{ asset('/assets/img/logo.jpg') }}" alt="" width="44" height="44">
-                <button type="button" class="td-round-btn" data-menu-close aria-label="{{ __('landing.close_menu') }}">
-                    @include('landing.partials.icon', ['name' => 'close', 'size' => 20])
-                </button>
-            </div>
-            <ul class="td-drawer__list">
-                @foreach ($navLinks as $i => $link)
-                    <li>
-                        <a href="{{ route($link['route']) }}" @class(['td-drawer__link', 'is-active' => request()->routeIs($link['route'])])>
-                            <span class="td-num">{{ sprintf('%02d', $i + 1) }}</span>{{ $link['label'] }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-            <a href="#contact" class="td-btn td-btn--amber td-btn--block" data-menu-close>{{ __('landing.request_quote') }}</a>
-        </div>
-    </div>
 </header>
+
+{{-- Mobile / tablet menu. Kept outside <header>: the header's backdrop-filter makes it the
+     containing block of position:fixed children, which clipped the menu to the header's height. --}}
+@include('landing.partials.drawer', ['navLinks' => $navLinks, 'quoteUrl' => $quoteUrl])

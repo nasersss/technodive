@@ -21,6 +21,9 @@
                         @endisset
                     </a>
                     <div class="td-work__body">
+                        @if ($featured->location)
+                            <p class="td-work__meta">@include('landing.partials.icon', ['name' => 'pin', 'size' => 15]) {{ $featured->location }}</p>
+                        @endif
                         <h3 class="td-work__title"><a href="{{ route('singleProjects', $featured->id) }}">{{ $featured->title }}</a></h3>
                         @if ($featured->description)
                             <p class="td-work__text">{{ $featured->description }}</p>
@@ -42,6 +45,9 @@
                                 @endisset
                             </a>
                             <div class="td-work__body">
+                                @if ($work->location)
+                                    <p class="td-work__meta">@include('landing.partials.icon', ['name' => 'pin', 'size' => 15]) {{ $work->location }}</p>
+                                @endif
                                 <h3 class="td-work__title"><a href="{{ route('singleProjects', $work->id) }}">{{ $work->title }}</a></h3>
                                 @if ($work->description)
                                     <p class="td-work__text td-clamp-2">{{ $work->description }}</p>

@@ -1,3 +1,4 @@
+{{-- $withMap: true on the contact page --}}
 <section class="td-section td-contact" id="contact">
     <div class="td-container">
         <div class="td-contact__card">
@@ -51,7 +52,7 @@
                 </div>
                 <div class="td-field">
                     <label for="td-subject">{{ __('landing.form_subject') }}</label>
-                    <input type="text" id="td-subject" name="subject" value="{{ old('subject') }}" placeholder="{{ __('landing.form_subject_ph') }}" required
+                    <input type="text" id="td-subject" name="subject" value="{{ old('subject', request('subject')) }}" placeholder="{{ __('landing.form_subject_ph') }}" required
                         @error('subject') aria-invalid="true" aria-describedby="td-subject-error" @enderror>
                     @error('subject')<p class="td-field__error" id="td-subject-error">{{ $message }}</p>@enderror
                 </div>
@@ -65,6 +66,10 @@
                     {{ __('landing.form_send') }} @include('landing.partials.icon', ['name' => 'arrow', 'size' => 18, 'class' => 'td-flip'])
                 </button>
             </form>
+
+            @if ($withMap ?? false)
+                @include('landing.partials.map')
+            @endif
         </div>
     </div>
 </section>

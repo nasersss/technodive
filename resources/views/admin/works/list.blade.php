@@ -24,7 +24,7 @@
                 <i class="mdi mdi-plus-circle ms-2"></i>اضافة طرمبة جديدة
             </button> --}}
             <button type="button" class="btn btn-primary  me-1 add-item" data-route="{{ route('work_store') }}"
-                data-method="POST" data-modal_title='إضافة عمل جديدة'>
+                data-method="POST" data-type="work" data-modal_title='إضافة عمل جديدة'>
                 <i class="mdi mdi-plus-circle ms-2"></i>اضافة عمل جديدة
             </button>
         </div>
@@ -114,6 +114,14 @@
                                                             data-description_ar="@isset($work->getTranslations('description')['ar']){{ $work->getTranslations('description')['ar'] }} @endisset"
                                                             data-description_en="@isset($work->getTranslations('description')['en']){{ $work->getTranslations('description')['en'] }} @endisset"
                                                             data-path="{{ asset('storage/images/' . $work->image) }}"
+                                                            data-type="work"
+                                                            data-category="{{ $work->category }}"
+                                                            data-client_ar="{{ $work->getTranslation('client', 'ar', false) }}"
+                                                            data-client_en="{{ $work->getTranslation('client', 'en', false) }}"
+                                                            data-location_ar="{{ $work->getTranslation('location', 'ar', false) }}"
+                                                            data-location_en="{{ $work->getTranslation('location', 'en', false) }}"
+                                                            data-duration_ar="{{ $work->getTranslation('duration', 'ar', false) }}"
+                                                            data-duration_en="{{ $work->getTranslation('duration', 'en', false) }}"
                                                             class="update-item dropdown-item" href="#"><i
                                                                 class="bi bi-pencil-square text-success ms-3"></i>تعديل</button>
 

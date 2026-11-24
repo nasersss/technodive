@@ -40,7 +40,9 @@
                 @endforeach
             </ul>
 
-            <a href="{{ route('about') }}" class="td-btn td-btn--amber td-btn--lg">{{ __('landing.read_more_about') }}</a>
+            @if ($showMore ?? true)
+                <a href="{{ route('about') }}" class="td-btn td-btn--amber td-btn--lg">{{ __('landing.read_more_about') }}</a>
+            @endif
         </div>
     </div>
 </section>

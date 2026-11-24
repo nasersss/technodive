@@ -1,61 +1,77 @@
+@extends('landing.layout')
 
-@extends('master')
+@section('title', $work->title . ' · ' . __('landing.brand_short'))
 
-@section('title')
-@isset($work)
-{{$work->title}}
-@endisset
-@endsection
+@php
+    $photos = $work->workImages;
+    $cover = $photos->isNotEmpty() ? asset('storage/images/' . $photos->first()->image) : asset('/assets/img/wo1.jpg');
+    $paragraphs = array_filter(preg_split('/\R+/u', trim((string) $work->description)), 'filled');
+    $facts = array_filter([
+        __('landing.fact_client') => $work->client,
+        __('landing.fact_location') => $work->location,
+        __('landing.fact_service') => $work->categoryLabel(),
+        __($work->category === 'salvage' ? 'landing.fact_duration_salvage' : 'landing.fact_duration') => $work->duration,
+    ], 'filled');
+@endphp
 
-{{-- page css files or code  --}}
-@section('css')
-
-@endsection
-{{-- page css files or code !!!! --}}
-
-{{-- content of page  --}}
 @section('content')
-<div class="container-fluid py-3  wow fadeIn" data-wow-delay="0.1s" >
-    @isset($work)
-    <div class="container mx-auto row py-0">
-        <!-- Carousel Start -->
-        <div class="col-sm-12 col-lg-4">
-            <h1 class="my-3">
-                {{$work->title}}
-        </h1>
-        <p>
-            {{$work->description}}
-        </p>
-        </div>
-            <div class="container-fluid p-0 wow fadeIn col-sm-12 col-lg-8 " data-wow-delay="0.1s">
-                <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner col-12" > 
-                        
-                        @foreach ($work->workImages as $image)
-                       
-                        <div class="carousel-item  @if($loop->iteration ==1) active @endif ">
-                            <img class="img-fluid" src="{{asset('storage/images/'.$image->image)}}" alt="Image">
-                        </div>
-                        
-                        @endforeach
+    @include('landing.partials.page-hero', [
+        'image' => $cover,
+        'title' => $work->title,
+        'crumbs' => [['url' => route('projects'), 'label' => __('landing.works')]],
+    ])
 
+    <section class="td-section td-project">
+        <div class="td-container td-project__grid">
+            <div class="td-project__main">
+                @if ($paragraphs)
+                    <div class="td-project__story" data-reveal>
+                        <p class="td-eyebrow">{{ __('landing.project_story') }}</p>
+                        @foreach ($paragraphs as $paragraph)
+                            <p class="td-lead">{{ $paragraph }}</p>
+                        @endforeach
                     </div>
-                    <button class="carousel-control-prev bg-dark " type="button" data-bs-target="#header-carousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon text-primary" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon text-primary" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                @endif
+
+                @if ($photos->isNotEmpty())
+                    <div class="td-gallery" data-reveal>
+                        @foreach ($photos as $photo)
+                            <a href="{{ asset('storage/images/' . $photo->image) }}" class="td-gallery__item" target="_blank" rel="noopener">
+                                <img src="{{ asset('storage/images/' . $photo->image) }}" alt="{{ __('landing.project_photo', ['number' => $loop->iteration]) }}" loading="lazy">
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
+            <aside class="td-facts" data-reveal>
+                @if ($facts)
+                    <dl class="td-facts__list">
+                        @foreach ($facts as $label => $value)
+                            <div class="td-facts__row">
+                                <dt>{{ $label }}</dt>
+                                <dd>{{ $value }}</dd>
+                            </div>
+                        @endforeach
+                    </dl>
+                @endif
+                <a href="{{ route('contact', ['subject' => $work->categoryLabel() ?? $work->title]) }}#contact" class="td-btn td-btn--amber td-btn--block">{{ __('landing.request_similar') }}</a>
+            </aside>
+        </div>
+    </section>
+
+    @if ($others->isNotEmpty())
+        <section class="td-section">
+            <div class="td-container">
+                <p class="td-eyebrow" data-reveal>{{ __('landing.other_projects') }}</p>
+                <div class="td-works__cards td-works__cards--three">
+                    @foreach ($others as $other)
+                        @include('landing.partials.work-card', ['work' => $other, 'showText' => false])
+                    @endforeach
                 </div>
             </div>
-        <!-- Carousel End -->
-        
-    </div>
-    @endisset
-</div>
+        </section>
+    @endif
 
+    @include('landing.partials.cta')
 @endsection

@@ -86,8 +86,8 @@ return [
 
     // Contact
     'contact_eyebrow' => 'اتصل بنا',
-    'contact_title_1' => 'مشروعك القادم',
-    'contact_title_2' => 'يبدأ تحت السطح',
+    'contact_title_1' => 'تحدّث مع فريقنا',
+    'contact_title_2' => 'عن مشروعك القادم',
     'contact_text' => 'تواصل معنا لمعاينة الموقع وتقديم عرض فني ومالي يناسب مشروعك.',
     'address_label' => 'العنوان',
     'address' => 'اليمن · حضرموت · المكلا',
@@ -102,6 +102,41 @@ return [
     'form_message' => 'الرسالة',
     'form_message_ph' => 'اكتب تفاصيل مشروعك والموقع...',
     'form_send' => 'إرسال الرسالة',
+
+    // Inner pages: cover
+    'breadcrumb' => 'مسار التنقل',
+    'page_about_text' => 'أكثر من عشرين عاماً من الخبرة في الغوص التجاري والأعمال البحرية.',
+    'page_services_text' => 'خدمات بحرية متخصصة ينفذها فريق حاصل على الرخصة الدولية.',
+    'page_works_title' => 'أعمالنا',
+    'page_works_text' => 'مشاريع إنقاذ ومسح ولحام أنجزناها لجهات محلية ودولية.',
+    'page_equipment_text' => 'أجهزة حديثة تمكّننا من تنفيذ الأعمال بالصورة الصحيحة.',
+    'page_certificates_text' => 'مؤهلات دولية لفريقنا وشهادات تقدير من شركائنا.',
+    'page_contact_text' => 'نسعد بتواصلك، وفريقنا جاهز للمعاينة وتقديم العروض.',
+
+    // Call to action band
+    'cta_title' => 'عندك مشروع تحت الماء؟',
+    'cta_text' => 'فريقنا جاهز للمعاينة وتقديم عرض فني ومالي.',
+    'whatsapp' => 'واتساب',
+
+    // Works page and project details
+    'works_filter' => 'تصفية الأعمال حسب التصنيف',
+    'category_salvage' => 'إنقاذ سفن',
+    'category_welding' => 'لحام وقص',
+    'category_survey' => 'مسوحات',
+    'no_works' => 'لا توجد أعمال في هذا التصنيف حالياً.',
+    'project_story' => 'قصة المشروع',
+    'project_photo' => 'صورة :number من المشروع',
+    'fact_client' => 'العميل',
+    'fact_location' => 'الموقع',
+    'fact_service' => 'نوع الخدمة',
+    'fact_duration' => 'مدة العمل',
+    'fact_duration_salvage' => 'مدة الجنوح',
+    'request_similar' => 'اطلب خدمة مشابهة',
+    'other_projects' => 'مشاريع أخرى',
+
+    // Contact page map
+    'map_label' => 'المكلا · حضرموت',
+    'open_map' => 'افتح موقعنا في خرائط جوجل',
 
     // Footer
     'footer_about' => 'شركة يمنية متخصصة في الغوص التجاري والأعمال البحرية منذ أكثر من عشرين عاماً.',

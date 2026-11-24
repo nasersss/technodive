@@ -86,8 +86,8 @@ return [
 
     // Contact
     'contact_eyebrow' => 'Contact us',
-    'contact_title_1' => 'Your next project',
-    'contact_title_2' => 'starts below the surface',
+    'contact_title_1' => 'Talk to our team',
+    'contact_title_2' => 'about your next project',
     'contact_text' => 'Get in touch for a site survey and a technical and financial offer that fits your project.',
     'address_label' => 'Address',
     'address' => 'Yemen · Hadramout · Mukalla',
@@ -102,6 +102,41 @@ return [
     'form_message' => 'Message',
     'form_message_ph' => 'Tell us about your project and site...',
     'form_send' => 'Send message',
+
+    // Inner pages: cover
+    'breadcrumb' => 'Breadcrumb',
+    'page_about_text' => 'Over twenty years of experience in commercial diving and marine works.',
+    'page_services_text' => 'Specialised marine services delivered by an internationally licensed team.',
+    'page_works_title' => 'Our work',
+    'page_works_text' => 'Salvage, survey and welding projects delivered for local and international clients.',
+    'page_equipment_text' => 'Modern equipment that lets us carry out every job the right way.',
+    'page_certificates_text' => 'International qualifications for our team and appreciation letters from our partners.',
+    'page_contact_text' => 'We are glad to hear from you. Our team is ready for site surveys and quotes.',
+
+    // Call to action band
+    'cta_title' => 'Have a project under water?',
+    'cta_text' => 'Our team is ready to survey the site and send a technical and financial offer.',
+    'whatsapp' => 'WhatsApp',
+
+    // Works page and project details
+    'works_filter' => 'Filter works by category',
+    'category_salvage' => 'Ship salvage',
+    'category_welding' => 'Welding & cutting',
+    'category_survey' => 'Surveys',
+    'no_works' => 'No works in this category yet.',
+    'project_story' => 'Project story',
+    'project_photo' => 'Project photo :number',
+    'fact_client' => 'Client',
+    'fact_location' => 'Location',
+    'fact_service' => 'Service type',
+    'fact_duration' => 'Duration',
+    'fact_duration_salvage' => 'Stranded for',
+    'request_similar' => 'Request a similar service',
+    'other_projects' => 'Other projects',
+
+    // Contact page map
+    'map_label' => 'Mukalla · Hadramout',
+    'open_map' => 'Open our location in Google Maps',
 
     // Footer
     'footer_about' => 'A Yemeni company specialized in commercial diving and marine works for over twenty years.',

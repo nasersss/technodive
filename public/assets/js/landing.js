@@ -124,24 +124,33 @@
         counters.forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
     }
 
-    /* ---------- Certificates filter ---------- */
-    var filters = document.querySelectorAll('[data-cert-filter]');
-    var certs = document.querySelectorAll('[data-cert]');
-    filters.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var value = btn.getAttribute('data-cert-filter');
-            filters.forEach(function (b) {
-                var on = b === btn;
-                b.classList.toggle('is-active', on);
-                b.setAttribute('aria-selected', on ? 'true' : 'false');
-            });
-            certs.forEach(function (card) {
-                var show = value === 'all' || card.getAttribute('data-cert') === value;
-                card.hidden = !show;
-                if (show) card.classList.add('is-visible');
+    /* ---------- Tab filters (certificates, works) ----------
+       Tabs carry [tabAttr]="value"; cards carry [itemAttr]="value". An optional
+       [data-filter-empty="tabAttr"] message shows when nothing matches. */
+    function setupFilter(tabAttr, itemAttr) {
+        var tabs = document.querySelectorAll('[' + tabAttr + ']');
+        var items = document.querySelectorAll('[' + itemAttr + ']');
+        var empty = document.querySelector('[data-filter-empty="' + tabAttr + '"]');
+        tabs.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var value = btn.getAttribute(tabAttr);
+                var shown = 0;
+                tabs.forEach(function (b) {
+                    var on = b === btn;
+                    b.classList.toggle('is-active', on);
+                    b.setAttribute('aria-selected', on ? 'true' : 'false');
+                });
+                items.forEach(function (card) {
+                    var show = value === 'all' || card.getAttribute(itemAttr) === value;
+                    card.hidden = !show;
+                    if (show) { card.classList.add('is-visible'); shown++; }
+                });
+                if (empty) empty.hidden = shown > 0;
             });
         });
-    });
+    }
+    setupFilter('data-cert-filter', 'data-cert');
+    setupFilter('data-work-filter', 'data-work-category');
 
     /* ---------- Contact form: prevent double submit ---------- */
     document.querySelectorAll('form[data-disable-on-submit]').forEach(function (form) {
