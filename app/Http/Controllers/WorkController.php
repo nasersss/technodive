@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Work;
+use App\Models\WorkCategory;
 use App\Models\WorkImage;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
@@ -18,8 +19,11 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $works = Work::with('workImages')->get();
-        return view('admin.works.list')->with('works', $works);
+        $works = Work::with(['workImages', 'category'])->get();
+        return view('admin.works.list')->with([
+            'works' => $works,
+            'workCategories' => WorkCategory::orderBy('id')->get(),
+        ]);
     }
 
     /**
@@ -159,7 +163,7 @@ class WorkController extends Controller
     /** Category, client, location and duration from the add/edit form. */
     private function fillProjectDetails(Work $work, Request $request): void
     {
-        $work->category = $request->input('category') ?: null;
+        $work->category_id = $request->input('category_id') ?: null;
         foreach (['client', 'location', 'duration'] as $field) {
             $work->setTranslations($field, array_filter([
                 'ar' => $request->input($field . 'Ar'),

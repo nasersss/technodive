@@ -44,6 +44,7 @@
                                     <th>العنوان بالانجليزي</th>
                                     <th>الوصف بالعربي</th>
                                     <th>الوصف بالانجليزي</th>
+                                    <th>القسم</th>
                                     <th>الحالة</th>
                                     <th>العمليات</th>
                                 </tr>
@@ -76,6 +77,7 @@
                                                     {{ $work->getTranslations('description')['en'] }}
                                                 @endisset
                                             </td>
+                                            <td>{{ $work->category?->getTranslation('name', 'ar', false) }}</td>
                                             <td>
                                                 @isset($work->is_active)
                                                     @if ($work->is_active == 1)
@@ -115,7 +117,7 @@
                                                             data-description_en="@isset($work->getTranslations('description')['en']){{ $work->getTranslations('description')['en'] }} @endisset"
                                                             data-path="{{ asset('storage/images/' . $work->image) }}"
                                                             data-type="work"
-                                                            data-category="{{ $work->category }}"
+                                                            data-category="{{ $work->category_id }}"
                                                             data-client_ar="{{ $work->getTranslation('client', 'ar', false) }}"
                                                             data-client_en="{{ $work->getTranslation('client', 'en', false) }}"
                                                             data-location_ar="{{ $work->getTranslation('location', 'ar', false) }}"

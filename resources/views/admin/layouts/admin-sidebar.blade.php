@@ -24,6 +24,7 @@
                 </a>
                 <ul aria-expanded="false" class="mm-collapse" style="height: 16px;">
                     <li><a href="{{route('work_list')}}">عرض الأعمال</a></li>
+                    <li><a href="{{route('work_category_list')}}">أقسام الأعمال</a></li>
                 </ul>
             </li>
             <li class=""><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

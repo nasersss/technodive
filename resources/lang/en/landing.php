@@ -86,9 +86,9 @@ return [
 
     // Contact
     'contact_eyebrow' => 'Contact us',
-    'contact_title_1' => 'Talk to our team',
-    'contact_title_2' => 'about your next project',
-    'contact_text' => 'Get in touch for a site survey and a technical and financial offer that fits your project.',
+    'contact_title_1' => 'We reach where',
+    'contact_title_2' => 'others can’t',
+    'contact_text' => 'Get in touch for a site survey and a technical and financial offer that fits your needs.',
     'address_label' => 'Address',
     'address' => 'Yemen · Hadramout · Mukalla',
     'phone_label' => 'Phone',
@@ -114,15 +114,12 @@ return [
     'page_contact_text' => 'We are glad to hear from you. Our team is ready for site surveys and quotes.',
 
     // Call to action band
-    'cta_title' => 'Have a project under water?',
+    'cta_title' => 'Need a professional diving team?',
     'cta_text' => 'Our team is ready to survey the site and send a technical and financial offer.',
     'whatsapp' => 'WhatsApp',
 
     // Works page and project details
     'works_filter' => 'Filter works by category',
-    'category_salvage' => 'Ship salvage',
-    'category_welding' => 'Welding & cutting',
-    'category_survey' => 'Surveys',
     'no_works' => 'No works in this category yet.',
     'project_story' => 'Project story',
     'project_photo' => 'Project photo :number',
@@ -130,7 +127,6 @@ return [
     'fact_location' => 'Location',
     'fact_service' => 'Service type',
     'fact_duration' => 'Duration',
-    'fact_duration_salvage' => 'Stranded for',
     'request_similar' => 'Request a similar service',
     'other_projects' => 'Other projects',
 

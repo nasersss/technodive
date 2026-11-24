@@ -10,7 +10,7 @@
                     class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework " novalidate>
                     @csrf
                     <div class="row" id="elementUpdateForm">
-                        <div class="col-md-6 col-sm-12 hide normal">
+                        <div class="col-md-6 col-sm-12 hide normal work-category">
                             <label class="form-label" for="titleAr">العنوان بالعربي </label>
                             <input type="text" id="updateTitleAr" required="" value="{{ old('titleAr') }}"
                                 name="titleAr" class="form-control" placeholder="الرجاء ادخال العنوان بالعربي ">
@@ -23,7 +23,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-md-6 col-sm-12 hide normal">
+                        <div class="col-md-6 col-sm-12 hide normal work-category">
                             <label class="form-label" for="titleEn">العنوان بالإنجليزية </label>
                             <input type="text" id="updateTitleEn" required="" name="titleEn" class="form-control"
                                 placeholder="الرجاء ادخال العنوان بالإنجليزية ">

@@ -14,6 +14,13 @@ document.querySelectorAll('.add-item').forEach(item => {
             $('.team').show();
         }else if(item.dataset.type == 'team'){
             $('.team').show();
+        }else if(item.dataset.type == 'work-category'){
+            $('.work-category').show();
+            $('.show-add-image').hide();
+            $('label[for=titleAr]').text('اسم القسم بالعربي');
+            $('label[for=titleEn]').text('اسم القسم بالإنجليزية');
+            $('#titleAr, #updateTitleAr').attr('placeholder', 'مثال: إنقاذ سفن');
+            $('#titleEn, #updateTitleEn').attr('placeholder', 'e.g. Ship salvage');
         }else if(item.dataset.type == 'work'){
             $('.normal').show();
             $('.work').show();

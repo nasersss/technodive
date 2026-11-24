@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Work;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateWorkRequest extends FormRequest
 {
@@ -26,7 +24,7 @@ class UpdateWorkRequest extends FormRequest
     public function rules()
     {
         return [
-            'category' => ['nullable', Rule::in(Work::CATEGORIES)],
+            'category_id' => ['nullable', 'integer', 'exists:work_categories,id'],
             'clientAr' => ['nullable', 'string', 'max:255'],
             'clientEn' => ['nullable', 'string', 'max:255'],
             'locationAr' => ['nullable', 'string', 'max:255'],
